@@ -1,6 +1,5 @@
 package com.longshihan.mvpcomponent.strategy.imageloader.glide;
 
-import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
