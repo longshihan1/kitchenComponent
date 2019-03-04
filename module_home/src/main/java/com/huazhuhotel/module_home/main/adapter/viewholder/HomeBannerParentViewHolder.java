@@ -6,6 +6,7 @@ import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.huazhuhotel.module_home.R;
 import com.huazhuhotel.module_home.main.adapter.HomeBannerAdapter;
@@ -24,12 +25,21 @@ import com.longshihan.mvpcomponent.utils.ArmsUtils;
 
 public class HomeBannerParentViewHolder extends BaseHolder<HomeInfo.ResultBean.HeaderBean> {
     RecyclerView recyclerView;
+
+    public LinearLayout searchLin;
+    public ImageView sort, add;
+
     private HomeBannerAdapter bannerAdapter;
+
     public HomeBannerParentViewHolder(View itemView) {
         super(itemView);
-        this.recyclerView =  itemView.findViewById(R.id.item_homebanner_recy);
+        this.recyclerView = itemView.findViewById(R.id.item_homebanner_recy);
+        searchLin = itemView.findViewById(R.id.item_homebanner_search);
+        sort = itemView.findViewById(R.id.item_homebanner_sort);
+        add = itemView.findViewById(R.id.item_homebanner_add);
     }
-    public void attachAdapter(Context context,HomeBannerAdapter adapter){
+
+    public void attachAdapter(Context context, HomeBannerAdapter adapter) {
         bannerAdapter = new HomeBannerAdapter(context);
         recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
         new PagerSnapHelper().attachToRecyclerView(recyclerView);
@@ -38,7 +48,7 @@ public class HomeBannerParentViewHolder extends BaseHolder<HomeInfo.ResultBean.H
 
     @Override
     public void bindHolder(HomeInfo.ResultBean.HeaderBean data, int position, Context mContext) {
-        if (data.getTrs()!=null) {
+        if (data.getTrs() != null) {
             bannerAdapter.setBeanList(data.getTrs());
         }
     }

@@ -1,6 +1,8 @@
 package com.longshihan.mvpcomponent.http.base;
 
 
+import android.text.TextUtils;
+
 import com.longshihan.mvpcomponent.http.GlobalHttpHandler;
 import com.longshihan.mvpcomponent.utils.AppService;
 

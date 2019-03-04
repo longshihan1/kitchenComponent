@@ -1,5 +1,6 @@
 package com.huazhuhotel.module_home.main.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +13,7 @@ import com.huazhuhotel.module_home.main.adapter.HomeAdapter;
 import com.huazhuhotel.module_home.main.persenter.DOUGUOContract;
 import com.huazhuhotel.module_home.main.persenter.DOUGUOMANINPersenter;
 import com.huazhuhotel.module_home.mvp.model.HomeInfo;
+import com.huazhuhotel.module_home.sort.ui.SortListActivity;
 import com.longshihan.mvpcomponent.base.BaseMVPFragment;
 import com.longshihan.mvpcomponent.di.component.AppComponent;
 
@@ -23,7 +25,7 @@ import com.longshihan.mvpcomponent.di.component.AppComponent;
  * @function
  */
 
-public class HomeFragment extends BaseMVPFragment<DOUGUOMANINPersenter> implements DOUGUOContract.View {
+public class HomeFragment extends BaseMVPFragment<DOUGUOMANINPersenter> implements DOUGUOContract.View,HomeAdapter.OnAdapterListener {
     RecyclerView mDouguoHomeRecy;
 
     private HomeAdapter adapter;
@@ -65,6 +67,7 @@ public class HomeFragment extends BaseMVPFragment<DOUGUOMANINPersenter> implemen
     public void initData(Bundle savedInstanceState) {
         mDouguoHomeRecy = mRootview.findViewById(R.id.douguo_home_recy);
         adapter = new HomeAdapter(mContext);
+        adapter.setListener(this);
         mDouguoHomeRecy.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
         mDouguoHomeRecy.setAdapter(adapter);
         mPresenter.getHomeInfd();
@@ -73,5 +76,11 @@ public class HomeFragment extends BaseMVPFragment<DOUGUOMANINPersenter> implemen
     @Override
     public void setupFragmentComponent(AppComponent appComponent) {
         mPresenter = new DOUGUOMANINPersenter(this, appComponent.repositoryManager());
+    }
+
+    @Override
+    public void onHomeSortListener() {
+        //点击进分类
+        startActivity(new Intent(mActivity, SortListActivity.class));
     }
 }

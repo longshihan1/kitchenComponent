@@ -1,6 +1,8 @@
 package com.huazhuhotel.module_home.http;
 
 import com.huazhuhotel.module_home.mvp.model.HomeInfo;
+import com.huazhuhotel.module_home.mvp.model.SearchInfo;
+import com.huazhuhotel.module_home.mvp.model.SortInfo;
 
 import io.reactivex.Observable;
 import retrofit2.http.Field;
@@ -20,10 +22,11 @@ import retrofit2.http.Query;
  */
 
 public interface ApiService {
-    String DOUGUO_API="http://api.douguo.net/";
+    String DOUGUO_API = "http://api.douguo.net/";
 
     /**
      * <p>http://api.douguo.net/personalized/home</p>
+     * 这边应该添加一个header数据才行
      *
      * @return
      */
@@ -32,5 +35,15 @@ public interface ApiService {
     @POST("/personalized/home")
     Observable<HomeInfo> getHomeInfo(@Field("direction") String direction);
 
+
+    @Headers({"version:6931.2", "url_name:douguo"})
+    @POST("/recipe/flatcatalogs")
+    Observable<SortInfo> getSortInfo();
+
+
+    @Headers({"version:6931.2", "url_name:douguo"})
+    @POST("/recipe/flatcatalogs/{page}/20")
+    Observable<SearchInfo> getSearchInfo(@Path("page") int page,
+                                         @Field("keyword") String keyword, @Field("order") int order);
 
 }

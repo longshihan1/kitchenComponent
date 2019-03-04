@@ -33,6 +33,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private int TYPE_BANNER = 0;
     private int TYPE_LIN = 1;
     private int TYPE_LIST = 2;
+    private OnAdapterListener listener;
 
     public HomeAdapter(Context context) {
         this.context = context;
@@ -61,7 +62,16 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (getItemViewType(position) == TYPE_BANNER) {
             if (holder instanceof HomeBannerParentViewHolder) {
-                ((HomeBannerParentViewHolder) holder).bindHolder(headerBean, position, context);
+                HomeBannerParentViewHolder parentViewHolder= (HomeBannerParentViewHolder) holder;
+                parentViewHolder.bindHolder(headerBean, position, context);
+                parentViewHolder.sort.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (listener!=null){
+                            listener.onHomeSortListener();
+                        }
+                    }
+                });
             }
         } else if (getItemViewType(position) == TYPE_LIN) {
             if (holder instanceof HomeAdvViewHolder) {
@@ -99,5 +109,14 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             headerBean = info.getResult().getHeader();
         }
         notifyDataSetChanged();
+    }
+
+    public void setListener(OnAdapterListener listener) {
+        this.listener = listener;
+    }
+
+
+    public interface OnAdapterListener{
+        void onHomeSortListener();
     }
 }
