@@ -1,5 +1,6 @@
 package com.huazhuhotel.module_home.http;
 
+import com.huazhuhotel.module_home.mvp.model.GoodsDetailInfo;
 import com.huazhuhotel.module_home.mvp.model.HomeInfo;
 import com.huazhuhotel.module_home.mvp.model.SearchInfo;
 import com.huazhuhotel.module_home.mvp.model.SortInfo;
@@ -42,8 +43,12 @@ public interface ApiService {
 
 
     @Headers({"version:6931.2", "url_name:douguo"})
-    @POST("/recipe/flatcatalogs/{page}/20")
+    @FormUrlEncoded
+    @POST("/recipe/v2/search/{page}/20")
     Observable<SearchInfo> getSearchInfo(@Path("page") int page,
                                          @Field("keyword") String keyword, @Field("order") int order);
 
+    @Headers({"version:6931.2", "url_name:douguo"})
+    @POST("/recipe/detail/{goodsId}")
+    Observable<GoodsDetailInfo> getGoodsDetailInfo(@Path("goodsId") int goodsId);
 }

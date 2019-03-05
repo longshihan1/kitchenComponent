@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.huazhuhotel.module_home.mvp.adapter.SimpleViewHolder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -42,6 +43,17 @@ public abstract class SimpleRecyclerAdapter<T> extends RecyclerView.Adapter<Simp
      */
     public void setListData(List<T> data) {
         this.mListData = data;
+        notifyDataSetChanged();
+    }
+
+    public void appendListData(List<T> data) {
+        if (data!=null&&data.size()>0) {
+            if (mListData==null){
+                mListData=new ArrayList<>();
+            }
+            this.mListData.addAll(data);
+            notifyDataSetChanged();
+        }
     }
 
     @Override

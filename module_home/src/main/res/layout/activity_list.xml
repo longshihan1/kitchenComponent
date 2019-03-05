@@ -11,8 +11,45 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp">
 
+        <ImageView
+            android:id="@+id/leftbtn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/xiangzuojiantou"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@color/color_f8f8f8"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/sousuo"
+                />
+
+            <EditText
+                android:id="@+id/search_edit"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"/>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/search_btn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/sousuo"/>
     </LinearLayout>
 
     <LinearLayout
@@ -20,9 +57,104 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/search_type_firsttv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="综合最佳"
+                android:textSize="16dp"/>
+
+            <View
+                android:id="@+id/search_type_firstline"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/color_273261"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/search_type_secondtv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="收藏最多"
+                android:textSize="16dp"/>
+
+            <View
+                android:id="@+id/search_type_secondline"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/color_273261"
+                android:visibility="invisible"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/search_type_thridtv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="做过最多"
+                android:textSize="16dp"/>
+
+            <View
+                android:id="@+id/search_type_thridline"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/color_273261"
+                android:visibility="invisible"
+                />
+        </LinearLayout>
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/search_type_smartrefresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        app:srlEnableAutoLoadMore="false"
+        app:srlEnableFooterTranslationContent="true">
+
+        <com.huazhuhotel.module_home.widget.refresh.header.RefreshEmptyHeaderView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/search_recy"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            />
+
+        <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+            android:id="@+id/search_type_smartrefresh_footer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 </LinearLayout>

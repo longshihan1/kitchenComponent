@@ -1,5 +1,6 @@
 package com.huazhuhotel.module_home.sort.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,6 +10,7 @@ import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.huazhuhotel.module_home.R;
+import com.huazhuhotel.module_home.list.ui.ListActivity;
 import com.huazhuhotel.module_home.mvp.adapter.SimpleRecyclerAdapter;
 import com.huazhuhotel.module_home.mvp.model.SortInfo;
 import com.huazhuhotel.module_home.sort.adapter.LeftAdapter;
@@ -18,6 +20,7 @@ import com.huazhuhotel.module_home.sort.model.entity.SortBean;
 import com.huazhuhotel.module_home.sort.model.entity.SortItem;
 import com.huazhuhotel.module_home.sort.persenter.SortContract;
 import com.huazhuhotel.module_home.sort.persenter.SortPersenter;
+import com.huazhuhotel.module_home.utils.IntentContancts;
 import com.longshihan.mvpcomponent.base.BaseMVPActivity;
 import com.longshihan.mvpcomponent.di.component.AppComponent;
 import com.orhanobut.logger.Logger;
@@ -72,9 +75,6 @@ public class SortListActivity extends BaseMVPActivity<SortPersenter> implements 
             }
         }
         Logger.d(csBeanList);
-
-
-
         // 构造点数据，比如整个数据刚刚好就是从json转过来的，一个Bean里面有一个大类，有若干个小类
         // 左侧的adapter就直接用这个构造好的list
         for (int i = 0; i < csBeanList.size(); i++) {
@@ -120,8 +120,6 @@ public class SortListActivity extends BaseMVPActivity<SortPersenter> implements 
         }
         rightAdapter.setListData(mRightList);
         leftAdapter.setListData(mLeftList);
-        rightAdapter.notifyDataSetChanged();
-        leftAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -175,7 +173,10 @@ public class SortListActivity extends BaseMVPActivity<SortPersenter> implements 
         rightAdapter.setOnItemClickListener(new SimpleRecyclerAdapter.OnItemClickListener<SortItem>() {
             @Override
             public void onItemClick(SortItem item, int index) {
-                Toast.makeText(SortListActivity.this, item.name, Toast.LENGTH_SHORT).show();
+                //点击小的
+                Intent intent=new Intent(SortListActivity.this, ListActivity.class);
+                intent.putExtra(IntentContancts.SEARCH_VALUE,item.name);
+                startActivity(intent);
             }
         });
         //右侧列表的滚动事件

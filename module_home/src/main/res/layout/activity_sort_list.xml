@@ -29,8 +29,6 @@
             android:id="@+id/rv_sort_right"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="12sp"
-            android:layout_marginRight="12sp"
             android:overScrollMode="never"/>
     </LinearLayout>
 
