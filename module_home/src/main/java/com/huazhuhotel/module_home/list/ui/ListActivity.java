@@ -1,5 +1,6 @@
 package com.huazhuhotel.module_home.list.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.huazhuhotel.module_home.R;
+import com.huazhuhotel.module_home.detail.ui.GoodsDetailActivity;
 import com.huazhuhotel.module_home.list.adapter.SearchListAdapter;
 import com.huazhuhotel.module_home.list.persenter.ListContract;
 import com.huazhuhotel.module_home.list.persenter.ListPersenter;
@@ -135,8 +137,9 @@ public class ListActivity extends BaseMVPActivity<ListPersenter> implements List
             @Override
             public void onItemClick(SearchInfo.ResultBean.ListBean item, int index) {
                 int id=item.getR().getId();
-
-
+                Intent intent=new Intent(ListActivity.this, GoodsDetailActivity.class);
+                intent.putExtra(IntentContancts.GOODSDETAIL_VALUE,id);
+                startActivity(intent);
                 Toast.makeText(ListActivity.this,item.getR().getN(),Toast.LENGTH_SHORT).show();
             }
         });

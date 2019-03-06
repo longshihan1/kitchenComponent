@@ -10,5 +10,6 @@ package com.huazhuhotel.module_home.utils;
 
 public class IntentContancts {
     public static final String SEARCH_VALUE="searchValue";
+    public static final String GOODSDETAIL_VALUE="goodsDetailValue";
 }
 
