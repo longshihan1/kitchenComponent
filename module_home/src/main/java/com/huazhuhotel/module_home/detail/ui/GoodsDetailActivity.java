@@ -4,12 +4,14 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.huazhuhotel.module_home.R;
+import com.huazhuhotel.module_home.detail.adapter.DetailFragmentPagerAdapter;
 import com.huazhuhotel.module_home.detail.persenter.GoodsDetailContract;
 import com.huazhuhotel.module_home.detail.persenter.GoodsDetailPersenter;
 import com.huazhuhotel.module_home.detail.ui.fragment.CommunicateFragment;
@@ -19,6 +21,7 @@ import com.huazhuhotel.module_home.mvp.model.GoodsDetailInfo;
 import com.huazhuhotel.module_home.utils.IntentContancts;
 import com.longshihan.mvpcomponent.base.BaseMVPActivity;
 import com.longshihan.mvpcomponent.di.component.AppComponent;
+import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +44,7 @@ public class GoodsDetailActivity extends BaseMVPActivity<GoodsDetailPersenter> i
      */
     private TextView mGoodsdetailTypeThridtv;
     private View mGoodsdetailTypeThridline;
-    private FrameLayout mGoodsdetailFramelayout;
+    private ViewPager mViewpage;
 
     private CommunicateFragment communicateFragment;
     private CookManagerFragment cookManagerFragment;
@@ -50,6 +53,8 @@ public class GoodsDetailActivity extends BaseMVPActivity<GoodsDetailPersenter> i
     private int index = -1;
     private FragmentManager fragmentManager;
     private int goodsId;
+    DetailFragmentPagerAdapter pagerAdapter;
+
 
     @Override
     public void showLoading() {
@@ -97,6 +102,7 @@ public class GoodsDetailActivity extends BaseMVPActivity<GoodsDetailPersenter> i
     @Override
     public void initData() {
         goodsId = getIntent().getIntExtra(IntentContancts.GOODSDETAIL_VALUE, 0);
+        Logger.d(goodsId+"");
         mGoodsdetailTypeFirsttv = (TextView) findViewById(R.id.goodsdetail_type_firsttv);
         mGoodsdetailTypeFirsttv.setOnClickListener(this);
         mGoodsdetailTypeFirstline = (View) findViewById(R.id.goodsdetail_type_firstline);
@@ -106,7 +112,7 @@ public class GoodsDetailActivity extends BaseMVPActivity<GoodsDetailPersenter> i
         mGoodsdetailTypeThridtv = (TextView) findViewById(R.id.goodsdetail_type_thridtv);
         mGoodsdetailTypeThridtv.setOnClickListener(this);
         mGoodsdetailTypeThridline = (View) findViewById(R.id.goodsdetail_type_thridline);
-        mGoodsdetailFramelayout = (FrameLayout) findViewById(R.id.goodsdetail_framelayout);
+        mViewpage =  findViewById(R.id.goodsdetail_viewpage);
 
         communicateFragment = new CommunicateFragment();
         cookManagerFragment = new CookManagerFragment();
@@ -117,53 +123,40 @@ public class GoodsDetailActivity extends BaseMVPActivity<GoodsDetailPersenter> i
         fragmentList.add(cookManagerFragment);
         fragmentList.add(communicateFragment);
         fragmentManager = getSupportFragmentManager();
+        pagerAdapter=new DetailFragmentPagerAdapter(fragmentManager,fragmentList);
+        mViewpage.setAdapter(pagerAdapter);
+        mViewpage.setCurrentItem(0);
         mPresenter.getGoodsDetailInfo(goodsId);
-        addFragmentStack(0);
     }
-
-    private void addFragmentStack(int position) {
-        if (position == index) {
-            return;
-        }
-        this.index = position;
-        FragmentTransaction ft = fragmentManager.beginTransaction();
-        Fragment fragment = fragmentList.get(position);
-        if (!fragment.isAdded()) {
-            ft.add(R.id.activity_mainfragment, fragment);
-        }
-        for (int i = 0; i < fragmentList.size(); i++) {
-            if (i == position) {
-                ft.show(fragmentList.get(i));
-            } else {
-                ft.hide(fragmentList.get(i));
-            }
-        }
-        ft.commitAllowingStateLoss();
-
-        if (position == 0) {
-
-        } else if (position == 1) {
-
-        } else if (position == 2) {
-
-        }
-    }
-
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.goodsdetail_type_firsttv:
-                addFragmentStack(0);
+                mViewpage.setCurrentItem(0);
+                mGoodsdetailTypeFirstline.setVisibility(View.VISIBLE);
+                mGoodsdetailTypeSecondline.setVisibility(View.GONE);
+                mGoodsdetailTypeThridline.setVisibility(View.GONE);
                 break;
             case R.id.goodsdetail_type_secondtv:
-                addFragmentStack(1);
+                mViewpage.setCurrentItem(1);
+                mGoodsdetailTypeFirstline.setVisibility(View.GONE);
+                mGoodsdetailTypeSecondline.setVisibility(View.VISIBLE);
+                mGoodsdetailTypeThridline.setVisibility(View.GONE);
                 break;
             case R.id.goodsdetail_type_thridtv:
-                addFragmentStack(2);
+                mViewpage.setCurrentItem(2);
+                mGoodsdetailTypeFirstline.setVisibility(View.GONE);
+                mGoodsdetailTypeSecondline.setVisibility(View.GONE);
+                mGoodsdetailTypeThridline.setVisibility(View.VISIBLE);
                 break;
             default:
                 break;
         }
+    }
+
+    @Override
+    public boolean useFragment() {
+        return true;
     }
 }

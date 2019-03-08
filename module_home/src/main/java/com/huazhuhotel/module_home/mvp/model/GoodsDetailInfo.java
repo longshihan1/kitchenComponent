@@ -152,7 +152,7 @@ public class GoodsDetailInfo {
             private String ipci;
             private String ipoi;
             private String ipt;
-            private int rate;
+            private float rate;
             private int rate_count;
             private int rate_show;
             private BtmDspBean btm_dsp;
@@ -512,11 +512,11 @@ public class GoodsDetailInfo {
                 this.ipt = ipt;
             }
 
-            public int getRate() {
+            public float getRate() {
                 return rate;
             }
 
-            public void setRate(int rate) {
+            public void setRate(float rate) {
                 this.rate = rate;
             }
 

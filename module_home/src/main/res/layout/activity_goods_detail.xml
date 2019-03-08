@@ -87,8 +87,8 @@
                 />
         </LinearLayout>
     </LinearLayout>
-    <FrameLayout
-        android:id="@+id/goodsdetail_framelayout"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/goodsdetail_viewpage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </LinearLayout>
