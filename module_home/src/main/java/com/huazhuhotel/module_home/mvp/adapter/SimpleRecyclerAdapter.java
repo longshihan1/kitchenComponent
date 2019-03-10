@@ -3,8 +3,6 @@ package com.huazhuhotel.module_home.mvp.adapter;
 
 import android.support.v7.widget.RecyclerView;
 
-import com.huazhuhotel.module_home.mvp.adapter.SimpleViewHolder;
-
 import java.util.ArrayList;
 import java.util.List;
 

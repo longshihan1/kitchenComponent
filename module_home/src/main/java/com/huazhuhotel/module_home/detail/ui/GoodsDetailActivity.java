@@ -17,6 +17,7 @@ import com.huazhuhotel.module_home.detail.persenter.GoodsDetailPersenter;
 import com.huazhuhotel.module_home.detail.ui.fragment.CommunicateFragment;
 import com.huazhuhotel.module_home.detail.ui.fragment.CookManagerFragment;
 import com.huazhuhotel.module_home.detail.ui.fragment.GoodsDetailFragment;
+import com.huazhuhotel.module_home.detail.ui.fragment.ReCommendCookFragment;
 import com.huazhuhotel.module_home.mvp.model.GoodsDetailInfo;
 import com.huazhuhotel.module_home.utils.IntentContancts;
 import com.longshihan.mvpcomponent.base.BaseMVPActivity;
@@ -44,11 +45,17 @@ public class GoodsDetailActivity extends BaseMVPActivity<GoodsDetailPersenter> i
      */
     private TextView mGoodsdetailTypeThridtv;
     private View mGoodsdetailTypeThridline;
+    /**
+     * 推荐
+     */
+    private TextView mGoodsdetailTypeFiretv;
+    private View mGoodsdetailTypeFireline;
     private ViewPager mViewpage;
 
     private CommunicateFragment communicateFragment;
     private CookManagerFragment cookManagerFragment;
     private GoodsDetailFragment goodsDetailFragment;
+    private ReCommendCookFragment reCommendCookFragment;
     private List<Fragment> fragmentList;
     private int index = -1;
     private FragmentManager fragmentManager;
@@ -113,15 +120,20 @@ public class GoodsDetailActivity extends BaseMVPActivity<GoodsDetailPersenter> i
         mGoodsdetailTypeThridtv.setOnClickListener(this);
         mGoodsdetailTypeThridline = (View) findViewById(R.id.goodsdetail_type_thridline);
         mViewpage =  findViewById(R.id.goodsdetail_viewpage);
+        mGoodsdetailTypeFiretv=findViewById(R.id.goodsdetail_type_firetv);
+        mGoodsdetailTypeFireline=findViewById(R.id.goodsdetail_type_fireline);
+        mGoodsdetailTypeFiretv.setOnClickListener(this);
 
         communicateFragment = new CommunicateFragment();
         cookManagerFragment = new CookManagerFragment();
         goodsDetailFragment = new GoodsDetailFragment();
+        reCommendCookFragment=new ReCommendCookFragment();
 
         fragmentList = new ArrayList<>();
         fragmentList.add(goodsDetailFragment);
         fragmentList.add(cookManagerFragment);
         fragmentList.add(communicateFragment);
+        fragmentList.add(reCommendCookFragment);
         fragmentManager = getSupportFragmentManager();
         pagerAdapter=new DetailFragmentPagerAdapter(fragmentManager,fragmentList);
         mViewpage.setAdapter(pagerAdapter);
@@ -140,16 +152,25 @@ public class GoodsDetailActivity extends BaseMVPActivity<GoodsDetailPersenter> i
                     mGoodsdetailTypeFirstline.setVisibility(View.VISIBLE);
                     mGoodsdetailTypeSecondline.setVisibility(View.GONE);
                     mGoodsdetailTypeThridline.setVisibility(View.GONE);
+                    mGoodsdetailTypeFireline.setVisibility(View.GONE);
                 }else if (position==1){
                     cookManagerFragment.restoreData();
                     mGoodsdetailTypeFirstline.setVisibility(View.GONE);
                     mGoodsdetailTypeSecondline.setVisibility(View.VISIBLE);
                     mGoodsdetailTypeThridline.setVisibility(View.GONE);
+                    mGoodsdetailTypeFireline.setVisibility(View.GONE);
                 }else if (position==2){
                     communicateFragment.restoreData();
                     mGoodsdetailTypeFirstline.setVisibility(View.GONE);
                     mGoodsdetailTypeSecondline.setVisibility(View.GONE);
                     mGoodsdetailTypeThridline.setVisibility(View.VISIBLE);
+                    mGoodsdetailTypeFireline.setVisibility(View.GONE);
+                }else if (position==3){
+                    reCommendCookFragment.restoreData();
+                    mGoodsdetailTypeFirstline.setVisibility(View.GONE);
+                    mGoodsdetailTypeSecondline.setVisibility(View.GONE);
+                    mGoodsdetailTypeThridline.setVisibility(View.GONE);
+                    mGoodsdetailTypeFireline.setVisibility(View.VISIBLE);
                 }
             }
 
@@ -168,18 +189,28 @@ public class GoodsDetailActivity extends BaseMVPActivity<GoodsDetailPersenter> i
                 mGoodsdetailTypeFirstline.setVisibility(View.VISIBLE);
                 mGoodsdetailTypeSecondline.setVisibility(View.GONE);
                 mGoodsdetailTypeThridline.setVisibility(View.GONE);
+                mGoodsdetailTypeFireline.setVisibility(View.GONE);
                 break;
             case R.id.goodsdetail_type_secondtv:
                 mViewpage.setCurrentItem(1);
                 mGoodsdetailTypeFirstline.setVisibility(View.GONE);
                 mGoodsdetailTypeSecondline.setVisibility(View.VISIBLE);
                 mGoodsdetailTypeThridline.setVisibility(View.GONE);
+                mGoodsdetailTypeFireline.setVisibility(View.GONE);
                 break;
             case R.id.goodsdetail_type_thridtv:
                 mViewpage.setCurrentItem(2);
                 mGoodsdetailTypeFirstline.setVisibility(View.GONE);
                 mGoodsdetailTypeSecondline.setVisibility(View.GONE);
                 mGoodsdetailTypeThridline.setVisibility(View.VISIBLE);
+                mGoodsdetailTypeFireline.setVisibility(View.GONE);
+                break;
+            case R.id.goodsdetail_type_firetv:
+                mViewpage.setCurrentItem(3);
+                mGoodsdetailTypeFirstline.setVisibility(View.GONE);
+                mGoodsdetailTypeSecondline.setVisibility(View.GONE);
+                mGoodsdetailTypeThridline.setVisibility(View.GONE);
+                mGoodsdetailTypeFireline.setVisibility(View.VISIBLE);
                 break;
             default:
                 break;

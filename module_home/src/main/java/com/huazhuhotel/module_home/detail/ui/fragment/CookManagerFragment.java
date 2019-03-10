@@ -2,7 +2,6 @@ package com.huazhuhotel.module_home.detail.ui.fragment;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,9 +10,7 @@ import android.view.ViewGroup;
 
 import com.huazhuhotel.module_home.R;
 import com.huazhuhotel.module_home.detail.adapter.DetailCookAdapter;
-import com.huazhuhotel.module_home.list.adapter.SearchListAdapter;
 import com.huazhuhotel.module_home.mvp.model.GoodsDetailInfo;
-import com.longshihan.mvpcomponent.base.BaseFragment;
 import com.longshihan.mvpcomponent.base.BaseMVPFragment;
 import com.longshihan.mvpcomponent.base.EmptyPersienter;
 import com.longshihan.mvpcomponent.di.component.AppComponent;

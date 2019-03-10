@@ -25,21 +25,26 @@ import java.math.BigDecimal;
  */
 
 public class DetailCookViewHolder extends SimpleViewHolder<GoodsDetailInfo.ResultBean.RecipeBean.CookstepBean> {
-    ImageView mItemSearchImg;
-    TextView mItemSearchName;
-    TextView mItemSearchMaterial;
-    TextView mItemSearchAuthor;
-    TextView mItemSearchPerson;
-    TextView rateTv;
     private Context context;
+    private TextView stepTv,desTv;
+    private ImageView imageView;
     public DetailCookViewHolder(View view, DetailCookAdapter adapter) {
         super(view,adapter);
         context=view.getContext();
+        stepTv=view.findViewById(R.id.item_detail_cooksteptv);
+        desTv=view.findViewById(R.id.item_detail_cookstepdes);
+        imageView=view.findViewById(R.id.item_detail_cookstepimg);
     }
 
     @Override
     protected void refreshView(GoodsDetailInfo.ResultBean.RecipeBean.CookstepBean data1) {
         super.refreshView(data1);
-
+        desTv.setText(data1.getContent());
+        stepTv.setText("步骤"+data1.getPosition()+"/"+adapter.getItemCount());
+        ArmsUtils.getImageLoader(context)
+                .loadImage(context, ImageConfigImpl.builder()
+                        .url(data1.getImage())
+                        .imageView(imageView)
+                        .build());
     }
 }
