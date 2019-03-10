@@ -127,6 +127,37 @@ public class GoodsDetailActivity extends BaseMVPActivity<GoodsDetailPersenter> i
         mViewpage.setAdapter(pagerAdapter);
         mViewpage.setCurrentItem(0);
         mPresenter.getGoodsDetailInfo(goodsId);
+        mViewpage.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (position==0){
+                    goodsDetailFragment.restoreData();
+                    mGoodsdetailTypeFirstline.setVisibility(View.VISIBLE);
+                    mGoodsdetailTypeSecondline.setVisibility(View.GONE);
+                    mGoodsdetailTypeThridline.setVisibility(View.GONE);
+                }else if (position==1){
+                    cookManagerFragment.restoreData();
+                    mGoodsdetailTypeFirstline.setVisibility(View.GONE);
+                    mGoodsdetailTypeSecondline.setVisibility(View.VISIBLE);
+                    mGoodsdetailTypeThridline.setVisibility(View.GONE);
+                }else if (position==2){
+                    communicateFragment.restoreData();
+                    mGoodsdetailTypeFirstline.setVisibility(View.GONE);
+                    mGoodsdetailTypeSecondline.setVisibility(View.GONE);
+                    mGoodsdetailTypeThridline.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     @Override

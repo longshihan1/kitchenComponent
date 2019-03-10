@@ -3,6 +3,8 @@ package com.huazhuhotel.module_home.detail.ui.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.Html;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,8 +35,8 @@ public class GoodsDetailFragment extends BaseMVPFragment {
     private TextView mGoodsdetailDetailLooktv;
     private LineFlowLayout mGoodsdetailDetailFlow;
     private ImageView mGoodsdetailDetailAuthorimg;
-    private TextView mGoodsdetailDetailAuthorname;
-    private LinearLayout mGoodsdetailDetailList;
+    private TextView mGoodsdetailDetailAuthorname,ideaTv;
+    private LinearLayout mGoodsdetailDetailList,ideaLin;
     private TextView mGoodsdetailDetailTip;
     private LinearLayout.LayoutParams layoutParams;
 
@@ -58,6 +60,8 @@ public class GoodsDetailFragment extends BaseMVPFragment {
         mGoodsdetailDetailAuthorname = (TextView) mRootview.findViewById(R.id.goodsdetail_detail_authorname);
         mGoodsdetailDetailList = (LinearLayout) mRootview.findViewById(R.id.goodsdetail_detail_list);
         mGoodsdetailDetailTip = (TextView) mRootview.findViewById(R.id.goodsdetail_detail_tip);
+        ideaLin=mRootview.findViewById(R.id.goodsdetail_detail_lin);
+        ideaTv=mRootview.findViewById(R.id.goodsdetail_detail_idea);
         layoutParams=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
     }
     @Override
@@ -93,10 +97,19 @@ public class GoodsDetailFragment extends BaseMVPFragment {
                 }
             }
         }
-        mGoodsdetailDetailTip.setText(data.getTips());
+        mGoodsdetailDetailTip.setText(Html.fromHtml(data.getTips()));
+        if (!TextUtils.isEmpty(data.getCookstory())){
+            ideaTv.setText(data.getCookstory());
+            ideaLin.setVisibility(View.VISIBLE);
+        }else {
+            ideaLin.setVisibility(View.GONE);
+        }
 
 
 
+    }
 
+    public void restoreData() {
+        setData(data);
     }
 }

@@ -44,4 +44,8 @@ public class CommunicateFragment extends BaseMVPFragment {
     public void setupFragmentComponent(AppComponent appComponent) {
         mPresenter=new EmptyPersienter();
     }
+
+    public void restoreData() {
+        setData(data);
+    }
 }
