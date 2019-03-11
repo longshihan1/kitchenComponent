@@ -3,6 +3,7 @@ package com.huazhuhotel.module_home.detail.persenter;
 import com.huazhuhotel.module_home.detail.model.IGoodsDetailModel;
 import com.huazhuhotel.module_home.detail.model.GoodsDetailModel;
 import com.huazhuhotel.module_home.mvp.model.GoodsDetailInfo;
+import com.huazhuhotel.module_home.mvp.model.ReCommondInfo;
 import com.huazhuhotel.module_home.mvp.model.SearchInfo;
 import com.longshihan.mvpcomponent.mvp.BasePresenter;
 import com.longshihan.mvpcomponent.mvp.IRepositoryManager;
@@ -40,6 +41,25 @@ public class GoodsDetailPersenter extends BasePresenter<GoodsDetailContract.View
                     @Override
                     public void accept(@NonNull GoodsDetailInfo info) throws Exception {
                         mRootView.getGoodsDetailInfo(info);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        com.orhanobut.logger.Logger.e(throwable, "sss");
+                    }
+                });
+        addDispose(disposable);
+    }
+
+    @Override
+    public void getRecommendInfo(int goodsId) {
+        Disposable disposable = mIModel.getReCommendInfo(goodsId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<ReCommondInfo>() {
+                    @Override
+                    public void accept(@NonNull ReCommondInfo info) throws Exception {
+                        mRootView.getRecommondInfo(info);
                     }
                 }, new Consumer<Throwable>() {
                     @Override

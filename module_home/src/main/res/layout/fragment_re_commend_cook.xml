@@ -3,11 +3,9 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              tools:context="com.huazhuhotel.module_home.detail.ui.fragment.ReCommendCookFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/goodsdetail_detailrecommend_recy"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"/>
+        android:layout_height="match_parent"/>
 
 </FrameLayout>

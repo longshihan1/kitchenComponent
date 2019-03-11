@@ -3,10 +3,8 @@ package com.huazhuhotel.module_home.detail.ui;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +17,7 @@ import com.huazhuhotel.module_home.detail.ui.fragment.CookManagerFragment;
 import com.huazhuhotel.module_home.detail.ui.fragment.GoodsDetailFragment;
 import com.huazhuhotel.module_home.detail.ui.fragment.ReCommendCookFragment;
 import com.huazhuhotel.module_home.mvp.model.GoodsDetailInfo;
+import com.huazhuhotel.module_home.mvp.model.ReCommondInfo;
 import com.huazhuhotel.module_home.utils.IntentContancts;
 import com.longshihan.mvpcomponent.base.BaseMVPActivity;
 import com.longshihan.mvpcomponent.di.component.AppComponent;
@@ -96,6 +95,14 @@ public class GoodsDetailActivity extends BaseMVPActivity<GoodsDetailPersenter> i
     }
 
     @Override
+    public void getRecommondInfo(ReCommondInfo info) {
+        if (info != null && info.getResult() != null &&
+                "success".equals(info.getState()) && info.getResult().getList() != null) {
+            reCommendCookFragment.setData(info.getResult().getList());
+        }
+    }
+
+    @Override
     public void setupActivityComponent(AppComponent appComponent) {
         mPresenter = new GoodsDetailPersenter(this, appComponent.repositoryManager());
     }
@@ -109,7 +116,7 @@ public class GoodsDetailActivity extends BaseMVPActivity<GoodsDetailPersenter> i
     @Override
     public void initData() {
         goodsId = getIntent().getIntExtra(IntentContancts.GOODSDETAIL_VALUE, 0);
-        Logger.d(goodsId+"");
+        Logger.d(goodsId + "");
         mGoodsdetailTypeFirsttv = (TextView) findViewById(R.id.goodsdetail_type_firsttv);
         mGoodsdetailTypeFirsttv.setOnClickListener(this);
         mGoodsdetailTypeFirstline = (View) findViewById(R.id.goodsdetail_type_firstline);
@@ -119,15 +126,15 @@ public class GoodsDetailActivity extends BaseMVPActivity<GoodsDetailPersenter> i
         mGoodsdetailTypeThridtv = (TextView) findViewById(R.id.goodsdetail_type_thridtv);
         mGoodsdetailTypeThridtv.setOnClickListener(this);
         mGoodsdetailTypeThridline = (View) findViewById(R.id.goodsdetail_type_thridline);
-        mViewpage =  findViewById(R.id.goodsdetail_viewpage);
-        mGoodsdetailTypeFiretv=findViewById(R.id.goodsdetail_type_firetv);
-        mGoodsdetailTypeFireline=findViewById(R.id.goodsdetail_type_fireline);
+        mViewpage = findViewById(R.id.goodsdetail_viewpage);
+        mGoodsdetailTypeFiretv = findViewById(R.id.goodsdetail_type_firetv);
+        mGoodsdetailTypeFireline = findViewById(R.id.goodsdetail_type_fireline);
         mGoodsdetailTypeFiretv.setOnClickListener(this);
 
         communicateFragment = new CommunicateFragment();
         cookManagerFragment = new CookManagerFragment();
         goodsDetailFragment = new GoodsDetailFragment();
-        reCommendCookFragment=new ReCommendCookFragment();
+        reCommendCookFragment = new ReCommendCookFragment();
 
         fragmentList = new ArrayList<>();
         fragmentList.add(goodsDetailFragment);
@@ -135,10 +142,11 @@ public class GoodsDetailActivity extends BaseMVPActivity<GoodsDetailPersenter> i
         fragmentList.add(communicateFragment);
         fragmentList.add(reCommendCookFragment);
         fragmentManager = getSupportFragmentManager();
-        pagerAdapter=new DetailFragmentPagerAdapter(fragmentManager,fragmentList);
+        pagerAdapter = new DetailFragmentPagerAdapter(fragmentManager, fragmentList);
         mViewpage.setAdapter(pagerAdapter);
         mViewpage.setCurrentItem(0);
         mPresenter.getGoodsDetailInfo(goodsId);
+        mPresenter.getRecommendInfo(goodsId);
         mViewpage.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -147,25 +155,25 @@ public class GoodsDetailActivity extends BaseMVPActivity<GoodsDetailPersenter> i
 
             @Override
             public void onPageSelected(int position) {
-                if (position==0){
+                if (position == 0) {
                     goodsDetailFragment.restoreData();
                     mGoodsdetailTypeFirstline.setVisibility(View.VISIBLE);
                     mGoodsdetailTypeSecondline.setVisibility(View.GONE);
                     mGoodsdetailTypeThridline.setVisibility(View.GONE);
                     mGoodsdetailTypeFireline.setVisibility(View.GONE);
-                }else if (position==1){
+                } else if (position == 1) {
                     cookManagerFragment.restoreData();
                     mGoodsdetailTypeFirstline.setVisibility(View.GONE);
                     mGoodsdetailTypeSecondline.setVisibility(View.VISIBLE);
                     mGoodsdetailTypeThridline.setVisibility(View.GONE);
                     mGoodsdetailTypeFireline.setVisibility(View.GONE);
-                }else if (position==2){
+                } else if (position == 2) {
                     communicateFragment.restoreData();
                     mGoodsdetailTypeFirstline.setVisibility(View.GONE);
                     mGoodsdetailTypeSecondline.setVisibility(View.GONE);
                     mGoodsdetailTypeThridline.setVisibility(View.VISIBLE);
                     mGoodsdetailTypeFireline.setVisibility(View.GONE);
-                }else if (position==3){
+                } else if (position == 3) {
                     reCommendCookFragment.restoreData();
                     mGoodsdetailTypeFirstline.setVisibility(View.GONE);
                     mGoodsdetailTypeSecondline.setVisibility(View.GONE);
