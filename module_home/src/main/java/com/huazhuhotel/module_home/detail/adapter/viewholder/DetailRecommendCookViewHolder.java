@@ -29,9 +29,11 @@ public class DetailRecommendCookViewHolder extends SimpleViewHolder<ReCommondInf
     public DetailRecommendCookViewHolder(View view, DetailReCommondCookAdapter adapter) {
         super(view,adapter);
         context=view.getContext();
-        meterial=view.findViewById(R.id.item_recommend_name);
+        meterial=view.findViewById(R.id.item_recommend_meterial);
         author=view.findViewById(R.id.item_recommend_author);
         imageView=view.findViewById(R.id.item_recommend_img);
+        name=view.findViewById(R.id.item_recommend_name);
+        star=view.findViewById(R.id.item_recommend_star);
     }
 
     @Override

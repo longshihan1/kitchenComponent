@@ -45,9 +45,9 @@ public class GlobalConfiguration implements ConfigModule {
     public void applyOptions(Context context, GlobalConfigModule.Builder builder) {
         PreferenceUtils.init(context);
 
-        if (!BuildConfig.DEBUG) {
-            builder.printHttpLogLevel(RequestInterceptor.Level.NONE);
-        }
+//        if (!BuildConfig.DEBUG) {
+            builder.printHttpLogLevel(RequestInterceptor.Level.ALL);
+//        }
         //如果 BaseUrl 在 App 启动时不能确定,需要请求服务器接口动态获取,请使用以下代码
         //并且使用 Okhttp (AppComponent中提供) 请求服务器获取到正确的 BaseUrl 后赋值给 GlobalConfiguration.sDomain
         //切记整个过程必须在第一次调用 Retrofit 接口之前完成,如果已经调用过 Retrofit 接口,将不能动态切换 BaseUrl

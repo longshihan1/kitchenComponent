@@ -56,5 +56,5 @@ public interface ApiService {
     @Headers({"version:6931.2", "url_name:douguo"})
     @FormUrlEncoded
     @POST("/recipe/mixedRecommend")
-    Observable<ReCommondInfo> getRecommInfo(@Field("goodsId") int goodsId);
+    Observable<ReCommondInfo> getRecommInfo(@Field("recipe_id") int goodsId);
 }
