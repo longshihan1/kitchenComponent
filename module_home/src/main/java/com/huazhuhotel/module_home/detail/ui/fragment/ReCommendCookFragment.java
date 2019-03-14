@@ -16,6 +16,7 @@ import com.longshihan.mvpcomponent.base.BaseMVPFragment;
 import com.longshihan.mvpcomponent.base.EmptyPersienter;
 import com.longshihan.mvpcomponent.di.component.AppComponent;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,6 +33,9 @@ public class ReCommendCookFragment extends BaseMVPFragment {
     }
 
     public void setData(List<ReCommondInfo.ResultBean.ListBean> datas) {
+        if (datas==null){
+            datas=new ArrayList<>();
+        }
         this.datas = datas;
         adapter.setListData(datas);
     }
