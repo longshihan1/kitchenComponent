@@ -2,6 +2,7 @@ package com.huazhuhotel.module_home.http;
 
 import com.huazhuhotel.module_home.mvp.model.GoodsDetailInfo;
 import com.huazhuhotel.module_home.mvp.model.HomeInfo;
+import com.huazhuhotel.module_home.mvp.model.ReCommondInfo;
 import com.huazhuhotel.module_home.mvp.model.SearchInfo;
 import com.huazhuhotel.module_home.mvp.model.SortInfo;
 
@@ -51,4 +52,9 @@ public interface ApiService {
     @Headers({"version:6931.2", "url_name:douguo"})
     @POST("/recipe/detail/{goodsId}")
     Observable<GoodsDetailInfo> getGoodsDetailInfo(@Path("goodsId") int goodsId);
+
+    @Headers({"version:6931.2", "url_name:douguo"})
+    @FormUrlEncoded
+    @POST("/recipe/mixedRecommend")
+    Observable<ReCommondInfo> getRecommInfo(@Field("recipe_id") int goodsId);
 }

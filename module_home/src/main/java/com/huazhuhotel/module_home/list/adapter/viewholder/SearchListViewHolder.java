@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.huazhuhotel.module_home.R;
+import com.huazhuhotel.module_home.list.adapter.SearchListAdapter;
 import com.huazhuhotel.module_home.mvp.adapter.SimpleViewHolder;
 import com.huazhuhotel.module_home.mvp.model.SearchInfo;
 import com.huazhuhotel.module_home.sort.model.entity.SortBean;
@@ -30,8 +31,8 @@ public class SearchListViewHolder extends SimpleViewHolder<SearchInfo.ResultBean
     TextView mItemSearchPerson;
     TextView rateTv;
     private Context context;
-    public SearchListViewHolder(View view) {
-        super(view);
+    public SearchListViewHolder(View view, SearchListAdapter adapter) {
+        super(view,adapter);
         context=view.getContext();
         this.mItemSearchImg = (ImageView) view.findViewById(R.id.item_search_img);
         this.mItemSearchName = (TextView) view.findViewById(R.id.item_search_name);
