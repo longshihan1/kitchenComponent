@@ -6,5 +6,5 @@ import com.huazhuhotel.module_home.mvp.model.GoodsDetailInfo;
 import io.reactivex.Observable;
 
 public interface IAttentionModel {
-    Observable<AttentionInfo> getAttentionInfo(String id);
+    Observable<AttentionInfo> getAttentionInfo(String userID);
 }

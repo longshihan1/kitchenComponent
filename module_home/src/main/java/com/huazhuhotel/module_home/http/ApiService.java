@@ -6,6 +6,9 @@ import com.huazhuhotel.module_home.mvp.model.HomeInfo;
 import com.huazhuhotel.module_home.mvp.model.ReCommondInfo;
 import com.huazhuhotel.module_home.mvp.model.SearchInfo;
 import com.huazhuhotel.module_home.mvp.model.SortInfo;
+import com.huazhuhotel.module_home.mvp.model.UnRecipesListInfo;
+import com.huazhuhotel.module_home.mvp.model.UserInfo;
+import com.huazhuhotel.module_home.mvp.model.UserNoteInfo;
 
 import io.reactivex.Observable;
 import retrofit2.http.Field;
@@ -60,7 +63,22 @@ public interface ApiService {
     Observable<ReCommondInfo> getRecommInfo(@Field("recipe_id") int goodsId);
 
     @Headers({"url_name:douguo"})
-    @FormUrlEncoded
-    @POST("/user/following/23177077/0/15")
-    Observable<AttentionInfo> getAttentionInfo(@Field("user_id") String id);
+    @POST("/user/following/{userid}/0/15")
+    Observable<AttentionInfo> getAttentionInfo(@Path("userid") String userId);
+
+
+    //用户信息
+    @Headers({"version:6931.2","url_name:douguo"})
+    @POST("/user/info/{userid}")
+    Observable<UserInfo> getUserInfo(@Path("userid") String id);
+
+    //关注人的菜谱
+    @Headers({"version:6931.2","url_name:douguo"})
+    @POST("/recipe/urecipes/{userid}/{pageindex}/20")
+    Observable<UnRecipesListInfo> getUrecipesListInfo(@Path("userid") String id,@Path("pageindex") int page);
+
+    //关注人的笔记
+    @Headers({"version:6931.2","url_name:douguo"})
+    @POST("/note/usernotes/{userid}/{pageindex}/20")
+    Observable<UserNoteInfo> getUsernotesInfo(@Path("userid") String id, @Path("pageindex") int page);
 }

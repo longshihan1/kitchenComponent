@@ -14,8 +14,8 @@ public class AttentionModel extends BaseModel implements IAttentionModel  {
     }
 
     @Override
-    public Observable<AttentionInfo> getAttentionInfo(String id) {
+    public Observable<AttentionInfo> getAttentionInfo(String userId) {
         return mRepositoryManager.obtainRetrofitService(ApiService.class)
-                .getAttentionInfo(id);
+                .getAttentionInfo(userId);
     }
 }

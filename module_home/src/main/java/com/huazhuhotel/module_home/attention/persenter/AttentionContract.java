@@ -19,6 +19,6 @@ public interface AttentionContract {
     }
 
     interface Presenter {
-        void getAttentionInfo(String id);
+        void getAttentionInfo(String userId);
     }
 }

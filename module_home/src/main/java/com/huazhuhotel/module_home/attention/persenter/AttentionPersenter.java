@@ -35,8 +35,8 @@ public class AttentionPersenter extends BasePresenter<AttentionContract.View> im
 
 
     @Override
-    public void getAttentionInfo(String id) {
-        Disposable disposable = mIModel.getAttentionInfo(id)
+    public void getAttentionInfo(String userId) {
+        Disposable disposable = mIModel.getAttentionInfo(userId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<AttentionInfo>() {
