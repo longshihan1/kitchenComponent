@@ -22,7 +22,7 @@ import com.huazhuhotel.module_home.mvp.model.UserNoteInfo;
 public class AttentionDetailNoteAdapter extends SimpleRecyclerAdapter<UserNoteInfo.ResultBean.ListBean> {
     @Override
     public SimpleViewHolder<UserNoteInfo.ResultBean.ListBean> onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new AttentionDetailNoteViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_attention, parent, false),this);
+        return new AttentionDetailNoteViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_usernote, parent, false),this);
 
     }
 }

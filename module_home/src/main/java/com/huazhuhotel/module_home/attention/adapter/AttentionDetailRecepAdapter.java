@@ -22,7 +22,7 @@ import com.huazhuhotel.module_home.mvp.model.UnRecipesListInfo;
 public class AttentionDetailRecepAdapter extends SimpleRecyclerAdapter<UnRecipesListInfo.ResultBean.ListBean> {
     @Override
     public SimpleViewHolder<UnRecipesListInfo.ResultBean.ListBean> onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new AttentionDetailViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_attention, parent, false),this);
+        return new AttentionDetailViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_userrecipes, parent, false),this);
 
     }
 }

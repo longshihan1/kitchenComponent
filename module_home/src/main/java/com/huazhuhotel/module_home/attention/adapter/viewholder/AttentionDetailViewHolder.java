@@ -25,16 +25,24 @@ import com.longshihan.mvpcomponent.utils.ArmsUtils;
 public class AttentionDetailViewHolder extends SimpleViewHolder<UnRecipesListInfo.ResultBean.ListBean> {
     private Context context;
 
+    private TextView title,likeTv,statTv;
     private ImageView imageView;
     public AttentionDetailViewHolder(View view, AttentionDetailRecepAdapter adapter) {
         super(view,adapter);
         context=view.getContext();
-        imageView=view.findViewById(R.id.item_attention_img);
+        imageView=view.findViewById(R.id.item_userrecipes_img);
+        title=view.findViewById(R.id.item_userrecipes_title);
+        likeTv=view.findViewById(R.id.item_userrecipes_look);
+        statTv=view.findViewById(R.id.item_userrecipes_star);
+
     }
 
     @Override
     protected void refreshView(UnRecipesListInfo.ResultBean.ListBean data1) {
         super.refreshView(data1);
+        title.setText(data1.getR().getN());
+        likeTv.setText(data1.getR().getPw()+"");
+        statTv.setText(data1.getR().getPh()+"");
         ArmsUtils.getImageLoader(context)
                 .loadImage(context, ImageConfigImpl.builder()
                         .url(data1.getR().getImg())

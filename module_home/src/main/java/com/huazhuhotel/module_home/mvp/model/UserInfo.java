@@ -182,6 +182,7 @@ public class UserInfo {
             private String sign;
             private int relationship;
             private List<RsBean> rs;
+            private String profession;
 
             public String getUserid() {
                 return userid;
@@ -565,6 +566,14 @@ public class UserInfo {
 
             public void setRs(List<RsBean> rs) {
                 this.rs = rs;
+            }
+
+            public String getProfession() {
+                return profession;
+            }
+
+            public void setProfession(String profession) {
+                this.profession = profession;
             }
 
             public static class RsBean {
