@@ -1,19 +1,30 @@
 package com.huazhuhotel.module_home.attention.ui;
 
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.huazhuhotel.module_home.R;
 import com.huazhuhotel.module_home.attention.adapter.AttentionDetailNoteAdapter;
 import com.huazhuhotel.module_home.attention.adapter.AttentionDetailRecepAdapter;
 import com.huazhuhotel.module_home.attention.persenter.AttentionDetailContract;
 import com.huazhuhotel.module_home.attention.persenter.AttentionDetailPersenter;
+import com.huazhuhotel.module_home.attention.widget.MyNestedScrollView;
+import com.huazhuhotel.module_home.detail.ui.GoodsDetailActivity;
+import com.huazhuhotel.module_home.list.ui.ListActivity;
+import com.huazhuhotel.module_home.mvp.adapter.SimpleRecyclerAdapter;
 import com.huazhuhotel.module_home.mvp.model.UnRecipesListInfo;
 import com.huazhuhotel.module_home.mvp.model.UserInfo;
 import com.huazhuhotel.module_home.mvp.model.UserNoteInfo;
@@ -51,6 +62,9 @@ public class AttentionDetailActivity extends BaseMVPActivity<AttentionDetailPers
     private RecyclerView mUserAuthorRecyNote;
     private AttentionDetailRecepAdapter recepAdapter;
     private AttentionDetailNoteAdapter noteAdapter;
+    private MyNestedScrollView nestedScrollView;
+    private LinearLayout contentTopView;
+    private LinearLayout contentScendView;
 
 
     @Override
@@ -148,6 +162,9 @@ public class AttentionDetailActivity extends BaseMVPActivity<AttentionDetailPers
         mUserAuthorTab2.setOnClickListener(this);
         mUserAuthorRecyCookbook = (RecyclerView) findViewById(R.id.user_author_recy_cookbook);
         mUserAuthorRecyNote = (RecyclerView) findViewById(R.id.user_author_recy_note);
+        nestedScrollView = findViewById(R.id.user_bg_nestscroll);
+        contentTopView = findViewById(R.id.user_bg_contentid);
+        contentScendView = findViewById(R.id.user_author_secondlin);
 
         mPresenter.getUserInfo(userId);
         mPresenter.getUnRecipesListInfo(userId, recipesPage);
@@ -155,10 +172,43 @@ public class AttentionDetailActivity extends BaseMVPActivity<AttentionDetailPers
 
         noteAdapter = new AttentionDetailNoteAdapter();
         recepAdapter = new AttentionDetailRecepAdapter();
-        mUserAuthorRecyNote.setLayoutManager(new GridLayoutManager(this, 2,LinearLayoutManager.VERTICAL,false));
+        mUserAuthorRecyNote.setLayoutManager(new GridLayoutManager(this, 2, LinearLayoutManager.VERTICAL, false));
         mUserAuthorRecyCookbook.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         mUserAuthorRecyNote.setAdapter(noteAdapter);
         mUserAuthorRecyCookbook.setAdapter(recepAdapter);
+        mUserAuthorRecyNote.setNestedScrollingEnabled(false);
+        mUserAuthorRecyCookbook.setNestedScrollingEnabled(false);
+
+        noteAdapter.setOnItemClickListener(new SimpleRecyclerAdapter.OnItemClickListener<UserNoteInfo.ResultBean.ListBean>() {
+            @Override
+            public void onItemClick(UserNoteInfo.ResultBean.ListBean item, int index) {
+
+            }
+        });
+
+        recepAdapter.setOnItemClickListener(new SimpleRecyclerAdapter.OnItemClickListener<UnRecipesListInfo.ResultBean.ListBean>() {
+            @Override
+            public void onItemClick(UnRecipesListInfo.ResultBean.ListBean item, int index) {
+                Intent intent = new Intent(AttentionDetailActivity.this, GoodsDetailActivity.class);
+                intent.putExtra(IntentContancts.GOODSDETAIL_VALUE, item.getR().getId());
+                startActivity(intent);
+            }
+        });
+        final View rootView = findViewById(android.R.id.content);
+        rootView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+            @Override
+            public void onGlobalLayout() {
+                rootView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                nestedScrollView.setMyScrollHeight(contentTopView.getHeight());
+                nestedScrollView.scrollTo(0, contentTopView.getHeight());
+                int rvNewHeight = rootView.getHeight() - contentScendView.getHeight();
+
+                nestedScrollView.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, rvNewHeight));
+            }
+        });
+
+
     }
 
     @Override
