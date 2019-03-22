@@ -31,7 +31,6 @@ public class CookManagerFragment extends BaseMVPFragment {
 
     public void setData(GoodsDetailInfo.ResultBean.RecipeBean data) {
         this.data = data;
-        adapter.setListData(data.getCookstep());
     }
 
     @Override
@@ -54,5 +53,8 @@ public class CookManagerFragment extends BaseMVPFragment {
 
     public void restoreData() {
         setData(data);
+        if (data!=null&&data.getCookstep()!=null) {
+            adapter.setListData(data.getCookstep());
+        }
     }
 }

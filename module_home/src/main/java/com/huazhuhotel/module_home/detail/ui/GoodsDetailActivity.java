@@ -60,6 +60,7 @@ public class GoodsDetailActivity extends BaseMVPActivity<GoodsDetailPersenter> i
     private FragmentManager fragmentManager;
     private int goodsId;
     DetailFragmentPagerAdapter pagerAdapter;
+    private GoodsDetailInfo info;
 
 
     @Override
@@ -84,6 +85,7 @@ public class GoodsDetailActivity extends BaseMVPActivity<GoodsDetailPersenter> i
 
     @Override
     public void getGoodsDetailInfo(GoodsDetailInfo info) {
+        this.info=info;
         if (info != null && info.getResult() != null &&
                 "success".equals(info.getState()) && info.getResult().getRecipe() != null) {
             communicateFragment.setData(info.getResult().getRecipe());

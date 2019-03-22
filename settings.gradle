@@ -1,1 +1,1 @@
-include ':app', ':mvpcomponent', ':module_home'
+include ':app',  ':module_home'
