@@ -17,6 +17,7 @@ public class SimpleViewHolder<T> extends RecyclerView.ViewHolder{
     private OnItemLongClickListener onItemLongClickListener;
     public SimpleRecyclerAdapter<T> adapter;
     private View itemView;
+    protected Context context;
 
     public SimpleViewHolder(View itemView) {
         this(itemView, null);
@@ -30,6 +31,7 @@ public class SimpleViewHolder<T> extends RecyclerView.ViewHolder{
     public SimpleViewHolder(View itemView, @Nullable SimpleRecyclerAdapter<T> adapter) {
         super(itemView);
         this.itemView = itemView;
+        context=itemView.getContext();
         if (adapter != null) {
             itemViewClickListener = new ItemViewClickListener();
             itemView.setOnClickListener(itemViewClickListener);
