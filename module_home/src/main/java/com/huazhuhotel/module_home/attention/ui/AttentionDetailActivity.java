@@ -21,10 +21,13 @@ import com.huazhuhotel.module_home.attention.adapter.AttentionDetailNoteAdapter;
 import com.huazhuhotel.module_home.attention.adapter.AttentionDetailRecepAdapter;
 import com.huazhuhotel.module_home.attention.persenter.AttentionDetailContract;
 import com.huazhuhotel.module_home.attention.persenter.AttentionDetailPersenter;
+import com.huazhuhotel.module_home.attention.persenter.FollowContract;
+import com.huazhuhotel.module_home.attention.persenter.FollowPersenter;
 import com.huazhuhotel.module_home.attention.widget.MyNestedScrollView;
 import com.huazhuhotel.module_home.detail.ui.GoodsDetailActivity;
 import com.huazhuhotel.module_home.list.ui.ListActivity;
 import com.huazhuhotel.module_home.mvp.adapter.SimpleRecyclerAdapter;
+import com.huazhuhotel.module_home.mvp.model.FollowInfo;
 import com.huazhuhotel.module_home.mvp.model.UnRecipesListInfo;
 import com.huazhuhotel.module_home.mvp.model.UserInfo;
 import com.huazhuhotel.module_home.mvp.model.UserNoteInfo;
@@ -35,7 +38,8 @@ import com.longshihan.mvpcomponent.strategy.imageloader.glide.ImageConfigImpl;
 import com.longshihan.mvpcomponent.utils.ArmsUtils;
 import com.orhanobut.logger.Logger;
 
-public class AttentionDetailActivity extends BaseMVPActivity<AttentionDetailPersenter> implements AttentionDetailContract.View, View.OnClickListener {
+public class AttentionDetailActivity extends BaseMVPActivity<AttentionDetailPersenter> implements AttentionDetailContract.View,
+        View.OnClickListener, FollowContract.View {
     private String userId;
     private int recipesPage = 0, notePage = 0;
     private ImageView mUserBgImg;
@@ -65,6 +69,8 @@ public class AttentionDetailActivity extends BaseMVPActivity<AttentionDetailPers
     private MyNestedScrollView nestedScrollView;
     private LinearLayout contentTopView;
     private LinearLayout contentScendView;
+    private FollowPersenter followPersenter;
+    private TextView followTv;
 
 
     @Override
@@ -132,6 +138,7 @@ public class AttentionDetailActivity extends BaseMVPActivity<AttentionDetailPers
     @Override
     public void setupActivityComponent(AppComponent appComponent) {
         mPresenter = new AttentionDetailPersenter(this, appComponent.repositoryManager());
+        followPersenter = new FollowPersenter(this, appComponent.repositoryManager());
     }
 
     @Override
@@ -165,6 +172,8 @@ public class AttentionDetailActivity extends BaseMVPActivity<AttentionDetailPers
         nestedScrollView = findViewById(R.id.user_bg_nestscroll);
         contentTopView = findViewById(R.id.user_bg_contentid);
         contentScendView = findViewById(R.id.user_author_secondlin);
+        followTv=findViewById(R.id.user_authorfollow);
+        followTv.setOnClickListener(this);
 
         mPresenter.getUserInfo(userId);
         mPresenter.getUnRecipesListInfo(userId, recipesPage);
@@ -222,7 +231,31 @@ public class AttentionDetailActivity extends BaseMVPActivity<AttentionDetailPers
                 mUserAuthorRecyCookbook.setVisibility(View.GONE);
                 mUserAuthorRecyNote.setVisibility(View.VISIBLE);
                 break;
+            case R.id.user_authorfollow:
+                if ("已关注".equals(followTv.getText().toString())){
+                    followTv.setText("未关注");
+                    followPersenter.getunFollowInfo(com.huazhuhotel.module_home.utils.UserInfo.getUserId(),userId);
+                }else {
+                    followTv.setText("已关注");
+                    followPersenter.getFollowInfo(com.huazhuhotel.module_home.utils.UserInfo.getUserId(),userId);
+                }
+                break;
         }
     }
 
+    @Override
+    public void getFollowInfo(FollowInfo info) {
+        if (info != null && "success".equals(info.getState())) {
+            //关注成功
+            followTv.setText("已关注");
+        }
+    }
+
+    @Override
+    public void getunFollowInfo(FollowInfo info) {
+        if (info != null && "success".equals(info.getState())) {
+            //取消关注
+            followTv.setText("未关注");
+        }
+    }
 }

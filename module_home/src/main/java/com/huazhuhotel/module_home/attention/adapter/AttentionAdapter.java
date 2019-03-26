@@ -20,9 +20,17 @@ import com.huazhuhotel.module_home.mvp.model.GoodsDetailInfo;
  */
 
 public class AttentionAdapter extends SimpleRecyclerAdapter<AttentionInfo.ResultBean.FollowsBean> {
+
+    private AttentionViewHolder.onImgClickListener listener;
+
+    public void attchListener(AttentionViewHolder.onImgClickListener listener){
+        this.listener=listener;
+    }
     @Override
     public SimpleViewHolder<AttentionInfo.ResultBean.FollowsBean> onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new AttentionViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_attention, parent, false),this);
+        AttentionViewHolder simpleViewHolder = new AttentionViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_attention, parent, false), this);
+        simpleViewHolder.attchListener(listener);
+        return simpleViewHolder;
 
     }
 }

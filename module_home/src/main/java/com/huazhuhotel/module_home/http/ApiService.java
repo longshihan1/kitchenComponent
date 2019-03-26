@@ -1,6 +1,7 @@
 package com.huazhuhotel.module_home.http;
 
 import com.huazhuhotel.module_home.mvp.model.AttentionInfo;
+import com.huazhuhotel.module_home.mvp.model.FollowInfo;
 import com.huazhuhotel.module_home.mvp.model.GoodsDetailInfo;
 import com.huazhuhotel.module_home.mvp.model.HomeInfo;
 import com.huazhuhotel.module_home.mvp.model.ReCommondInfo;
@@ -81,4 +82,22 @@ public interface ApiService {
     @Headers({"version:6931.2","url_name:douguo"})
     @POST("/note/usernotes/{userid}/{pageindex}/20")
     Observable<UserNoteInfo> getUsernotesInfo(@Path("userid") String id, @Path("pageindex") int page);
+
+    //关注操作
+    @Headers({"version:6931.2","url_name:douguo"})
+    @FormUrlEncoded
+    @POST("/user/follow")
+    Observable<FollowInfo> getFollowInfo(@Field("user_id") String id, @Field("fid") String fid,
+                                         @Field("_session") String _session,@Field("_vs") String _vs,
+                                         @Field("agent_id") String agent_id, @Field("client") String client,
+                                         @Field("signtime") String signtime, @Field("signature") String signature);
+
+    //取消关注操作
+    @Headers({"version:6931.2","url_name:douguo"})
+    @FormUrlEncoded
+    @POST("/user/unfollow")
+    Observable<FollowInfo> getunFollowInfo(@Field("user_id") String id, @Field("fid") String fid,
+                                           @Field("_session") String _session,
+                                           @Field("agent_id") String agent_id, @Field("client") String client,
+                                           @Field("signtime") String signtime, @Field("signature") String signature);
 }
