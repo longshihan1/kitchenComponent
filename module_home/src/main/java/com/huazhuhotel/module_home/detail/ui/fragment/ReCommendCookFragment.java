@@ -33,10 +33,25 @@ public class ReCommendCookFragment extends BaseMVPFragment {
     }
 
     public void setData(List<ReCommondInfo.ResultBean.ListBean> datas) {
-        if (datas == null) {
-            datas = new ArrayList<>();
+        if (this.datas!=null&&this.datas.size()>0){
+            return;
+        }else {
+            if (datas == null) {
+                datas = new ArrayList<>();
+            }
+            if (this.datas == null) {
+                this.datas = new ArrayList<>();
+            }
+            for (ReCommondInfo.ResultBean.ListBean listBean : datas) {
+                if (listBean != null && listBean.getR() != null) {
+                    this.datas.add(listBean);
+                }
+
+            }
+            if (this.datas == null) {
+                this.datas = new ArrayList<>();
+            }
         }
-        this.datas = datas;
     }
 
     public void restoreData() {
@@ -51,7 +66,6 @@ public class ReCommendCookFragment extends BaseMVPFragment {
 
     @Override
     public void initData(Bundle savedInstanceState) {
-        datas = new ArrayList<>();
         recyclerView = mRootview.findViewById(R.id.goodsdetail_detailrecommend_recy);
         adapter = new DetailReCommondCookAdapter();
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));

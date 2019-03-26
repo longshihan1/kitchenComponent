@@ -62,6 +62,7 @@ public class CommunicateFragment extends BaseMVPFragment {
     public void restoreData() {
         setData(data);
         if (data!=null){
+            commentsBeanList=new ArrayList<>();
             if (data.getOld_comments()!=null&&data.getOld_comments().size()>0){
                 commentsBeanList.addAll(data.getOld_comments());
             }

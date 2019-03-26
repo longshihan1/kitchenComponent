@@ -9,6 +9,7 @@ import com.huazhuhotel.module_home.mvp.model.SortInfo;
 import com.huazhuhotel.module_home.mvp.model.UnRecipesListInfo;
 import com.huazhuhotel.module_home.mvp.model.UserInfo;
 import com.huazhuhotel.module_home.mvp.model.UserNoteInfo;
+import com.huazhuhotel.module_home.mvp.model.VideoListInfo;
 
 import io.reactivex.Observable;
 import retrofit2.http.Field;
@@ -81,4 +82,12 @@ public interface ApiService {
     @Headers({"version:6931.2","url_name:douguo"})
     @POST("/note/usernotes/{userid}/{pageindex}/20")
     Observable<UserNoteInfo> getUsernotesInfo(@Path("userid") String id, @Path("pageindex") int page);
+
+
+
+    //视屏列表
+    @Headers({"version:6931.2","url_name:douguo"})
+    @POST("/note/video/{pageindex}/10")
+    Observable<VideoListInfo> getVideoListInfo(@Field("recipe_id") String id, @Path("pageindex") int page);
+
 }
