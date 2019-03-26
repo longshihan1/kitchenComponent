@@ -106,6 +106,7 @@
                 </RelativeLayout>
 
                 <TextView
+                    android:id="@+id/user_authorfollow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -114,6 +115,8 @@
                     android:paddingLeft="30dp"
                     android:paddingRight="30dp"
                     android:paddingTop="10dp"
+                    android:textColor="@color/white"
+                    android:text="已关注"
                     />
 
                 <LinearLayout

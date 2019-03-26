@@ -26,6 +26,7 @@ public class AttentionViewHolder extends SimpleViewHolder<AttentionInfo.ResultBe
     private Context context;
     private TextView nameTv,levelTv,statusTv;
     private ImageView imageView;
+    private onImgClickListener listener;
     public AttentionViewHolder(View view, AttentionAdapter adapter) {
         super(view,adapter);
         context=view.getContext();
@@ -33,6 +34,10 @@ public class AttentionViewHolder extends SimpleViewHolder<AttentionInfo.ResultBe
         levelTv=view.findViewById(R.id.item_attention_level);
         statusTv=view.findViewById(R.id.item_attention_status);
         imageView=view.findViewById(R.id.item_attention_img);
+    }
+
+    public void attchListener(onImgClickListener listener){
+        this.listener=listener;
     }
 
     @Override
@@ -45,5 +50,17 @@ public class AttentionViewHolder extends SimpleViewHolder<AttentionInfo.ResultBe
                         .url(data1.getUser_photo())
                         .imageView(imageView)
                         .build());
+        statusTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener!=null){
+                    listener.onClick(data1.getUser_id());
+                }
+            }
+        });
+    }
+
+    public interface onImgClickListener{
+        void onClick(String fid);
     }
 }
