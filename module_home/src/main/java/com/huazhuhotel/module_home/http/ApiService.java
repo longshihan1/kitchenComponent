@@ -1,6 +1,7 @@
 package com.huazhuhotel.module_home.http;
 
 import com.huazhuhotel.module_home.mvp.model.AttentionInfo;
+import com.huazhuhotel.module_home.mvp.model.FollowInfo;
 import com.huazhuhotel.module_home.mvp.model.GoodsDetailInfo;
 import com.huazhuhotel.module_home.mvp.model.HomeInfo;
 import com.huazhuhotel.module_home.mvp.model.ReCommondInfo;
@@ -88,7 +89,7 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("/user/follow")
     Observable<FollowInfo> getFollowInfo(@Field("user_id") String id, @Field("fid") String fid,
-                                         @Field("_session") String _session,@Field("_vs") String _vs,
+                                         @Field("_session") String _session, @Field("_vs") String _vs,
                                          @Field("agent_id") String agent_id, @Field("client") String client,
                                          @Field("signtime") String signtime, @Field("signature") String signature);
 
@@ -105,6 +106,7 @@ public interface ApiService {
 
     //视屏列表
     @Headers({"version:6931.2","url_name:douguo"})
+    @FormUrlEncoded
     @POST("/note/video/{pageindex}/10")
     Observable<VideoListInfo> getVideoListInfo(@Field("recipe_id") String id, @Path("pageindex") int page);
 
