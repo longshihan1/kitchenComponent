@@ -100,7 +100,7 @@ public class DOUGUOActivity extends BaseActivity {
         } else if (position == 2) {
 
         }else if (position==3){
-            startActivity(new Intent(this, AttentionActivity.class));
+//            startActivity(new Intent(this, AttentionActivity.class));
         }
     }
     @Override
