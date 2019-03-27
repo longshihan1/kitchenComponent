@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.TextView;
 
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.huazhuhotel.module_home.R;
@@ -28,16 +29,32 @@ import cn.jzvd.JzvdStd;
 
 public class HomeVideoViewHolder extends SimpleViewHolder<VideoListInfo.ResultBean.VideoListBean> {
     JzvdStd jzvdStd;
+
+    private TextView title, name, looktv, startv;
+
     public HomeVideoViewHolder(View itemView, @Nullable VideoAdapter adapter) {
         super(itemView, adapter);
-        jzvdStd=itemView.findViewById(R.id.item_video_player);
+        jzvdStd = itemView.findViewById(R.id.item_video_player);
+        title = itemView.findViewById(R.id.item_video_title);
+        name = itemView.findViewById(R.id.item_video_author);
+        looktv = itemView.findViewById(R.id.item_video_looker);
+        startv = itemView.findViewById(R.id.item_video_star);
     }
 
     @Override
     protected void refreshView(VideoListInfo.ResultBean.VideoListBean data) {
         super.refreshView(data);
-        if (!TextUtils.isEmpty(data.getVideo_url())){
-            jzvdStd.setUp(data.getVideo_url(), data.getRecipe_title(), Jzvd.SCREEN_NORMAL);
+        if (data==null){
+            return;
+        }
+        if (!TextUtils.isEmpty(data.getVideo_url())) {
+            jzvdStd.setUp(data.getVideo_url(), data.getRecipe_title(), Jzvd.SCREEN_WINDOW_LIST);
+        }
+        title.setText(data.getVideo_title());
+        looktv.setText(data.getFavo_count()+"");
+        startv.setText(data.getLike_state()+"");
+        if (data.getAuthor()!=null) {
+            name.setText(data.getAuthor().getN());
         }
         ArmsUtils.getImageLoader(context)
                 .loadImage(context, ImageConfigImpl.builder()

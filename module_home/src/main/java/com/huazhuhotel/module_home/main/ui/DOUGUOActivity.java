@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 import com.huazhuhotel.module_home.R;
 import com.huazhuhotel.module_home.attention.ui.AttentionActivity;
 import com.huazhuhotel.module_home.main.ui.fragment.HomeFragment;
+import com.huazhuhotel.module_home.main.ui.fragment.MINEFragment;
 import com.huazhuhotel.module_home.main.ui.fragment.VideoListFragment;
 import com.huazhuhotel.module_home.widget.HomeNavLinearLayout;
 import com.longshihan.mvpcomponent.base.BaseActivity;
@@ -26,7 +27,7 @@ public class DOUGUOActivity extends BaseActivity {
     private HomeFragment homeFragment;
     private VideoListFragment noticeFragment;
     private HomeFragment communityFragment;
-    private HomeFragment mineFragment;
+    private MINEFragment mineFragment;
     private List<Fragment> fragmentList;
     private int index=-1;
 
@@ -49,7 +50,7 @@ public class DOUGUOActivity extends BaseActivity {
         homeFragment = new HomeFragment();
         noticeFragment = new VideoListFragment();
         communityFragment = new HomeFragment();
-        mineFragment = new HomeFragment();
+        mineFragment = new MINEFragment();
 
         fragmentList = new ArrayList<>();
         fragmentList.add(homeFragment);

@@ -21,6 +21,8 @@ import com.huazhuhotel.module_home.utils.UserInfo;
 import com.longshihan.mvpcomponent.base.BaseMVPFragment;
 import com.longshihan.mvpcomponent.di.component.AppComponent;
 
+import cn.jzvd.Jzvd;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -55,6 +57,24 @@ public class VideoListFragment extends BaseMVPFragment<VideoPersenter> implement
         recyclerView.setLayoutManager(new LinearLayoutManager(mActivity,LinearLayoutManager.VERTICAL,false));
         recyclerView.setAdapter(adapter);
         mPresenter.getVideoInfo(UserInfo.getUserId(),pageIndex);
+
+        recyclerView.addOnChildAttachStateChangeListener(new RecyclerView.OnChildAttachStateChangeListener() {
+            @Override
+            public void onChildViewAttachedToWindow(View view) {
+
+            }
+
+            @Override
+            public void onChildViewDetachedFromWindow(View view) {
+                Jzvd jzvd = view.findViewById(R.id.item_video_player);
+//                if (jzvd != null && jzvd.jzDataSource.containsTheUrl(JZMediaManager.getCurrentUrl())) {
+//                    Jzvd currentJzvd = JzvdMgr.getCurrentJzvd();
+//                    if (currentJzvd != null && currentJzvd.currentScreen != Jzvd.SCREEN_WINDOW_FULLSCREEN) {
+//                        Jzvd.releaseAllVideos();
+//                    }
+//                }
+            }
+        });
     }
 
     @Override
