@@ -1,5 +1,6 @@
 package com.huazhuhotel.module_home.main.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -7,7 +8,10 @@ import android.support.v4.app.FragmentTransaction;
 import android.widget.FrameLayout;
 
 import com.huazhuhotel.module_home.R;
+import com.huazhuhotel.module_home.attention.ui.AttentionActivity;
 import com.huazhuhotel.module_home.main.ui.fragment.HomeFragment;
+import com.huazhuhotel.module_home.main.ui.fragment.MINEFragment;
+import com.huazhuhotel.module_home.main.ui.fragment.VideoListFragment;
 import com.huazhuhotel.module_home.widget.HomeNavLinearLayout;
 import com.longshihan.mvpcomponent.base.BaseActivity;
 import com.longshihan.mvpcomponent.di.component.AppComponent;
@@ -21,9 +25,9 @@ public class DOUGUOActivity extends BaseActivity {
     HomeNavLinearLayout navLinearLayout;
     private FragmentManager fragmentManager;
     private HomeFragment homeFragment;
-    private HomeFragment noticeFragment;
+    private VideoListFragment noticeFragment;
     private HomeFragment communityFragment;
-    private HomeFragment mineFragment;
+    private MINEFragment mineFragment;
     private List<Fragment> fragmentList;
     private int index=-1;
 
@@ -44,9 +48,9 @@ public class DOUGUOActivity extends BaseActivity {
 
         fragmentManager = getSupportFragmentManager();
         homeFragment = new HomeFragment();
-        noticeFragment = new HomeFragment();
+        noticeFragment = new VideoListFragment();
         communityFragment = new HomeFragment();
-        mineFragment = new HomeFragment();
+        mineFragment = new MINEFragment();
 
         fragmentList = new ArrayList<>();
         fragmentList.add(homeFragment);
@@ -95,6 +99,8 @@ public class DOUGUOActivity extends BaseActivity {
 
         } else if (position == 2) {
 
+        }else if (position==3){
+            startActivity(new Intent(this, AttentionActivity.class));
         }
     }
     @Override

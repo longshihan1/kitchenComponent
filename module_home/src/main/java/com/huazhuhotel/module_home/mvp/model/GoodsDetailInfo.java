@@ -162,6 +162,8 @@ public class GoodsDetailInfo {
             private List<MajorBean> major;
             private List<?> minor;
             private List<RecentCommentsBean> recent_comments;
+            private List<RecentCommentsBean> old_comments;
+            private List<RecentCommentsBean> comments;
             private List<?> dishes;
             private List<?> bs;
             private List<?> ss;
@@ -630,6 +632,22 @@ public class GoodsDetailInfo {
 
             public void setNotes(List<NotesBean> notes) {
                 this.notes = notes;
+            }
+
+            public List<RecentCommentsBean> getOld_comments() {
+                return old_comments;
+            }
+
+            public void setOld_comments(List<RecentCommentsBean> old_comments) {
+                this.old_comments = old_comments;
+            }
+
+            public List<RecentCommentsBean> getComments() {
+                return comments;
+            }
+
+            public void setComments(List<RecentCommentsBean> comments) {
+                this.comments = comments;
             }
 
             public static class UserBean {

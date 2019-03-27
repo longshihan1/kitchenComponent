@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.huazhuhotel.module_home.R;
 import com.huazhuhotel.module_home.detail.adapter.DetailReCommondCookAdapter;
+import com.huazhuhotel.module_home.mvp.model.GoodsDetailInfo;
 import com.huazhuhotel.module_home.mvp.model.ReCommondInfo;
 import com.longshihan.mvpcomponent.base.BaseMVPFragment;
 import com.longshihan.mvpcomponent.base.EmptyPersienter;
@@ -19,12 +20,11 @@ import com.longshihan.mvpcomponent.di.component.AppComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class ReCommendCookFragment extends BaseMVPFragment {
 
     private List<ReCommondInfo.ResultBean.ListBean> datas;
+
     private RecyclerView recyclerView;
     private DetailReCommondCookAdapter adapter;
 
@@ -33,15 +33,30 @@ public class ReCommendCookFragment extends BaseMVPFragment {
     }
 
     public void setData(List<ReCommondInfo.ResultBean.ListBean> datas) {
-        if (datas==null){
-            datas=new ArrayList<>();
+        if (this.datas!=null&&this.datas.size()>0){
+            return;
+        }else {
+            if (datas == null) {
+                datas = new ArrayList<>();
+            }
+            if (this.datas == null) {
+                this.datas = new ArrayList<>();
+            }
+            for (ReCommondInfo.ResultBean.ListBean listBean : datas) {
+                if (listBean != null && listBean.getR() != null) {
+                    this.datas.add(listBean);
+                }
+
+            }
+            if (this.datas == null) {
+                this.datas = new ArrayList<>();
+            }
         }
-        this.datas = datas;
-        adapter.setListData(datas);
     }
 
     public void restoreData() {
         setData(datas);
+        adapter.setListData(datas);
     }
 
     @Override

@@ -9,6 +9,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Base.AppTheme">
+        <activity android:name=".attention.ui.AttentionActivity"/>
+
         <meta-data
             android:name="debug.module_home.app.GlobalConfiguration"
             android:value="ConfigModule"/>
@@ -20,13 +22,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".sort.ui.SortListActivity">
-        </activity>
-        <activity android:name=".list.ui.ListActivity">
-        </activity>
-        <activity android:name=".detail.ui.GoodsDetailActivity">
-        </activity>
-        <activity android:name=".web.WebActivity">
+        <activity android:name=".sort.ui.SortListActivity"/>
+        <activity android:name=".list.ui.ListActivity"/>
+        <activity android:name=".detail.ui.GoodsDetailActivity"/>
+        <activity android:name=".web.WebActivity"/>
+        <activity android:name=".attention.ui.AttentionDetailActivity">
         </activity>
     </application>
 
