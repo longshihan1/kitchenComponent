@@ -71,11 +71,11 @@ public class MINEFragment extends BaseMVPFragment<AttentionDetailPersenter> impl
 
     @Override
     public void initData(Bundle savedInstanceState) {
-
+        mPresenter.getUserInfo(com.huazhuhotel.module_home.utils.UserInfo.getUserId());
     }
 
     @Override
     public void setupFragmentComponent(AppComponent appComponent) {
-        mPresenter.getUserInfo(com.huazhuhotel.module_home.utils.UserInfo.getUserId());
+        mPresenter=new AttentionDetailPersenter(this,appComponent.repositoryManager());
     }
 }

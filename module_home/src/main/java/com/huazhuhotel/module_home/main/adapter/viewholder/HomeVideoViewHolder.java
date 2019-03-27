@@ -1,7 +1,6 @@
 package com.huazhuhotel.module_home.main.adapter.viewholder;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
@@ -32,7 +31,7 @@ public class HomeVideoViewHolder extends SimpleViewHolder<VideoListInfo.ResultBe
 
     private TextView title, name, looktv, startv;
 
-    public HomeVideoViewHolder(View itemView, @Nullable VideoAdapter adapter) {
+    public HomeVideoViewHolder(View itemView, VideoAdapter adapter) {
         super(itemView, adapter);
         jzvdStd = itemView.findViewById(R.id.item_video_player);
         title = itemView.findViewById(R.id.item_video_title);
