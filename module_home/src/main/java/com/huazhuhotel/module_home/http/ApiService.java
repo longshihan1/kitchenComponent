@@ -1,6 +1,7 @@
 package com.huazhuhotel.module_home.http;
 
 import com.huazhuhotel.module_home.mvp.model.AttentionInfo;
+import com.huazhuhotel.module_home.mvp.model.CommentListInfo;
 import com.huazhuhotel.module_home.mvp.model.FollowInfo;
 import com.huazhuhotel.module_home.mvp.model.GoodsDetailInfo;
 import com.huazhuhotel.module_home.mvp.model.HomeInfo;
@@ -109,5 +110,9 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("/note/video/{pageindex}/10")
     Observable<VideoListInfo> getVideoListInfo(@Field("recipe_id") String id, @Path("pageindex") int page);
+
+    @Headers({"version:6931.2","url_name:douguo"})
+    @POST("/recipe/flatcomments/{recipe_id}/{pageindex}/10")
+    Observable<CommentListInfo> getCommentListInfo(@Path("recipe_id") String id, @Path("pageindex") int page);
 
 }

@@ -2,6 +2,7 @@ package com.huazhuhotel.module_home.detail.persenter;
 
 import com.huazhuhotel.module_home.detail.model.IGoodsDetailModel;
 import com.huazhuhotel.module_home.detail.model.GoodsDetailModel;
+import com.huazhuhotel.module_home.mvp.model.CommentListInfo;
 import com.huazhuhotel.module_home.mvp.model.GoodsDetailInfo;
 import com.huazhuhotel.module_home.mvp.model.ReCommondInfo;
 import com.huazhuhotel.module_home.mvp.model.SearchInfo;
@@ -60,6 +61,25 @@ public class GoodsDetailPersenter extends BasePresenter<GoodsDetailContract.View
                     @Override
                     public void accept(@NonNull ReCommondInfo info) throws Exception {
                         mRootView.getRecommondInfo(info);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        com.orhanobut.logger.Logger.e(throwable, "sss");
+                    }
+                });
+        addDispose(disposable);
+    }
+
+    @Override
+    public void getCommentList(String id, int pageIndex) {
+        Disposable disposable = mIModel.getCommentList(id,pageIndex)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<CommentListInfo>() {
+                    @Override
+                    public void accept(@NonNull CommentListInfo info) throws Exception {
+                        mRootView.getCommentList(info);
                     }
                 }, new Consumer<Throwable>() {
                     @Override

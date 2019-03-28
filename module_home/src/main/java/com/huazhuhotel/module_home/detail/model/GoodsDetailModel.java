@@ -1,6 +1,7 @@
 package com.huazhuhotel.module_home.detail.model;
 
 import com.huazhuhotel.module_home.http.ApiService;
+import com.huazhuhotel.module_home.mvp.model.CommentListInfo;
 import com.huazhuhotel.module_home.mvp.model.GoodsDetailInfo;
 import com.huazhuhotel.module_home.mvp.model.ReCommondInfo;
 import com.huazhuhotel.module_home.mvp.model.SearchInfo;
@@ -32,5 +33,10 @@ public class GoodsDetailModel extends BaseModel implements IGoodsDetailModel {
     public Observable<ReCommondInfo> getReCommendInfo(int goodsId) {
         return mRepositoryManager.obtainRetrofitService(ApiService.class)
                 .getRecommInfo(goodsId);
+    }
+
+    @Override
+    public Observable<CommentListInfo> getCommentList(String id, int pageIndex) {
+        return mRepositoryManager.obtainRetrofitService(ApiService.class).getCommentListInfo(id,pageIndex);
     }
 }

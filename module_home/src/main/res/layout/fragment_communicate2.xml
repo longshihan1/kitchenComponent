@@ -4,8 +4,8 @@
              android:layout_height="match_parent"
              tools:context="com.huazhuhotel.module_home.detail.ui.fragment.CommunicateFragment">
 
-  <android.support.v7.widget.RecyclerView
-      android:id="@+id/communicate2_recy"
+  <ExpandableListView
+      android:id="@+id/communicate2_expand"
       android:layout_width="match_parent"
       android:layout_height="match_parent"/>
 

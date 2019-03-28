@@ -1,5 +1,6 @@
 package com.huazhuhotel.module_home.detail.persenter;
 
+import com.huazhuhotel.module_home.mvp.model.CommentListInfo;
 import com.huazhuhotel.module_home.mvp.model.GoodsDetailInfo;
 import com.huazhuhotel.module_home.mvp.model.ReCommondInfo;
 import com.huazhuhotel.module_home.mvp.model.SearchInfo;
@@ -17,10 +18,12 @@ public interface GoodsDetailContract {
     interface View extends IView {
         void getGoodsDetailInfo(GoodsDetailInfo info);
         void getRecommondInfo(ReCommondInfo info);
+        void getCommentList(CommentListInfo info);
     }
 
     interface Presenter {
         void getGoodsDetailInfo(int goodsId);
         void getRecommendInfo(int goodsId);
+        void getCommentList(String id,int pageIndex);
     }
 }

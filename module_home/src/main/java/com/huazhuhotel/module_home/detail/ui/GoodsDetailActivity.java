@@ -16,6 +16,7 @@ import com.huazhuhotel.module_home.detail.ui.fragment.CommunicateFragment;
 import com.huazhuhotel.module_home.detail.ui.fragment.CookManagerFragment;
 import com.huazhuhotel.module_home.detail.ui.fragment.GoodsDetailFragment;
 import com.huazhuhotel.module_home.detail.ui.fragment.ReCommendCookFragment;
+import com.huazhuhotel.module_home.mvp.model.CommentListInfo;
 import com.huazhuhotel.module_home.mvp.model.GoodsDetailInfo;
 import com.huazhuhotel.module_home.mvp.model.ReCommondInfo;
 import com.huazhuhotel.module_home.utils.IntentContancts;
@@ -61,6 +62,7 @@ public class GoodsDetailActivity extends BaseMVPActivity<GoodsDetailPersenter> i
     private int goodsId;
     DetailFragmentPagerAdapter pagerAdapter;
     private GoodsDetailInfo info;
+    private int pageIndex=0;
 
 
     @Override
@@ -88,7 +90,6 @@ public class GoodsDetailActivity extends BaseMVPActivity<GoodsDetailPersenter> i
         this.info=info;
         if (info != null && info.getResult() != null &&
                 "success".equals(info.getState()) && info.getResult().getRecipe() != null) {
-            communicateFragment.setData(info.getResult().getRecipe());
             cookManagerFragment.setData(info.getResult().getRecipe());
             goodsDetailFragment.setData(info.getResult().getRecipe());
         } else {
@@ -102,6 +103,15 @@ public class GoodsDetailActivity extends BaseMVPActivity<GoodsDetailPersenter> i
                 "success".equals(info.getState()) && info.getResult().getList() != null) {
             reCommendCookFragment.setData(info.getResult().getList());
         }
+    }
+
+    @Override
+    public void getCommentList(CommentListInfo info) {
+        if (info != null && info.getResult() != null &&
+                "success".equals(info.getState()) && info.getResult().getComments() != null) {
+            communicateFragment.setData(info.getResult().getComments());
+        }
+
     }
 
     @Override
@@ -149,6 +159,7 @@ public class GoodsDetailActivity extends BaseMVPActivity<GoodsDetailPersenter> i
         mViewpage.setCurrentItem(0);
         mPresenter.getGoodsDetailInfo(goodsId);
         mPresenter.getRecommendInfo(goodsId);
+        mPresenter.getCommentList(goodsId+"",pageIndex);
         mViewpage.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
