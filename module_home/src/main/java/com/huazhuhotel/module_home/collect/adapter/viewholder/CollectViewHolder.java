@@ -26,22 +26,45 @@ import java.math.BigDecimal;
 
 public class CollectViewHolder extends SimpleViewHolder<CollectionInfo.ResultBean.RecipesBean> {
     private Context context;
-
+    ImageView mItemSearchImg;
+    TextView mItemSearchName;
+    TextView mItemSearchMaterial;
+    TextView mItemSearchAuthor;
+    TextView mItemSearchPerson;
+    TextView rateTv;
     public CollectViewHolder(View view, CollectionListAdapter adapter) {
         super(view, adapter);
         context = view.getContext();
-
+        this.mItemSearchImg = (ImageView) view.findViewById(R.id.item_search_img);
+        this.mItemSearchName = (TextView) view.findViewById(R.id.item_search_name);
+        this.mItemSearchMaterial = (TextView) view.findViewById(R.id.item_search_material);
+        this.mItemSearchAuthor = (TextView) view.findViewById(R.id.item_search_author);
+        this.mItemSearchPerson = (TextView) view.findViewById(R.id.item_search_person);
+        rateTv=view.findViewById(R.id.item_search_ratetv);
     }
 
     @Override
-    protected void refreshView(CollectionInfo.ResultBean.RecipesBean data1) {
-        super.refreshView(data1);
-
-//        ArmsUtils.getImageLoader(context)
-//                .loadImage(context, ImageConfigImpl.builder()
-//                        .url(data1.getImage())
-//                        .imageView(mItemSearchImg)
-//                        .build());
+    protected void refreshView(CollectionInfo.ResultBean.RecipesBean data) {
+        super.refreshView(data);
+        if (data!=null) {
+            mItemSearchName.setText(data.getTitle());
+            mItemSearchAuthor.setText(data.getAuthor());
+            ArmsUtils.getImageLoader(context)
+                    .loadImage(context, ImageConfigImpl.builder()
+                            .url(data.getImage())
+                            .imageView(mItemSearchImg)
+                            .build());
+            mItemSearchPerson.setText(data.getRecommendation_tag());
+            if (data.getMajor()!=null) {
+                for (int i = 0; i < data.getMajor().size(); i++) {
+                    mItemSearchMaterial.append(data.getMajor().get(i).getTitle()+" ");
+                }
+            }
+            BigDecimal decimal = new BigDecimal(data.getRate()+"");
+            BigDecimal setScale = decimal.setScale(1,BigDecimal.ROUND_HALF_DOWN);
+            System.out.println(setScale);
+            rateTv.setText(String.valueOf(setScale)+"分");
+        }
     }
 
 }

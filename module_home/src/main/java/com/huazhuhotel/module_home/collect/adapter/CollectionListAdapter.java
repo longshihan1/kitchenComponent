@@ -22,6 +22,6 @@ import com.huazhuhotel.module_home.mvp.model.SearchInfo;
 public class CollectionListAdapter extends SimpleRecyclerAdapter<CollectionInfo.ResultBean.RecipesBean> {
     @Override
     public SimpleViewHolder<CollectionInfo.ResultBean.RecipesBean> onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new CollectViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_searchitem, parent, false),this);
+        return new CollectViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_collection, parent, false),this);
     }
 }

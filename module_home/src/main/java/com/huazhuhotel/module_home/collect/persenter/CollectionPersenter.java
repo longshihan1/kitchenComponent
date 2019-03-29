@@ -9,6 +9,7 @@ import com.huazhuhotel.module_home.mvp.model.CollectionInfo;
 import com.huazhuhotel.module_home.mvp.model.HomeInfo;
 import com.longshihan.mvpcomponent.mvp.BasePresenter;
 import com.longshihan.mvpcomponent.mvp.IRepositoryManager;
+import com.orhanobut.logger.Logger;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
@@ -42,6 +43,11 @@ public class CollectionPersenter extends BasePresenter<CollectionContract.View> 
                     @Override
                     public void accept(@NonNull CollectionInfo info) throws Exception {
                         mRootView.getCollectInfo(info);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        Logger.d(throwable);
                     }
                 });
         addDispose(disposable);

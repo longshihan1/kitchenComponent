@@ -18,6 +18,7 @@ import com.huazhuhotel.module_home.R;
 import com.huazhuhotel.module_home.attention.persenter.AttentionDetailContract;
 import com.huazhuhotel.module_home.attention.persenter.AttentionDetailPersenter;
 import com.huazhuhotel.module_home.attention.ui.AttentionActivity;
+import com.huazhuhotel.module_home.collect.ui.CollectionActivity;
 import com.huazhuhotel.module_home.mvp.model.UnRecipesListInfo;
 import com.huazhuhotel.module_home.mvp.model.UserInfo;
 import com.huazhuhotel.module_home.mvp.model.UserNoteInfo;
@@ -155,6 +156,7 @@ public class MINEFragment extends BaseMVPFragment<AttentionDetailPersenter> impl
                 startActivity(new Intent(mActivity, AttentionActivity.class));
                 break;
             case R.id.mine_collection:
+                startActivity(new Intent(mActivity, CollectionActivity.class));
                 break;
             case R.id.mine_recentlook:
                 break;

@@ -117,6 +117,7 @@ public interface ApiService {
     Observable<CommentListInfo> getCommentListInfo(@Path("recipe_id") String id, @Path("pageindex") int page);
 
     @Headers({"version:6931.2","url_name:douguo"})
+    @FormUrlEncoded
     @POST("/user/favorites/{recipe_id}/{pageindex}/20")
     Observable<CollectionInfo> getCollectionListInfo(@Path("recipe_id") String id, @Path("pageindex") int page,
                                                      @Field("_session") String _session,

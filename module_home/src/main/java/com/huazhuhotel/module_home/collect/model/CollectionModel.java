@@ -24,6 +24,8 @@ public class CollectionModel extends BaseModel implements ICollectionModel {
     @Override
     public Observable<CollectionInfo> getCollectionListInfo(String id, int page) {
         return mRepositoryManager.obtainRetrofitService(ApiService.class)
-                .getCollectionListInfo(id,page,"","","","",id,"");
+                .getCollectionListInfo(id,page,"1550565828886864166031299724",
+                        "772388cf40b77d2639e956e572244324","4",
+                        "1550566011",id,"ba38f4b0e6d267b4c2f0cdbb3393bd35");
     }
 }
