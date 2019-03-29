@@ -1,6 +1,7 @@
 package com.huazhuhotel.module_home.http;
 
 import com.huazhuhotel.module_home.mvp.model.AttentionInfo;
+import com.huazhuhotel.module_home.mvp.model.CollectionInfo;
 import com.huazhuhotel.module_home.mvp.model.CommentListInfo;
 import com.huazhuhotel.module_home.mvp.model.FollowInfo;
 import com.huazhuhotel.module_home.mvp.model.GoodsDetailInfo;
@@ -114,5 +115,15 @@ public interface ApiService {
     @Headers({"version:6931.2","url_name:douguo"})
     @POST("/recipe/flatcomments/{recipe_id}/{pageindex}/10")
     Observable<CommentListInfo> getCommentListInfo(@Path("recipe_id") String id, @Path("pageindex") int page);
+
+    @Headers({"version:6931.2","url_name:douguo"})
+    @POST("/user/favorites/{recipe_id}/{pageindex}/20")
+    Observable<CollectionInfo> getCollectionListInfo(@Path("recipe_id") String id, @Path("pageindex") int page,
+                                                     @Field("_session") String _session,
+                                                     @Field("agent_id") String agent_id,
+                                                     @Field("client") String client,
+                                                     @Field("signtime") String signtime,
+                                                     @Field("user_id") String user_id,
+                                                     @Field("signature") String signature);
 
 }

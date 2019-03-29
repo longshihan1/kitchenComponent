@@ -46,68 +46,6 @@ public class GoodsDetailInfo {
         }
 
         public static class RecipeBean {
-            /**
-             * cook_id : 1724061
-             * title : 高纤维胚芽吐司
-             * image : http://i1.douguo.net/upload/caiku/b/f/2/170_bf3379972aaac19d8a38aea77e1c60c2.jpg
-             * thumb_path : https://cp1.douguo.com/upload/caiku/b/f/2/300_bf3379972aaac19d8a38aea77e1c60c2.jpg
-             * photo_path : https://cp1.douguo.com/upload/caiku/b/f/2/600_bf3379972aaac19d8a38aea77e1c60c2.jpg
-             * original_photo_path : https://cp1.douguo.com/upload/caiku/b/f/2/yuan_bf3379972aaac19d8a38aea77e1c60c2.jpg
-             * thumb_height : 0
-             * author_id : 19386332
-             * tips : 1、揉面粘手，可以在手上抹一点儿黄油，再揉。
-             2、出炉后吐司立即脱模，不能将吐司留在吐司模具中，以避免侧面向中间凹陷。为了避免凹陷，要马上将吐司扶正冷却。
-             3、每个烤箱脾气不一样，请根据自己烤箱情况适当调节温度，我用的是西门子嵌入式烤箱66升。
-             * cookstory :
-             * cookstep : [{"position":"1","content":"白砂糖、盐、小麦胚芽和脱脂奶粉，依次加入高筋面粉、全麦面粉中，用筷子稍微搅拌。","thumb":"https://cp1.douguo.com/upload/caiku/d/6/0/140_d676d000437ccb1da3bffaceb6cbf680.jpg","image":"https://cp1.douguo.com/upload/caiku/d/6/0/600_d676d000437ccb1da3bffaceb6cbf680.jpg"},{"position":"2","content":"酵母倒入温水用筷子充分搅拌均匀，倒入面粉中。","thumb":"https://cp1.douguo.com/upload/caiku/2/6/e/140_2647a3fdc64a2cbbc2e17931cc0fce5e.jpg","image":"https://cp1.douguo.com/upload/caiku/2/6/e/600_2647a3fdc64a2cbbc2e17931cc0fce5e.jpg"},{"position":"3","content":"厨师机1档搅拌3分钟后，暂停一下，将钢盆内壁上粘的面刮干净，再2档搅拌4分钟。面团揉至七八分的成熟度，加入黄油。继续1档搅拌几分钟，直到可以拉出透明薄膜。","thumb":"https://cp1.douguo.com/upload/caiku/8/c/c/140_8c84c1ee8e693c24f08ff2cf2c511ddc.jpg","image":"https://cp1.douguo.com/upload/caiku/8/c/c/600_8c84c1ee8e693c24f08ff2cf2c511ddc.jpg"},{"position":"4","content":"揉好的面团盖上保鲜膜，放入50度预热的烤箱中发酵50分钟。","thumb":"https://cp1.douguo.com/upload/caiku/1/a/1/140_1aa1a603f3d8e39109e6d8a66e646431.jpg","image":"https://cp1.douguo.com/upload/caiku/1/a/1/600_1aa1a603f3d8e39109e6d8a66e646431.jpg"},{"position":"5","content":"第一次发酵结束，将面团取出。在硅胶垫上撒上手粉，平均分割成3个小面团。将面团由内向外卷起来，卷完后用手压出里面的空气。然后，将面团翻过来再卷一次再将空气压出，卷完后，把面团捧在手心里滚圆，将面团收口朝下排在平盘里，松弛15分钟。","thumb":"https://cp1.douguo.com/upload/caiku/9/9/2/140_99b91dd0b45deda3414abf6c8ea0dbe2.jpg","image":"https://cp1.douguo.com/upload/caiku/9/9/2/600_99b91dd0b45deda3414abf6c8ea0dbe2.jpg"},{"position":"6","content":"用擀面杖将小面团擀压，将空气压挤出来，这样面团才不会因有过多的空气，导致出炉的面包孔隙过大。面皮翻面后，进行卷制。","thumb":"https://cp1.douguo.com/upload/caiku/1/a/4/140_1ad0bf4541ad9ea77b27e880f7a3f014.jpg","image":"https://cp1.douguo.com/upload/caiku/1/a/4/600_1ad0bf4541ad9ea77b27e880f7a3f014.jpg"},{"position":"7","content":"将面团放入吐司模具中后，放入最后发酵烤箱中做最后发酵。","thumb":"https://cp1.douguo.com/upload/caiku/3/5/5/140_356eafbf8ec268a00a449ba5aaaf4335.jpg","image":"https://cp1.douguo.com/upload/caiku/3/5/5/600_356eafbf8ec268a00a449ba5aaaf4335.jpg"},{"position":"8","content":"待面团发酵至吐司盒八分满高度时，取出，预热烤箱170℃，上下火45分钟。","thumb":"https://cp1.douguo.com/upload/caiku/f/4/7/140_f4e6861e43ca02bc0fe5cde91f180fc7.jpg","image":"https://cp1.douguo.com/upload/caiku/f/4/7/600_f4e6861e43ca02bc0fe5cde91f180fc7.jpg"},{"position":"9","content":"吐司出炉后，迅速脱模，倒扣在凉架，待冷却即可切片。","thumb":"https://cp1.douguo.com/upload/caiku/6/f/a/140_6f673e96c040abce9060bffbd92450ca.jpg","image":"https://cp1.douguo.com/upload/caiku/6/f/a/600_6f673e96c040abce9060bffbd92450ca.jpg"},{"position":"10","content":"成品图","thumb":"https://cp1.douguo.com/upload/caiku/5/2/e/140_5280c27a1fe2756673d9c2c6a0d2b54e.jpg","image":"https://cp1.douguo.com/upload/caiku/5/2/e/600_5280c27a1fe2756673d9c2c6a0d2b54e.jpg"},{"position":"11","content":"成品图","thumb":"https://cp1.douguo.com/upload/caiku/a/0/9/140_a07f5282c06ef7d3c342d684bf7b3ef9.jpg","image":"https://cp1.douguo.com/upload/caiku/a/0/9/600_a07f5282c06ef7d3c342d684bf7b3ef9.jpg"}]
-             * cook_time : 1小时以上
-             * cook_difficulty : 配菜(中级)
-             * clicks : 185993
-             * major : [{"title":"高筋面粉","note":"150克","tu":"https://m.douguo.com/ingredients/高筋面粉/detailmaterial"},{"title":"全麦面粉","note":"100克"},{"title":"白砂糖","note":"13克","tu":"https://m.douguo.com/ingredients/白砂糖/detailmaterial"},{"title":"小麦胚芽","note":"25克"},{"title":"盐","note":"5克","tu":"https://m.douguo.com/ingredients/盐/detailmaterial"},{"title":"脱脂奶粉","note":"5克","tu":"https://m.douguo.com/ingredients/脱脂奶粉/detailmaterial"},{"title":"黄油","note":"20克","tu":"https://m.douguo.com/ingredients/黄油/detailmaterial"},{"title":"酵母","note":"3克","tu":"https://m.douguo.com/ingredients/酵母/detailmaterial"},{"title":"水","note":"200克","tu":"https://m.douguo.com/ingredients/水/detailmaterial"}]
-             * minor : []
-             * create_time : 2018-12-12 18:55:53
-             * recommended : 0
-             * act_des :
-             * v_u :
-             * ecs : 0
-             * hq : 1
-             * eu : recipes://www.douguo.com/postdetail?id=242016
-             * hqu : recipes://www.douguo.com/notedetail?id=21162253
-             * user : {"user_id":"19386332","nick":"麦可安","nickname":"麦可安","user_photo":"http://i1.douguo.net/upload/photo/1/c/8/70_u83701666827580173046.jpeg","avatar_medium":"http://i1.douguo.net/upload/photo/1/c/8/140_u83701666827580173046.jpeg","gender":2,"email":"","mobile":"","user_cover":"","verified":1,"sign":"","weibo_nick":"","qq_weibo_nick":"","qzone_nick":"","setted_email":0,"user_large_photo":"http://i1.douguo.net/upload/photo/1/c/8/yuan_u83701666827580173046.jpeg","followers_count":0,"following_count":0,"location":0,"diaries_count":0,"recipes_count":0,"favorites_count":0,"favor_diaries_count":0,"lvl":5,"is_prime":true}
-             * author : 麦可安
-             * author_photo : http://i1.douguo.net/upload/photo/1/c/8/70_u83701666827580173046.jpeg
-             * author_verified : 1
-             * collect_status : 0
-             * favo_counts : 8517
-             * comments_count : 3
-             * dish_count : 1
-             * pw : 1989
-             * ph : 1256
-             * display_ingredient : 1
-             * recent_comments : [{"user_photo":"http://i1.douguo.net/upload/photo/1/c/8/70_u83701666827580173046.jpeg","author_nick":"麦可安","author_id":19386332,"author_lvl":5,"author_verified":0,"id":"6276573","time":"2018-12-15 08:45:11","type":"0","content":"@臭臭的臭宝贝 配方有写","parent_id":"6276503","reply_id":"6276503"},{"user_photo":"http://i1.douguo.net/upload/photo/e/e/2/70_u8433857675296222530.jpg","author_nick":"臭臭的臭宝贝","author_id":18567526,"author_lvl":1,"author_verified":0,"id":"6276503","time":"2018-12-15 08:08:18","type":"0","content":"发酵粉怎么放  按照比例？","parent_id":"0","reply_id":"0"},{"user_photo":"http://i1.douguo.net/upload/photo/b/a/1/70_u21012052202567085741.jpg","author_nick":"糖小田yuan","author_id":21764349,"author_lvl":6,"author_verified":0,"id":"6270856","time":"2018-12-13 08:35:46","type":"0","content":"👍","parent_id":"0","reply_id":"0"}]
-             * dishes : []
-             * vc : 244229
-             * as : 2
-             * bs : []
-             * release_time : 发布于 2018-12-12
-             * rips : 0
-             * su : http://i2.douguo.net/static/mapi/sponsor.html?up=http://i1.douguo.net/upload/photo/1/c/8/140_u83701666827580173046.jpeg&un=麦可安&rid=1724061&v=152975578220170224.1
-             * sc : 0
-             * ss : []
-             * sr : 觉得写得好的话就真诚地赞赏吧
-             * ssu : http://i2.douguo.net/static/mapi/sponsors.html?rid=1724061&uid=&sc=0&v=152975578220170224.1
-             * ipci : https://i1.douguo.com/static/img/icon_fast_buy.png
-             * ipoi : https://i1.douguo.com/static/img/icon_buy_good.png
-             * ipt : 这道菜用到的食材
-             * rate : 5
-             * rate_count : 1
-             * rate_show : 1
-             * rdsps : [{"d":{"id":"ad4391","pid":"3545249","ch":2,"url":"","i":"","cap":"广告","position":"1recipedetail","query":"","client_ip":"114.94.99.199","req_min_i":86400,"channel":"","media_type":0,"max_impression_count":0,"canclose":0}}]
-             * btm_dsp : {"id":"7966","pid":"","ch":0,"url":"recipes://www.douguo.com/user?id=21610006&tab=1","i":"http://i1.douguo.net/upload/advert_user/4/4/4/44cda56fe5c1dc529ef8cbef040dc024.jpg","cap":"","position":"1detailbanners","t":"雀巢3.1-3.5菜谱详情页底部banner","d":"雀巢3.1-3.5菜谱详情页底部banner","query":"","client_ip":"114.94.99.199","req_min_i":2,"channel":"","media_type":0,"max_impression_count":"0","canclose":0}
-             * rsm : 该功能暂停使用
-             * notes : [{"id":"22047470","image_u":"https://i1.douguo.com/upload/note/2/9/f/293763273da9a84c65790bf4d60e5b3f.jpeg","image_w":"750","image_h":"1000","title":"","publishtime":"2018-12-13 06:43:59","recipe_rate":5,"author":{"lvl":5,"is_prime":true,"id":"19386332","n":"麦可安","p":"http://i1.douguo.net/upload/photo/1/c/8/70_u83701666827580173046.jpeg","v":1,"lv":0,"wn":"mikeann_coco","relationship":0},"like_state":0,"like_count":105}]
-             * recommendation_tag : 1人做过
-             */
 
             private String cook_id;
             private String title;
