@@ -3,6 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    android:layout_marginBottom="20dp"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 <TextView
@@ -11,7 +15,7 @@
     android:layout_height="wrap_content"
     android:textSize="18dp"
     android:textStyle="bold"
-    android:textColor="@color/black"
+    android:textColor="@color/black_alpha80"
     tools:text="测试标题"/>
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,7 +24,11 @@
         <TextView
             android:id="@+id/item_video_author"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_CDC0B0"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:text="作者"/>
         <View
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -28,11 +36,18 @@
         <TextView
             android:id="@+id/item_video_looker"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:text="xxx"/>
+        <View
+            android:layout_width="10dp"
+            android:layout_height="2dp"/>
         <TextView
             android:id="@+id/item_video_star"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:text="xxx"/>
     </LinearLayout>
     <cn.jzvd.JzvdStd
         android:id="@+id/item_video_player"

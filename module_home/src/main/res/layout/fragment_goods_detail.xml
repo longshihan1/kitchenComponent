@@ -27,6 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:layout_marginLeft="8dp"
                 android:textSize="20dp"
                 android:textStyle="bold"
                 tools:text="名字"/>
@@ -85,6 +86,11 @@
                 android:layout_marginTop="20dp"
                 />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_margin="5dp"/>
+
             <TextView
                 android:id="@+id/goodsdetail_detail_authorname"
                 android:layout_width="wrap_content"
@@ -94,11 +100,16 @@
                 tools:text="作者名称"/>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/color_f8f8f8"
+                android:background="@color/color_EDEAEA"
                 android:text="需要原料"
                 android:textColor="@color/color_273261"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_margin="5dp"/>
 
             <LinearLayout
                 android:id="@+id/goodsdetail_detail_list"
@@ -109,7 +120,7 @@
             </LinearLayout>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/color_f8f8f8"
                 android:text="小贴士"
@@ -118,7 +129,8 @@
             <TextView
                 android:id="@+id/goodsdetail_detail_tip"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"/>
         </LinearLayout>
     </ScrollView>
 </FrameLayout>
