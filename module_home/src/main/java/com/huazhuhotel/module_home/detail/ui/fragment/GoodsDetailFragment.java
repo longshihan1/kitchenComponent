@@ -11,9 +11,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.huazhuhotel.module_home.R;
 import com.huazhuhotel.module_home.mvp.model.GoodsDetailInfo;
+import com.huazhuhotel.module_home.mvp.model.MajorBean;
+import com.huazhuhotel.module_home.mvp.model.MajorInfo;
+import com.huazhuhotel.module_home.utils.CacheConstancts;
+import com.huazhuhotel.module_home.utils.GsonUtils;
+import com.huazhuhotel.module_home.utils.SPUtils;
 import com.huazhuhotel.module_home.widget.GoodsDetailCookItemView;
 import com.huazhuhotel.module_home.widget.LineFlowLayout;
 import com.longshihan.mvpcomponent.base.BaseFragment;
@@ -22,6 +29,9 @@ import com.longshihan.mvpcomponent.base.EmptyPersienter;
 import com.longshihan.mvpcomponent.di.component.AppComponent;
 import com.longshihan.mvpcomponent.strategy.imageloader.glide.ImageConfigImpl;
 import com.longshihan.mvpcomponent.utils.ArmsUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 商品的配方详情
@@ -38,6 +48,7 @@ public class GoodsDetailFragment extends BaseMVPFragment {
     private TextView mGoodsdetailDetailAuthorname,ideaTv;
     private LinearLayout mGoodsdetailDetailList,ideaLin;
     private TextView mGoodsdetailDetailTip;
+    private TextView addCookTv;
     private LinearLayout.LayoutParams layoutParams;
 
     public GoodsDetailFragment() {
@@ -61,8 +72,50 @@ public class GoodsDetailFragment extends BaseMVPFragment {
         mGoodsdetailDetailList = (LinearLayout) mRootview.findViewById(R.id.goodsdetail_detail_list);
         mGoodsdetailDetailTip = (TextView) mRootview.findViewById(R.id.goodsdetail_detail_tip);
         ideaLin=mRootview.findViewById(R.id.goodsdetail_detail_lin);
+        addCookTv=mRootview.findViewById(R.id.goodsdetail_detail_addCook);
         ideaTv=mRootview.findViewById(R.id.goodsdetail_detail_idea);
         layoutParams=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        addCookTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (data==null){
+                    return;
+                }
+                Gson gson=new Gson();
+                List<MajorInfo> majorInfos=new ArrayList<>();
+                String majorStr= (String) SPUtils.get(mActivity, CacheConstancts.COOKLISTMAGJOR,"");
+                if (!TextUtils.isEmpty(majorStr)){
+                    majorInfos=GsonUtils.jsonToArrayList(majorStr,MajorInfo.class);
+                    if (majorInfos!=null&&majorInfos.size()>0){
+                        for (MajorInfo in :majorInfos) {
+                            if (in!=null&&!TextUtils.isEmpty(in.getId())
+                                    &&data.getCook_id().equals(in.getId())){
+                                Toast.makeText(mActivity,"已添加过清单",Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                        }
+                    }else {
+                        Toast.makeText(mActivity,"添加失败，请重试",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+
+                if (majorInfos==null){
+                    majorInfos=new ArrayList<>();
+                }
+                if (data.getMajor()!=null){
+                    MajorInfo info=new MajorInfo();
+                    info.setName(data.getTitle());
+                    info.setId(data.getCook_id());
+                    info.setMajorBean(data.getMajor());
+                    majorInfos.add(info);
+                    String json= gson.toJson(majorInfos);
+                    SPUtils.put(mActivity,CacheConstancts.COOKLISTMAGJOR,json);
+
+                }
+            }
+        });
     }
     @Override
     public void setupFragmentComponent(AppComponent appComponent) {

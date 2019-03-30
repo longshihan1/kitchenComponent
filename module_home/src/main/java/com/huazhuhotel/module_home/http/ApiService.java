@@ -59,12 +59,12 @@ public interface ApiService {
 
     @Headers({"version:6931.2", "url_name:douguo"})
     @POST("/recipe/detail/{goodsId}")
-    Observable<GoodsDetailInfo> getGoodsDetailInfo(@Path("goodsId") int goodsId);
+    Observable<GoodsDetailInfo> getGoodsDetailInfo(@Path("goodsId") String goodsId);
 
     @Headers({"version:6931.2", "url_name:douguo"})
     @FormUrlEncoded
     @POST("/recipe/mixedRecommend")
-    Observable<ReCommondInfo> getRecommInfo(@Field("recipe_id") int goodsId);
+    Observable<ReCommondInfo> getRecommInfo(@Field("recipe_id") String goodsId);
 
     @Headers({"url_name:douguo"})
     @POST("/user/following/{userid}/0/15")

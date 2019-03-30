@@ -22,6 +22,7 @@ import com.huazhuhotel.module_home.collect.ui.CollectionActivity;
 import com.huazhuhotel.module_home.mvp.model.UnRecipesListInfo;
 import com.huazhuhotel.module_home.mvp.model.UserInfo;
 import com.huazhuhotel.module_home.mvp.model.UserNoteInfo;
+import com.huazhuhotel.module_home.purchase.PurchaseActivity;
 import com.longshihan.mvpcomponent.base.BaseMVPFragment;
 import com.longshihan.mvpcomponent.di.component.AppComponent;
 import com.longshihan.mvpcomponent.strategy.imageloader.glide.ImageConfigImpl;
@@ -161,6 +162,7 @@ public class MINEFragment extends BaseMVPFragment<AttentionDetailPersenter> impl
             case R.id.mine_recentlook:
                 break;
             case R.id.mine_buy:
+                startActivity(new Intent(mActivity, PurchaseActivity.class));
                 break;
             case R.id.mine_work:
                 break;

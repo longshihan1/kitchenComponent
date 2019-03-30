@@ -141,7 +141,7 @@ public class ListActivity extends BaseMVPActivity<ListPersenter> implements List
             public void onItemClick(SearchInfo.ResultBean.ListBean item, int index) {
                 int id=item.getR().getId();
                 Intent intent=new Intent(ListActivity.this, GoodsDetailActivity.class);
-                intent.putExtra(IntentContancts.GOODSDETAIL_VALUE,id);
+                intent.putExtra(IntentContancts.GOODSDETAIL_VALUE,id+"");
                 startActivity(intent);
                 Toast.makeText(ListActivity.this,item.getR().getN(),Toast.LENGTH_SHORT).show();
             }
