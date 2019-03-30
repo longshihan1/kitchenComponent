@@ -34,7 +34,7 @@ public class GoodsDetailPersenter extends BasePresenter<GoodsDetailContract.View
 
 
     @Override
-    public void getGoodsDetailInfo(int goodsId) {
+    public void getGoodsDetailInfo(String goodsId) {
         Disposable disposable = mIModel.getGoodsDetailInfo(goodsId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -53,7 +53,7 @@ public class GoodsDetailPersenter extends BasePresenter<GoodsDetailContract.View
     }
 
     @Override
-    public void getRecommendInfo(int goodsId) {
+    public void getRecommendInfo(String goodsId) {
         Disposable disposable = mIModel.getReCommendInfo(goodsId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

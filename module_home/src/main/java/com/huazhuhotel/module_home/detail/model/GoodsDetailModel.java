@@ -24,13 +24,13 @@ public class GoodsDetailModel extends BaseModel implements IGoodsDetailModel {
     }
 
     @Override
-    public Observable<GoodsDetailInfo> getGoodsDetailInfo(int goodsId) {
+    public Observable<GoodsDetailInfo> getGoodsDetailInfo(String goodsId) {
         return mRepositoryManager.obtainRetrofitService(ApiService.class)
                 .getGoodsDetailInfo(goodsId);
     }
 
     @Override
-    public Observable<ReCommondInfo> getReCommendInfo(int goodsId) {
+    public Observable<ReCommondInfo> getReCommendInfo(String goodsId) {
         return mRepositoryManager.obtainRetrofitService(ApiService.class)
                 .getRecommInfo(goodsId);
     }

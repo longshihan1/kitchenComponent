@@ -59,7 +59,7 @@ public class GoodsDetailActivity extends BaseMVPActivity<GoodsDetailPersenter> i
     private List<Fragment> fragmentList;
     private int index = -1;
     private FragmentManager fragmentManager;
-    private int goodsId;
+    private String goodsId;
     DetailFragmentPagerAdapter pagerAdapter;
     private GoodsDetailInfo info;
     private int pageIndex=0;
@@ -127,7 +127,7 @@ public class GoodsDetailActivity extends BaseMVPActivity<GoodsDetailPersenter> i
 
     @Override
     public void initData() {
-        goodsId = getIntent().getIntExtra(IntentContancts.GOODSDETAIL_VALUE, 0);
+        goodsId = getIntent().getStringExtra(IntentContancts.GOODSDETAIL_VALUE);
         Logger.d(goodsId + "");
         mGoodsdetailTypeFirsttv = (TextView) findViewById(R.id.goodsdetail_type_firsttv);
         mGoodsdetailTypeFirsttv.setOnClickListener(this);

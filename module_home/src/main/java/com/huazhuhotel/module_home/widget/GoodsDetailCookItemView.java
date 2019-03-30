@@ -2,6 +2,7 @@ package com.huazhuhotel.module_home.widget;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
@@ -55,12 +56,15 @@ public class GoodsDetailCookItemView extends LinearLayout {
     public void setData(String name,String note,String url){
         mCookitemName.setText(name);
         mCookitemNote.setText(note);
-        mCookitemLin.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(context, WebActivity.class);
-                context.startActivity(intent);
-            }
-        });
+    }
+
+    public void setDelLine(boolean b) {
+        if (b) {
+            mCookitemName.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+            mCookitemNote.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+        }else {
+            mCookitemName.getPaint().setFlags(0);
+            mCookitemNote.getPaint().setFlags(0);
+        }
     }
 }

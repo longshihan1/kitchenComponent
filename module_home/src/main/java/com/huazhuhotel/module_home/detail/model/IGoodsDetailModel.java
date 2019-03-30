@@ -16,8 +16,8 @@ import io.reactivex.Observable;
  */
 
 public interface IGoodsDetailModel {
-    Observable<GoodsDetailInfo> getGoodsDetailInfo(int goodsId);
-    Observable<ReCommondInfo> getReCommendInfo(int goodsId);
+    Observable<GoodsDetailInfo> getGoodsDetailInfo(String goodsId);
+    Observable<ReCommondInfo> getReCommendInfo(String goodsId);
 
     Observable<CommentListInfo> getCommentList(String id,int pageIndex);
 }

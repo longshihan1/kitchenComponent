@@ -202,7 +202,7 @@ public class AttentionDetailActivity extends BaseMVPActivity<AttentionDetailPers
             @Override
             public void onItemClick(UnRecipesListInfo.ResultBean.ListBean item, int index) {
                 Intent intent = new Intent(AttentionDetailActivity.this, GoodsDetailActivity.class);
-                intent.putExtra(IntentContancts.GOODSDETAIL_VALUE, item.getR().getId());
+                intent.putExtra(IntentContancts.GOODSDETAIL_VALUE, item.getR().getId()+"");
                 startActivity(intent);
             }
         });

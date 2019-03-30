@@ -22,8 +22,8 @@ public interface GoodsDetailContract {
     }
 
     interface Presenter {
-        void getGoodsDetailInfo(int goodsId);
-        void getRecommendInfo(int goodsId);
+        void getGoodsDetailInfo(String goodsId);
+        void getRecommendInfo(String goodsId);
         void getCommentList(String id,int pageIndex);
     }
 }

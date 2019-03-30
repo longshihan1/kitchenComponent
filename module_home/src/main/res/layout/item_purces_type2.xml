@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:divider="@drawable/lin_divider"
+    android:showDividers = "middle"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/item_purces_type2_titlelin"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center_vertical">
+        <TextView
+            android:id="@+id/item_purces_type2_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="清单"
+            android:textSize="20dp"
+            android:textColor="@color/color_f85f3d"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"/>
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/back_right"/>
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/color_f85f3d"
+        android:text="主料"
+
+        />
+    <LinearLayout
+        android:id="@+id/item_purces_type2_lin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@drawable/lin_divider"
+        android:showDividers = "middle"
+        android:orientation="vertical"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="12dp"
+        android:background="@color/gray_AD"/>
+</LinearLayout>
