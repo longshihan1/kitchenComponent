@@ -7,6 +7,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -24,6 +25,7 @@ import com.huazhuhotel.module_home.attention.persenter.AttentionDetailPersenter;
 import com.huazhuhotel.module_home.attention.persenter.FollowContract;
 import com.huazhuhotel.module_home.attention.persenter.FollowPersenter;
 import com.huazhuhotel.module_home.attention.widget.MyNestedScrollView;
+import com.huazhuhotel.module_home.attention.widget.SpacesItemDecoration;
 import com.huazhuhotel.module_home.detail.ui.GoodsDetailActivity;
 import com.huazhuhotel.module_home.list.ui.ListActivity;
 import com.huazhuhotel.module_home.mvp.adapter.SimpleRecyclerAdapter;
@@ -115,7 +117,7 @@ public class AttentionDetailActivity extends BaseMVPActivity<AttentionDetailPers
                             .build());
             mUserAuthorname.setText(info.getResult().getUser().getNick());
             mUserAuthorwork.setText(info.getResult().getUser().getProfession());
-            mUserAuthorlevel.setText(info.getResult().getUser().getLvl() + "");
+            mUserAuthorlevel.setText("LV."+info.getResult().getUser().getLvl() + "");
         }
     }
 
@@ -181,9 +183,10 @@ public class AttentionDetailActivity extends BaseMVPActivity<AttentionDetailPers
 
         noteAdapter = new AttentionDetailNoteAdapter();
         recepAdapter = new AttentionDetailRecepAdapter();
-        mUserAuthorRecyNote.setLayoutManager(new GridLayoutManager(this, 2, LinearLayoutManager.VERTICAL, false));
+        mUserAuthorRecyNote.setLayoutManager(new StaggeredGridLayoutManager( 2, StaggeredGridLayoutManager.VERTICAL));
         mUserAuthorRecyCookbook.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         mUserAuthorRecyNote.setAdapter(noteAdapter);
+        mUserAuthorRecyNote.addItemDecoration(new SpacesItemDecoration(2,50,false));
         mUserAuthorRecyCookbook.setAdapter(recepAdapter);
         mUserAuthorRecyNote.setNestedScrollingEnabled(false);
         mUserAuthorRecyCookbook.setNestedScrollingEnabled(false);
@@ -226,17 +229,23 @@ public class AttentionDetailActivity extends BaseMVPActivity<AttentionDetailPers
             case R.id.user_author_tab1:
                 mUserAuthorRecyCookbook.setVisibility(View.VISIBLE);
                 mUserAuthorRecyNote.setVisibility(View.GONE);
+                mUserAuthorTab1.setTextColor(getResources().getColor(R.color.black));
+                mUserAuthorTab2.setTextColor(getResources().getColor(R.color.gray_7f));
                 break;
             case R.id.user_author_tab2:
                 mUserAuthorRecyCookbook.setVisibility(View.GONE);
                 mUserAuthorRecyNote.setVisibility(View.VISIBLE);
+                mUserAuthorTab1.setTextColor(getResources().getColor(R.color.gray_7f));
+                mUserAuthorTab2.setTextColor(getResources().getColor(R.color.black));
                 break;
             case R.id.user_authorfollow:
                 if ("已关注".equals(followTv.getText().toString())){
                     followTv.setText("未关注");
+                    followTv.setBackgroundResource(R.drawable.bg_attention_nomsg);
                     followPersenter.getunFollowInfo(com.huazhuhotel.module_home.utils.UserInfo.getUserId(),userId);
                 }else {
                     followTv.setText("已关注");
+                    followTv.setBackgroundResource(R.drawable.bg_attention_msg);
                     followPersenter.getFollowInfo(com.huazhuhotel.module_home.utils.UserInfo.getUserId(),userId);
                 }
                 break;
