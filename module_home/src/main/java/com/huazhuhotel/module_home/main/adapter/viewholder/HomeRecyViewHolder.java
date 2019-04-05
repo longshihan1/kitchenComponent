@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.huazhuhotel.module_home.R;
 import com.huazhuhotel.module_home.mvp.model.HomeInfo;
+import com.huazhuhotel.module_home.mvp.model.SearchInfo;
 import com.longshihan.mvpcomponent.base.adapter.BaseHolder;
 import com.longshihan.mvpcomponent.strategy.imageloader.glide.GlideImageLoaderStrategy;
 import com.longshihan.mvpcomponent.strategy.imageloader.glide.GlideRequest;
@@ -22,7 +23,7 @@ import com.longshihan.mvpcomponent.utils.ArmsUtils;
  * @function
  */
 
-public class HomeRecyViewHolder extends BaseHolder<HomeInfo.ResultBean.ListBean> {
+public class HomeRecyViewHolder extends BaseHolder<SearchInfo.ResultBean.ListBean> {
     ImageView mItemHomerecyImg;
     TextView mItemHomerecyName;
     TextView mItemHomerecyManagertv;
@@ -40,7 +41,7 @@ public class HomeRecyViewHolder extends BaseHolder<HomeInfo.ResultBean.ListBean>
     }
 
     @Override
-    public void bindHolder(HomeInfo.ResultBean.ListBean data, int position, Context mContext) {
+    public void bindHolder(SearchInfo.ResultBean.ListBean data, int position, Context mContext) {
         if (data.getR()!=null) {
             mItemHomerecyName.setText(data.getR().getN());
             ArmsUtils.getImageLoader(mContext)
@@ -56,7 +57,7 @@ public class HomeRecyViewHolder extends BaseHolder<HomeInfo.ResultBean.ListBean>
                                 .imageView(mItemHomerecyAuthorimg)
                                 .build());
             }
-            mItemHomerecyLikename.setText(data.getR().getRecommend_label());
+            mItemHomerecyLikename.setText(data.getR().getVc()+"");
         }
     }
 }

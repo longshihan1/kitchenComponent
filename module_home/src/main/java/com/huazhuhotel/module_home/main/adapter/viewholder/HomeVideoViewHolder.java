@@ -47,7 +47,7 @@ public class HomeVideoViewHolder extends SimpleViewHolder<VideoListInfo.ResultBe
             return;
         }
         if (!TextUtils.isEmpty(data.getVideo_url())) {
-            jzvdStd.setUp(data.getVideo_url(), data.getRecipe_title(), Jzvd.SCREEN_WINDOW_LIST);
+            jzvdStd.setUp(data.getVideo_url(), data.getRecipe_title(), Jzvd.SCREEN_NORMAL);
         }
         title.setText(data.getVideo_title());
         looktv.setText(data.getFavo_count()+"");

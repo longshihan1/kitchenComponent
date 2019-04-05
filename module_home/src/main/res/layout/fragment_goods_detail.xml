@@ -20,6 +20,7 @@
             <ImageView
                 android:id="@+id/goodsdetail_detail_img"
                 android:layout_width="match_parent"
+                android:scaleType="centerCrop"
                 android:layout_height="150dp"/>
 
             <TextView

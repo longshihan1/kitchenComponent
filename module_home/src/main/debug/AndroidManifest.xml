@@ -16,7 +16,10 @@
             android:name="debug.module_home.app.GlobalConfiguration"
             android:value="ConfigModule" />
 
-        <activity android:name=".main.ui.DOUGUOActivity">
+        <activity android:name=".main.ui.DOUGUOActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

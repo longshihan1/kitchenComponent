@@ -37,11 +37,11 @@ public class SortListActivity extends BaseMVPActivity<SortPersenter> implements 
     private LeftAdapter leftAdapter;
     private RightAdapter rightAdapter;
 
-    private final List<SortBean> mLeftList = new ArrayList<>();
+    private  List<SortBean> mLeftList = new ArrayList<>();
 
-    private final List<SortItem> mRightList = new ArrayList<>();
+    private  List<SortItem> mRightList = new ArrayList<>();
 
-    private final Map<Integer, Integer> indexMap = new HashMap<>();
+    private  Map<Integer, Integer> indexMap = new HashMap<>();
 
     @Override
     public void showLoading() {
@@ -65,6 +65,9 @@ public class SortListActivity extends BaseMVPActivity<SortPersenter> implements 
 
     @Override
     public void getSortInfo(SortInfo info) {
+        mLeftList = new ArrayList<>();
+        mRightList = new ArrayList<>();
+        indexMap = new HashMap<>();
         List<SortInfo.ResultBean.CsBeanXX.CsBeanX> csBeanList=new ArrayList<>();
         if (info!=null&&info.getResult()!=null&&info.getResult().getCs()!=null){
             for (SortInfo.ResultBean.CsBeanXX csBeanXX:info.getResult().getCs()) {
@@ -74,7 +77,6 @@ public class SortListActivity extends BaseMVPActivity<SortPersenter> implements 
                 }
             }
         }
-        Logger.d(csBeanList);
         // 构造点数据，比如整个数据刚刚好就是从json转过来的，一个Bean里面有一个大类，有若干个小类
         // 左侧的adapter就直接用这个构造好的list
         for (int i = 0; i < csBeanList.size(); i++) {
@@ -120,6 +122,11 @@ public class SortListActivity extends BaseMVPActivity<SortPersenter> implements 
         }
         rightAdapter.setListData(mRightList);
         leftAdapter.setListData(mLeftList);
+        leftAdapter.setSelectedPosition(0);
+        moveToMiddle(leftRecyclerView, 0);
+        // 右侧滑到对应位置
+        ((GridLayoutManager)rightRecyclerView.getLayoutManager())
+                .scrollToPositionWithOffset(indexMap.get(0),0);
     }
 
     @Override

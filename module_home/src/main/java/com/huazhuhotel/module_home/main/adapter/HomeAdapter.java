@@ -12,6 +12,7 @@ import com.huazhuhotel.module_home.main.adapter.viewholder.HomeBannerParentViewH
 import com.huazhuhotel.module_home.main.adapter.viewholder.HomeBannerViewHolder;
 import com.huazhuhotel.module_home.main.adapter.viewholder.HomeRecyViewHolder;
 import com.huazhuhotel.module_home.mvp.model.HomeInfo;
+import com.huazhuhotel.module_home.mvp.model.SearchInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,7 @@ import java.util.List;
 public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Context context;
-    private List<HomeInfo.ResultBean.ListBean> beanList;
+    private List<SearchInfo.ResultBean.ListBean> beanList;
     private HomeInfo.ResultBean.HeaderBean headerBean;
     private LayoutInflater mLayoutInflater;
     private int TYPE_BANNER = 0;
@@ -80,6 +81,14 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         } else {
             if (holder instanceof HomeRecyViewHolder) {
                 ((HomeRecyViewHolder) holder).bindHolder(beanList.get(position-2), position, context);
+                ((HomeRecyViewHolder) holder).itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (listener!=null){
+                            listener.onMsgClick(beanList.get(position-2));
+                        }
+                    }
+                });
             }
         }
 
@@ -87,7 +96,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return beanList.size();
+        return beanList.size()+2;
     }
 
     @Override
@@ -102,9 +111,6 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     public void setBeanList(HomeInfo info) {
-        if (info != null && info.getResult() != null && info.getResult().getList() != null) {
-            beanList = info.getResult().getList();
-        }
         if (info != null && info.getResult() != null && info.getResult().getHeader() != null && info.getResult().getHeader().getTrs() != null) {
             headerBean = info.getResult().getHeader();
         }
@@ -115,8 +121,24 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         this.listener = listener;
     }
 
+    public void setListData(List<SearchInfo.ResultBean.ListBean> list) {
+        this.beanList = list;
+        notifyDataSetChanged();
+    }
+
+    public void appendListData(List<SearchInfo.ResultBean.ListBean> data) {
+        if (data!=null&&data.size()>0) {
+            if (beanList==null){
+                beanList=new ArrayList<>();
+            }
+            beanList.addAll(data);
+            notifyDataSetChanged();
+        }
+    }
+
 
     public interface OnAdapterListener{
         void onHomeSortListener();
+        void onMsgClick(SearchInfo.ResultBean.ListBean item);
     }
 }
