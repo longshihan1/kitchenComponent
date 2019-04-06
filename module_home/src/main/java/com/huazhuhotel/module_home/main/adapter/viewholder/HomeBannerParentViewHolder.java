@@ -48,7 +48,7 @@ public class HomeBannerParentViewHolder extends BaseHolder<HomeInfo.ResultBean.H
 
     @Override
     public void bindHolder(HomeInfo.ResultBean.HeaderBean data, int position, Context mContext) {
-        if (data.getTrs() != null) {
+        if (data!=null&&data.getTrs() != null) {
             bannerAdapter.setBeanList(data.getTrs());
         }
     }

@@ -67,12 +67,12 @@ public class VideoListFragment extends BaseMVPFragment<VideoPersenter> implement
             @Override
             public void onChildViewDetachedFromWindow(View view) {
                 Jzvd jzvd = view.findViewById(R.id.item_video_player);
-//                if (jzvd != null && jzvd.jzDataSource.containsTheUrl(JZMediaManager.getCurrentUrl())) {
-//                    Jzvd currentJzvd = JzvdMgr.getCurrentJzvd();
-//                    if (currentJzvd != null && currentJzvd.currentScreen != Jzvd.SCREEN_WINDOW_FULLSCREEN) {
-//                        Jzvd.releaseAllVideos();
-//                    }
-//                }
+                if (jzvd != null && Jzvd.CURRENT_JZVD != null &&
+                        jzvd.jzDataSource.containsTheUrl(Jzvd.CURRENT_JZVD.jzDataSource.getCurrentUrl())) {
+                    if (Jzvd.CURRENT_JZVD != null && Jzvd.CURRENT_JZVD.currentScreen != Jzvd.SCREEN_WINDOW_FULLSCREEN) {
+                        Jzvd.resetAllVideos();
+                    }
+                }
             }
         });
     }
@@ -81,6 +81,13 @@ public class VideoListFragment extends BaseMVPFragment<VideoPersenter> implement
     public void setupFragmentComponent(AppComponent appComponent) {
         mPresenter=new VideoPersenter(this,appComponent.repositoryManager());
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Jzvd.resetAllVideos();
+    }
+
 
     @Override
     public void showLoading() {

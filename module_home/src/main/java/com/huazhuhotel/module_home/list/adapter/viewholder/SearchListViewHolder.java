@@ -12,6 +12,7 @@ import com.huazhuhotel.module_home.mvp.model.SearchInfo;
 import com.huazhuhotel.module_home.sort.model.entity.SortBean;
 import com.longshihan.mvpcomponent.strategy.imageloader.glide.ImageConfigImpl;
 import com.longshihan.mvpcomponent.utils.ArmsUtils;
+import com.orhanobut.logger.Logger;
 
 import java.math.BigDecimal;
 

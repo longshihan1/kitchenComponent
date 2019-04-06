@@ -49,7 +49,7 @@ public abstract class SimpleRecyclerAdapter<T> extends RecyclerView.Adapter<Simp
             if (mListData==null){
                 mListData=new ArrayList<>();
             }
-            this.mListData.addAll(data);
+            mListData.addAll(data);
             notifyDataSetChanged();
         }
     }
