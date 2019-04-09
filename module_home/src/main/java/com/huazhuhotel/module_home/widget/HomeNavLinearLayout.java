@@ -72,14 +72,14 @@ public class HomeNavLinearLayout extends LinearLayout {
                 .setCustomerDrawable(R.drawable.shouye);
 
         NavItemBuilder orderBuilder = new NavItemBuilder()
-                .setCustomerStr("专题").setSelectedStr("专题")
+                .setCustomerStr("视频").setSelectedStr("视频")
                 .setCustomerColor(R.color.color_273261).setSelectedColor(R.color.color_f85f3d)
                 .setCustomerDrawable(R.drawable.dianpu);
 
         NavItemBuilder memberBuilder = new NavItemBuilder()
-                .setCustomerStr("社区").setSelectedStr("社区")
+                .setCustomerStr("设备").setSelectedStr("设备")
                 .setCustomerColor(R.color.color_273261).setSelectedColor(R.color.color_f85f3d)
-                .setCustomerDrawable(R.drawable.pinglun);
+                .setCustomerDrawable(R.drawable.kaoxiang);
         NavItemBuilder mineBuilder = new NavItemBuilder()
                 .setCustomerStr("我的").setSelectedStr("我的")
                 .setCustomerColor(R.color.color_273261).setSelectedColor(R.color.color_f85f3d)

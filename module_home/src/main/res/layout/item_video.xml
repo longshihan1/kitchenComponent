@@ -8,12 +8,10 @@
 <TextView
     android:id="@+id/item_video_title"
     android:layout_width="match_parent"
-    android:layout_height="20dp"
+    android:layout_height="22dp"
     android:textSize="18dp"
     android:textStyle="bold"
-    android:maxLines="1"
-    android:gravity="center"
-    android:ellipsize="end"
+    android:layout_margin="5dp"
     android:textColor="@color/black"
     tools:text="测试标题"/>
     <LinearLayout
@@ -25,6 +23,7 @@
             android:id="@+id/item_video_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:textSize="14dp"/>
         <View
             android:layout_width="0dp"
@@ -39,10 +38,14 @@
             android:id="@+id/item_video_star"
             android:layout_width="wrap_content"
             android:textSize="14dp"
+            android:layout_marginRight="10dp"
             android:layout_height="wrap_content"/>
     </LinearLayout>
     <cn.jzvd.JzvdStd
         android:id="@+id/item_video_player"
         android:layout_width="match_parent"
-        android:layout_height="200dp"/>
+        android:layout_height="220dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="20dp"/>
 </LinearLayout>
