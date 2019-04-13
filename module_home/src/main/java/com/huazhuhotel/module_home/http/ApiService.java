@@ -1,8 +1,11 @@
 package com.huazhuhotel.module_home.http;
 
 import com.huazhuhotel.module_home.mvp.model.AttentionInfo;
+import com.huazhuhotel.module_home.mvp.model.CollectCancelInfo;
+import com.huazhuhotel.module_home.mvp.model.CollectaddInfo;
 import com.huazhuhotel.module_home.mvp.model.CollectionInfo;
 import com.huazhuhotel.module_home.mvp.model.CommentListInfo;
+import com.huazhuhotel.module_home.mvp.model.CommentUploadInfo;
 import com.huazhuhotel.module_home.mvp.model.FollowInfo;
 import com.huazhuhotel.module_home.mvp.model.GoodsDetailInfo;
 import com.huazhuhotel.module_home.mvp.model.HomeInfo;
@@ -127,4 +130,24 @@ public interface ApiService {
                                                      @Field("user_id") String user_id,
                                                      @Field("signature") String signature);
 
+
+    @Headers({"version:6931.2","url_name:douguo"})
+    @FormUrlEncoded
+    @POST("/user/addrecipecomment")
+    Observable<CommentUploadInfo> putCommentInfo(@Field("recipe_id") String recipe_id,
+                                                        @Field("user_id") String user_id,
+                                                        @Field("content") String content);
+
+
+    @Headers({"version:6931.2","url_name:douguo"})
+    @FormUrlEncoded
+    @POST("/user/addCollect")
+    Observable<CollectaddInfo> addCollect(@Field("recipe_id") String recipe_id,
+                                          @Field("user_id") String user_id);
+
+    @Headers({"version:6931.2","url_name:douguo"})
+    @FormUrlEncoded
+    @POST("/user/cancelCollect")
+    Observable<CollectCancelInfo> cancelCollect(@Field("recipe_id") String recipe_id,
+                                                @Field("user_id") String user_id);
 }

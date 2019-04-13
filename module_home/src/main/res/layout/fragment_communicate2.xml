@@ -1,12 +1,61 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="com.huazhuhotel.module_home.detail.ui.fragment.CommunicateFragment">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="com.huazhuhotel.module_home.detail.ui.fragment.CommunicateFragment">
 
-  <ExpandableListView
-      android:id="@+id/communicate2_expand"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"/>
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/comment_smartrefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        app:srlEnableAutoLoadMore="false"
+        app:srlEnableFooterTranslationContent="true"
+        android:layout_marginBottom="30dp">
 
-</FrameLayout>
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srlAccentColor="#fff"
+            app:srlPrimaryColor="#3F51B5"/>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/communicate2_expand"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <EditText
+            android:id="@+id/communicate2_edit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="我想说两句"
+            />
+
+        <TextView
+            android:id="@+id/communicate2_upload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:text="发布"
+            android:textSize="15dp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+</RelativeLayout>

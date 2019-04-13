@@ -48,8 +48,9 @@ public class GoodsDetailFragment extends BaseMVPFragment {
     private TextView mGoodsdetailDetailAuthorname,ideaTv;
     private LinearLayout mGoodsdetailDetailList,ideaLin;
     private TextView mGoodsdetailDetailTip;
-    private TextView addCookTv;
+    private TextView addCookTv,collectionTv,commentTv;
     private LinearLayout.LayoutParams layoutParams;
+    private OnClickStepListener clickStepListener;
 
     public GoodsDetailFragment() {
     }
@@ -74,6 +75,8 @@ public class GoodsDetailFragment extends BaseMVPFragment {
         ideaLin=mRootview.findViewById(R.id.goodsdetail_detail_lin);
         addCookTv=mRootview.findViewById(R.id.goodsdetail_detail_addCook);
         ideaTv=mRootview.findViewById(R.id.goodsdetail_detail_idea);
+        collectionTv=mRootview.findViewById(R.id.goodsdetail_detail_collevtTv);
+        commentTv=mRootview.findViewById(R.id.goodsdetail_detail_commentTv);
         layoutParams=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         addCookTv.setOnClickListener(new View.OnClickListener() {
@@ -113,6 +116,25 @@ public class GoodsDetailFragment extends BaseMVPFragment {
                     String json= gson.toJson(majorInfos);
                     SPUtils.put(mActivity,CacheConstancts.COOKLISTMAGJOR,json);
 
+                }
+            }
+        });
+
+
+        collectionTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (clickStepListener!=null){
+                    clickStepListener.onCollectionClick();
+                }
+            }
+        });
+
+        commentTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (clickStepListener!=null){
+                    clickStepListener.onGoCommentClick();
                 }
             }
         });
@@ -158,11 +180,29 @@ public class GoodsDetailFragment extends BaseMVPFragment {
             ideaLin.setVisibility(View.GONE);
         }
 
-
-
+        refreshCollect(data.getCollect_status()==1);
     }
+
 
     public void restoreData() {
         setData(data);
+    }
+
+    public void setClickStepListener(OnClickStepListener clickStepListener) {
+        this.clickStepListener = clickStepListener;
+    }
+
+    public void refreshCollect(boolean collection) {
+        if (collection){
+            collectionTv.setText("已收藏");
+        }else {
+            collectionTv.setText("未收藏");
+        }
+    }
+
+    public interface OnClickStepListener{
+        void onCollectionClick();
+        void onGoCommentClick();
+
     }
 }

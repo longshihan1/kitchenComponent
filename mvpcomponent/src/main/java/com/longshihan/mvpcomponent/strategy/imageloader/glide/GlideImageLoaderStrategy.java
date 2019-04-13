@@ -39,8 +39,6 @@ public class GlideImageLoaderStrategy implements BaseImageLoaderStrategy<ImageCo
         }else {
             if (ctx == null)
                 throw new NullPointerException("Context is required");
-            if (TextUtils.isEmpty(config.getUrl()))
-                throw new NullPointerException("Url is required");
             if (config.getImageView() == null)
                 throw new NullPointerException("Imageview is required");
 

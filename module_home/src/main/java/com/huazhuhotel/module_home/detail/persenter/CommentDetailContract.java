@@ -1,9 +1,9 @@
 package com.huazhuhotel.module_home.detail.persenter;
 
 import com.huazhuhotel.module_home.mvp.model.CommentListInfo;
+import com.huazhuhotel.module_home.mvp.model.CommentUploadInfo;
 import com.huazhuhotel.module_home.mvp.model.GoodsDetailInfo;
 import com.huazhuhotel.module_home.mvp.model.ReCommondInfo;
-import com.huazhuhotel.module_home.mvp.model.SearchInfo;
 import com.longshihan.mvpcomponent.mvp.IView;
 
 /**
@@ -14,18 +14,14 @@ import com.longshihan.mvpcomponent.mvp.IView;
  * @function
  */
 
-public interface GoodsDetailContract {
+public interface CommentDetailContract {
     interface View extends IView {
-        void getGoodsDetailInfo(GoodsDetailInfo info);
-        void getRecommondInfo(ReCommondInfo info);
         void getCommentList(CommentListInfo info);
-        void onCollection(int isOk);
+        void putCommentInfo(CommentUploadInfo info);
     }
 
     interface Presenter {
-        void getGoodsDetailInfo(String goodsId);
-        void getRecommendInfo(String goodsId);
-        void getCommentList(String id,int pageIndex);
-        void onCollection(boolean collect,String receID,String userId);
+        void getCommentList(String id, int pageIndex);
+        void putCommentUpload(String repiceId, String userId,String content);
     }
 }

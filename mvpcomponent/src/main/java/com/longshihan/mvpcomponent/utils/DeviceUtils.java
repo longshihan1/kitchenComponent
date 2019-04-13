@@ -300,7 +300,7 @@ public class DeviceUtils {
             return;
         InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(
                 Context.INPUT_METHOD_SERVICE);
-        if (inputMethodManager.isActive())
+        if (inputMethodManager!=null&&inputMethodManager.isActive())
             inputMethodManager.hideSoftInputFromWindow(
                     view.getWindowToken(), 0);
     }

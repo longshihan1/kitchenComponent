@@ -12,6 +12,7 @@
         <activity android:name=".purchase.PurchaseActivity"></activity>
         <activity android:name=".attention.ui.AttentionActivity" />
 
+        <meta-data android:name="android.max_aspect" android:value="2.1" />
         <meta-data
             android:name="debug.module_home.app.GlobalConfiguration"
             android:value="ConfigModule" />

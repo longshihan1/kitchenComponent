@@ -2,12 +2,7 @@ package com.huazhuhotel.module_home.attention.persenter;
 
 import com.huazhuhotel.module_home.attention.model.AttentionModel;
 import com.huazhuhotel.module_home.attention.model.IAttentionModel;
-import com.huazhuhotel.module_home.detail.model.GoodsDetailModel;
-import com.huazhuhotel.module_home.detail.model.IGoodsDetailModel;
-import com.huazhuhotel.module_home.detail.persenter.GoodsDetailContract;
 import com.huazhuhotel.module_home.mvp.model.AttentionInfo;
-import com.huazhuhotel.module_home.mvp.model.GoodsDetailInfo;
-import com.huazhuhotel.module_home.mvp.model.ReCommondInfo;
 import com.longshihan.mvpcomponent.mvp.BasePresenter;
 import com.longshihan.mvpcomponent.mvp.IRepositoryManager;
 

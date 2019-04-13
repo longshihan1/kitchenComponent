@@ -20,6 +20,7 @@ import com.huazhuhotel.module_home.mvp.model.CommentListInfo;
 import com.huazhuhotel.module_home.mvp.model.GoodsDetailInfo;
 import com.huazhuhotel.module_home.mvp.model.ReCommondInfo;
 import com.huazhuhotel.module_home.utils.IntentContancts;
+import com.huazhuhotel.module_home.utils.UserInfo;
 import com.longshihan.mvpcomponent.base.BaseMVPActivity;
 import com.longshihan.mvpcomponent.di.component.AppComponent;
 import com.orhanobut.logger.Logger;
@@ -63,6 +64,7 @@ public class GoodsDetailActivity extends BaseMVPActivity<GoodsDetailPersenter> i
     DetailFragmentPagerAdapter pagerAdapter;
     private GoodsDetailInfo info;
     private int pageIndex=0;
+    private boolean isAttention=false;
 
 
     @Override
@@ -92,6 +94,7 @@ public class GoodsDetailActivity extends BaseMVPActivity<GoodsDetailPersenter> i
                 "success".equals(info.getState()) && info.getResult().getRecipe() != null) {
             cookManagerFragment.setData(info.getResult().getRecipe());
             goodsDetailFragment.setData(info.getResult().getRecipe());
+            isAttention=info.getResult().getRecipe().getCollect_status()==1;
         } else {
             Toast.makeText(this, "未查询到菜谱", Toast.LENGTH_SHORT).show();
         }
@@ -107,9 +110,16 @@ public class GoodsDetailActivity extends BaseMVPActivity<GoodsDetailPersenter> i
 
     @Override
     public void getCommentList(CommentListInfo info) {
-        if (info != null && info.getResult() != null &&
-                "success".equals(info.getState()) && info.getResult().getComments() != null) {
-            communicateFragment.setData(info.getResult().getComments());
+    }
+
+    @Override
+    public void onCollection(int isOk) {
+        if (isOk==1){//收藏成功
+            isAttention=true;
+            goodsDetailFragment.refreshCollect(true);
+        }else if (isOk==2){//取消收藏成功
+            isAttention=false;
+            goodsDetailFragment.refreshCollect(false);
         }
 
     }
@@ -159,7 +169,8 @@ public class GoodsDetailActivity extends BaseMVPActivity<GoodsDetailPersenter> i
         mViewpage.setCurrentItem(0);
         mPresenter.getGoodsDetailInfo(goodsId);
         mPresenter.getRecommendInfo(goodsId);
-        mPresenter.getCommentList(goodsId+"",pageIndex);
+        communicateFragment.setGoodsId(goodsId);
+//        mPresenter.getCommentList(goodsId+"",pageIndex);
         mViewpage.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -181,7 +192,6 @@ public class GoodsDetailActivity extends BaseMVPActivity<GoodsDetailPersenter> i
                     mGoodsdetailTypeThridline.setVisibility(View.GONE);
                     mGoodsdetailTypeFireline.setVisibility(View.GONE);
                 } else if (position == 2) {
-                    communicateFragment.restoreData();
                     mGoodsdetailTypeFirstline.setVisibility(View.GONE);
                     mGoodsdetailTypeSecondline.setVisibility(View.GONE);
                     mGoodsdetailTypeThridline.setVisibility(View.VISIBLE);
@@ -197,6 +207,18 @@ public class GoodsDetailActivity extends BaseMVPActivity<GoodsDetailPersenter> i
 
             @Override
             public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+        goodsDetailFragment.setClickStepListener(new GoodsDetailFragment.OnClickStepListener() {
+            @Override
+            public void onCollectionClick() {
+                mPresenter.onCollection(isAttention,goodsId, UserInfo.getUserId());
+            }
+
+            @Override
+            public void onGoCommentClick() {
 
             }
         });
@@ -242,4 +264,5 @@ public class GoodsDetailActivity extends BaseMVPActivity<GoodsDetailPersenter> i
     public boolean useFragment() {
         return true;
     }
+
 }

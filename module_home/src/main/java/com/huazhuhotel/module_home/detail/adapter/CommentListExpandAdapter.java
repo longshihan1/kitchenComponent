@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.huazhuhotel.module_home.R;
 import com.huazhuhotel.module_home.mvp.model.CommentListInfo;
+import com.longshihan.mvpcomponent.strategy.imageloader.glide.ImageConfigImpl;
+import com.longshihan.mvpcomponent.utils.ArmsUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,6 +87,11 @@ public class CommentListExpandAdapter extends BaseExpandableListAdapter {
         if (commentsBean!= null) {
             if (commentsBean.getU() != null) {
                 group.mItemCommentgroupName.setText(commentsBean.getU().getN());
+                ArmsUtils.getImageLoader(context)
+                        .loadImage(context, ImageConfigImpl.builder()
+                                .url(commentsBean.getU().getP())
+                                .imageView(group.mItemCommentgroupImg)
+                                .build());
             }
             List<CommentListInfo.ResultBean.CommentsBean.ContentBean> contentBeanXES = commentsBean.getContent();
             if (contentBeanXES != null && contentBeanXES.size() > 0) {

@@ -1,6 +1,8 @@
 package com.huazhuhotel.module_home.detail.model;
 
 import com.huazhuhotel.module_home.http.ApiService;
+import com.huazhuhotel.module_home.mvp.model.CollectCancelInfo;
+import com.huazhuhotel.module_home.mvp.model.CollectaddInfo;
 import com.huazhuhotel.module_home.mvp.model.CommentListInfo;
 import com.huazhuhotel.module_home.mvp.model.GoodsDetailInfo;
 import com.huazhuhotel.module_home.mvp.model.ReCommondInfo;
@@ -38,5 +40,15 @@ public class GoodsDetailModel extends BaseModel implements IGoodsDetailModel {
     @Override
     public Observable<CommentListInfo> getCommentList(String id, int pageIndex) {
         return mRepositoryManager.obtainRetrofitService(ApiService.class).getCommentListInfo(id,pageIndex);
+    }
+
+    @Override
+    public Observable<CollectaddInfo> addCollection(String receId, String userId) {
+        return mRepositoryManager.obtainRetrofitService(ApiService.class).addCollect(receId, userId);
+    }
+
+    @Override
+    public Observable<CollectCancelInfo> cancelCollection(String receId, String userId) {
+        return mRepositoryManager.obtainRetrofitService(ApiService.class).cancelCollect(receId, userId);
     }
 }
