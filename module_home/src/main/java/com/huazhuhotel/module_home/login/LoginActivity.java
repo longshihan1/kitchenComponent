@@ -111,21 +111,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 finish();
                             }
                         }, 2000);
+                    } else {
+                        LoadingDialog.Builder loadBuilder = new LoadingDialog.Builder(this)
+                                .setMessage("登陆中...")
+                                .setCancelable(true)
+                                .setCancelOutside(true);
+                        LoadingDialog dialog = loadBuilder.create();
+                        dialog.show();
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                dialog.dismiss();
+                                Toast.makeText(LoginActivity.this, "手机号码或密码错误", Toast.LENGTH_SHORT).show();
+                            }
+                        }, 2000);
                     }
-                } else {
-                    LoadingDialog.Builder loadBuilder = new LoadingDialog.Builder(this)
-                            .setMessage("登陆中...")
-                            .setCancelable(true)
-                            .setCancelOutside(true);
-                    LoadingDialog dialog = loadBuilder.create();
-                    dialog.show();
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            dialog.dismiss();
-                            Toast.makeText(LoginActivity.this, "手机号码或密码错误", Toast.LENGTH_SHORT).show();
-                        }
-                    }, 2000);
                 }
                 break;
             default:
