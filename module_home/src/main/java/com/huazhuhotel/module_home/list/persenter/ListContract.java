@@ -18,6 +18,6 @@ public interface ListContract {
     }
 
     interface Presenter {
-        void getListInfo(int page,String searchValue,int type);
+        void getListInfo(int page,int endpage,String searchValue,int type);
     }
 }

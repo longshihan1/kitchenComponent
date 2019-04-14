@@ -56,8 +56,8 @@ public interface ApiService {
 
     @Headers({"version:6931.2", "url_name:douguo"})
     @FormUrlEncoded
-    @POST("/recipe/v2/search/{page}/20")
-    Observable<SearchInfo> getSearchInfo(@Path("page") int page,
+    @POST("/recipe/v2/search/{page}/{endpage}")
+    Observable<SearchInfo> getSearchInfo(@Path("page") int page,@Path("endpage") int endpage,
                                          @Field("keyword") String keyword, @Field("order") int order);
 
     @Headers({"version:6931.2", "url_name:douguo"})

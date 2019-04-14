@@ -214,7 +214,11 @@ public class GoodsDetailActivity extends BaseMVPActivity<GoodsDetailPersenter> i
         goodsDetailFragment.setClickStepListener(new GoodsDetailFragment.OnClickStepListener() {
             @Override
             public void onCollectionClick() {
-                mPresenter.onCollection(isAttention,goodsId, UserInfo.getUserId());
+                if (!isAttention) {
+                    mPresenter.onCollection(isAttention, goodsId, UserInfo.getUserId());
+                }else {
+                    goodsDetailFragment.refreshCollect(false);
+                }
             }
 
             @Override

@@ -14,5 +14,5 @@ import io.reactivex.Observable;
  */
 
 public interface ISearchModel {
-    Observable<SearchInfo> getSeachInfo(int page,String searchValue,int type);
+    Observable<SearchInfo> getSeachInfo(int page,int endpage,String searchValue,int type);
 }

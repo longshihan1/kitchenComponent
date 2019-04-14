@@ -80,19 +80,9 @@ public class ListActivity extends BaseMVPActivity<ListPersenter> implements List
     public void getListInfo(SearchInfo info) {
         smartRefreshLayout.finishLoadMore();
         if (info != null && info.getResult() != null && info.getResult().getList() != null) {
-            if (pageIndex == 0) {//新拉
-                pageIndex++;
-                adapter.setListData(info.getResult().getList());
-            } else {//添加
-                if (info.getResult().getList().size() > 0) {
-                    pageIndex++;
-                    adapter.appendListData(info.getResult().getList());
-                } else {//没有数据
-                    Toast.makeText(this, "暂无更多数据", Toast.LENGTH_SHORT).show();
-                }
-            }
+            adapter.setListData(info.getResult().getList());
+            pageIndex+=20;
         }
-
     }
 
     @Override
@@ -160,12 +150,13 @@ public class ListActivity extends BaseMVPActivity<ListPersenter> implements List
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (s!=null&&!TextUtils.isEmpty(s.toString())){
-                    pageIndex=0;
-                    mPresenter.getListInfo(pageIndex,s.toString(),searchType);
-                }else {
-                    pageIndex=0;
-                    mPresenter.getListInfo(pageIndex,searchValue,searchType);
+                if (s != null && !TextUtils.isEmpty(s.toString())) {
+                    pageIndex = 0;
+                    searchValue = s.toString();
+                    refreshData();
+                } else {
+                    pageIndex = 0;
+                    refreshData();
                 }
             }
         });
@@ -207,6 +198,6 @@ public class ListActivity extends BaseMVPActivity<ListPersenter> implements List
 
 
     public void refreshData() {
-        mPresenter.getListInfo(pageIndex, searchValue, searchType);
+        mPresenter.getListInfo(0, pageIndex+20,searchValue, searchType);
     }
 }

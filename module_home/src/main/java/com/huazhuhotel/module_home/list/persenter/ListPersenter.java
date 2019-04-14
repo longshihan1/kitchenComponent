@@ -34,8 +34,8 @@ public class ListPersenter extends BasePresenter<ListContract.View> implements L
 
 
     @Override
-    public void getListInfo(int page, String searchValue, int type) {
-        Disposable disposable = mIModel.getSeachInfo(page, searchValue, type)
+    public void getListInfo(int page,int endpage, String searchValue, int type) {
+        Disposable disposable = mIModel.getSeachInfo(page,endpage, searchValue, type)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<SearchInfo>() {

@@ -122,21 +122,12 @@ public class HomeFragment extends BaseMVPFragment<DOUGUOMANINPersenter> implemen
     public void getListInfo(SearchInfo info) {
         smartRefreshLayout.finishLoadMore();
         if (info != null && info.getResult() != null && info.getResult().getList() != null) {
-            if (pageIndex == 0) {//新拉
-                pageIndex++;
-                adapter.setListData(info.getResult().getList());
-            } else {//添加
-                if (info.getResult().getList().size() > 0) {
-                    pageIndex++;
-                    adapter.appendListData(info.getResult().getList());
-                } else {//没有数据
-                    Toast.makeText(mActivity, "暂无更多数据", Toast.LENGTH_SHORT).show();
-                }
-            }
+            adapter.setListData(info.getResult().getList());
+            pageIndex+=20;
         }
     }
 
     public void refreshData() {
-        listPersenter.getListInfo(pageIndex, SearchValue, searchType);
+        listPersenter.getListInfo(0,pageIndex+20, SearchValue, searchType);
     }
 }
