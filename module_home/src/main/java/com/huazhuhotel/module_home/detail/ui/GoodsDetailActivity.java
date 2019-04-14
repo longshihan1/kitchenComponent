@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -214,6 +215,10 @@ public class GoodsDetailActivity extends BaseMVPActivity<GoodsDetailPersenter> i
         goodsDetailFragment.setClickStepListener(new GoodsDetailFragment.OnClickStepListener() {
             @Override
             public void onCollectionClick() {
+                if (TextUtils.isEmpty(com.huazhuhotel.module_home.utils.UserInfo.getUserId())) {
+                    Toast.makeText(GoodsDetailActivity.this, "暂未登陆", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if (!isAttention) {
                     mPresenter.onCollection(isAttention, goodsId, UserInfo.getUserId());
                 }else {

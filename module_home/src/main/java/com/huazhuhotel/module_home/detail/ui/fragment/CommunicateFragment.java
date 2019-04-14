@@ -78,6 +78,10 @@ public class CommunicateFragment extends BaseMVPFragment<CommentDetailPersenter>
             public void onClick(View v) {
                 if (!TextUtils.isEmpty(editText.getText())){
                     DeviceUtils.hideSoftKeyboard(mContext,editText);
+                    if (TextUtils.isEmpty(com.huazhuhotel.module_home.utils.UserInfo.getUserId())) {
+                        Toast.makeText(mActivity, "暂未登陆", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     mPresenter.putCommentUpload(goodsId, UserInfo.getUserId(),editText.getText().toString());
                 }
             }

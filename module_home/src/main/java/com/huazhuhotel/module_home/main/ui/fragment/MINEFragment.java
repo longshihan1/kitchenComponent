@@ -11,7 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.huazhuhotel.module_home.R;
@@ -19,6 +21,7 @@ import com.huazhuhotel.module_home.attention.persenter.AttentionDetailContract;
 import com.huazhuhotel.module_home.attention.persenter.AttentionDetailPersenter;
 import com.huazhuhotel.module_home.attention.ui.AttentionActivity;
 import com.huazhuhotel.module_home.collect.ui.CollectionActivity;
+import com.huazhuhotel.module_home.login.LoginActivity;
 import com.huazhuhotel.module_home.mvp.model.UnRecipesListInfo;
 import com.huazhuhotel.module_home.mvp.model.UserInfo;
 import com.huazhuhotel.module_home.mvp.model.UserNoteInfo;
@@ -44,7 +47,9 @@ public class MINEFragment extends BaseMVPFragment<AttentionDetailPersenter> impl
     private LinearLayout mMineRecentlook;
     private LinearLayout mMineBuy;
     private LinearLayout mMineWork;
-    private TextView caipuCountTv,NoteCountTv,attenCountTv;
+    private RelativeLayout nologin_rl;
+    private LinearLayout login_ll;
+    private TextView caipuCountTv, NoteCountTv, attenCountTv,goLogin;
 
     public MINEFragment() {
         // Required empty public constructor
@@ -72,18 +77,18 @@ public class MINEFragment extends BaseMVPFragment<AttentionDetailPersenter> impl
 
     @Override
     public void getUserInfo(UserInfo info) {
-        if (info!=null&&info.getResult()!=null&&info.getResult().getUser()!=null){
-            UserInfo.ResultBean.UserBean userBean=info.getResult().getUser();
+        if (info != null && info.getResult() != null && info.getResult().getUser() != null) {
+            UserInfo.ResultBean.UserBean userBean = info.getResult().getUser();
             mMineName.setText(userBean.getNick());
             if (!TextUtils.isEmpty(userBean.getMobile())) {
                 mMinePhone.setText(userBean.getMobile());
-            }else {
+            } else {
                 mMinePhone.setText(userBean.getAge());
             }
-            caipuCountTv.setText(""+userBean.getRecipes_count());
+            caipuCountTv.setText("" + userBean.getRecipes_count());
 
-            attenCountTv.setText(""+userBean.getFavorites_count());
-            NoteCountTv.setText(""+userBean.getNotes_count());
+            attenCountTv.setText("" + userBean.getFavorites_count());
+            NoteCountTv.setText("" + userBean.getNotes_count());
             ArmsUtils.getImageLoader(mActivity)
                     .loadImage(mActivity, ImageConfigImpl.builder()
                             .url(userBean.getUser_photo())
@@ -130,10 +135,27 @@ public class MINEFragment extends BaseMVPFragment<AttentionDetailPersenter> impl
         mMineBuy.setOnClickListener(this);
         mMineWork = (LinearLayout) mRootview.findViewById(R.id.mine_work);
         mMineWork.setOnClickListener(this);
-        caipuCountTv= (TextView) mRootview.findViewById(R.id.mime_caipu_count);
-        NoteCountTv= (TextView) mRootview.findViewById(R.id.mime_note_count);
-        attenCountTv= (TextView) mRootview.findViewById(R.id.mime_atten_count);
-        mPresenter.getUserInfo(com.huazhuhotel.module_home.utils.UserInfo.getUserId());
+        caipuCountTv = (TextView) mRootview.findViewById(R.id.mime_caipu_count);
+        NoteCountTv = (TextView) mRootview.findViewById(R.id.mime_note_count);
+        attenCountTv = (TextView) mRootview.findViewById(R.id.mime_atten_count);
+        goLogin=mRootview.findViewById(R.id.mine_nologin_gologin);
+        nologin_rl = mRootview.findViewById(R.id.mine_nologinrl);
+        login_ll = mRootview.findViewById(R.id.mine_loginll);
+        if (!TextUtils.isEmpty(com.huazhuhotel.module_home.utils.UserInfo.getUserId())) {
+            login_ll.setVisibility(View.VISIBLE);
+            nologin_rl.setVisibility(View.GONE);
+            mPresenter.getUserInfo(com.huazhuhotel.module_home.utils.UserInfo.getUserId());
+        } else {
+            login_ll.setVisibility(View.GONE);
+            nologin_rl.setVisibility(View.VISIBLE);
+        }
+
+        goLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mActivity, LoginActivity.class));
+            }
+        });
     }
 
     @Override
@@ -144,28 +166,32 @@ public class MINEFragment extends BaseMVPFragment<AttentionDetailPersenter> impl
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            default:
-                break;
-            case R.id.mine_right:
-                break;
-            case R.id.mime_caipu:
-                break;
-            case R.id.mime_note:
-                break;
-            case R.id.mime_atten:
-                startActivity(new Intent(mActivity, AttentionActivity.class));
-                break;
-            case R.id.mine_collection:
-                startActivity(new Intent(mActivity, CollectionActivity.class));
-                break;
-            case R.id.mine_recentlook:
-                break;
-            case R.id.mine_buy:
-                startActivity(new Intent(mActivity, PurchaseActivity.class));
-                break;
-            case R.id.mine_work:
-                break;
+        if (!TextUtils.isEmpty(com.huazhuhotel.module_home.utils.UserInfo.getUserId())) {
+            switch (v.getId()) {
+                default:
+                    break;
+                case R.id.mine_right:
+                    break;
+                case R.id.mime_caipu:
+                    break;
+                case R.id.mime_note:
+                    break;
+                case R.id.mime_atten:
+                    startActivity(new Intent(mActivity, AttentionActivity.class));
+                    break;
+                case R.id.mine_collection:
+                    startActivity(new Intent(mActivity, CollectionActivity.class));
+                    break;
+                case R.id.mine_recentlook:
+                    break;
+                case R.id.mine_buy:
+                    startActivity(new Intent(mActivity, PurchaseActivity.class));
+                    break;
+                case R.id.mine_work:
+                    break;
+            }
+        } else {
+            Toast.makeText(mActivity, "暂未登陆", Toast.LENGTH_SHORT).show();
         }
     }
 }

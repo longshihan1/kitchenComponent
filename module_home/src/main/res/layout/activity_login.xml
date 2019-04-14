@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.huazhuhotel.module_home.login.LoginActivity">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/huo"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/layout_logintv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text="LOGIN"
+            android:textSize="15dp"/>
+
+        <TextView
+            android:id="@+id/layout_registertv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text="SIGN UP"
+            android:textSize="15dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/layout_loginline"
+            android:layout_width="0dp"
+            android:layout_height="3dp"
+            android:layout_weight="1"
+            android:background="@color/gray_8832"/>
+
+        <View
+            android:id="@+id/layout_registerline"
+            android:layout_width="0dp"
+            android:layout_height="3dp"
+            android:layout_weight="1"
+            android:background="@color/gray_8832"
+            android:visibility="invisible"/>
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/layout_login_phonetv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:background="@null"
+        android:hint="PHONE number"
+        android:padding="10dp"
+        android:textSize="20dp"/>
+
+    <EditText
+        android:id="@+id/layout_login_passwordtv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:background="@null"
+        android:hint="PASSWORD"
+        android:padding="10dp"
+        android:textSize="20dp"/>
+
+    <EditText
+        android:id="@+id/layout_login_nametv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:background="@null"
+        android:hint="USER NAME"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:visibility="gone"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:id="@+id/layout_login_forgettv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:text="Forget PASSWORD?"
+        android:textSize="20dp"
+        />
+
+    <TextView
+        android:id="@+id/layout_login_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:background="@color/gray_AD"
+        android:gravity="center"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:text="LOGIN"
+        android:textColor="@color/black"
+        android:textSize="15dp"/>
+</LinearLayout>

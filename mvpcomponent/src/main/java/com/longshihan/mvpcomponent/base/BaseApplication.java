@@ -18,8 +18,13 @@ import com.longshihan.mvpcomponent.utils.Preconditions;
 
 public class BaseApplication extends Application implements App {
     private AppLifecycles mAppDelegate;
+    public static BaseApplication instance;
 
     public BaseApplication(){
+    }
+
+    public static BaseApplication getInstance() {
+        return instance;
     }
 
     /**
@@ -40,6 +45,7 @@ public class BaseApplication extends Application implements App {
     @Override
     public void onCreate() {
         super.onCreate();
+        instance=this;
         this.mAppDelegate.onCreate(this);
     }
 

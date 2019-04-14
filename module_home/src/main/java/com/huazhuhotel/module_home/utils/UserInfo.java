@@ -1,5 +1,7 @@
 package com.huazhuhotel.module_home.utils;
 
+import com.longshihan.mvpcomponent.base.BaseApplication;
+
 /**
  * Created by LONGHE001.
  *
@@ -12,6 +14,14 @@ public class UserInfo {
 
 
     public static String getUserId(){
-        return "23177077";
+        return (String) SPUtils.get(BaseApplication.getInstance(),"userInfo","");
+    }
+
+    public static void delUserID(){
+        SPUtils.remove(BaseApplication.getInstance(),"userInfo");
+    }
+
+    public static void setUserINFO(){
+        SPUtils.put(BaseApplication.getInstance(),"userInfo","23177077");
     }
 }
