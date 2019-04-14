@@ -124,7 +124,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         public void run() {
                             dialog.dismiss();
                             Toast.makeText(LoginActivity.this, "手机号码或密码错误", Toast.LENGTH_SHORT).show();
-                            finish();
                         }
                     }, 2000);
                 }
