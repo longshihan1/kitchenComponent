@@ -12,5 +12,7 @@ public class IntentContancts {
     public static final String SEARCH_VALUE="searchValue";
     public static final String GOODSDETAIL_VALUE="goodsDetailValue";
     public static final String USERID_VALUE="USERID_VALUE";
+    public static final String TIME ="Alarm_TIME";
+    public static final String COUNTTIME = "COUNT_ALARM_TIME";
 }
 

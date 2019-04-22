@@ -7,6 +7,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.widget.FrameLayout;
 
 import com.huazhuhotel.module_home.R;
+import com.huazhuhotel.module_home.control.ControlDialogFragment;
+import com.huazhuhotel.module_home.main.ui.fragment.ControlFragment;
 import com.huazhuhotel.module_home.main.ui.fragment.HomeFragment;
 import com.huazhuhotel.module_home.main.ui.fragment.MINEFragment;
 import com.huazhuhotel.module_home.main.ui.fragment.VideoListFragment;
@@ -17,14 +19,14 @@ import com.longshihan.mvpcomponent.di.component.AppComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DOUGUOActivity extends BaseActivity {
+public class DOUGUOActivity extends BaseActivity  implements ControlFragment.onControlClickListener,ControlDialogFragment.OnCountTimeListener{
 
     private FrameLayout mainFragment;
     HomeNavLinearLayout navLinearLayout;
     private FragmentManager fragmentManager;
     private HomeFragment homeFragment;
     private VideoListFragment noticeFragment;
-    private HomeFragment communityFragment;
+    private ControlFragment communityFragment;
     private MINEFragment mineFragment;
     private List<Fragment> fragmentList;
     private int index=-1;
@@ -47,8 +49,10 @@ public class DOUGUOActivity extends BaseActivity {
         fragmentManager = getSupportFragmentManager();
         homeFragment = new HomeFragment();
         noticeFragment = new VideoListFragment();
-        communityFragment = new HomeFragment();
+        communityFragment = new ControlFragment();
         mineFragment = new MINEFragment();
+
+        communityFragment.setListener(this);
 
         fragmentList = new ArrayList<>();
         fragmentList.add(homeFragment);
@@ -107,4 +111,25 @@ public class DOUGUOActivity extends BaseActivity {
     }
 
 
+    @Override
+    public void onClickContriol() {
+        ControlDialogFragment controlDialogFragment=new ControlDialogFragment();
+        controlDialogFragment.setListener(this);
+        controlDialogFragment.show(getFragmentManager(),ControlDialogFragment.class.getSimpleName());
+    }
+
+    @Override
+    public void onStartTime(int time) {
+
+    }
+
+    @Override
+    public void onPauseTime() {
+
+    }
+
+    @Override
+    public void onResumeTime() {
+
+    }
 }

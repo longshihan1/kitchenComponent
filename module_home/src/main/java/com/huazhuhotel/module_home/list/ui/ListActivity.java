@@ -13,20 +13,28 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.huazhuhotel.module_home.R;
 import com.huazhuhotel.module_home.detail.ui.GoodsDetailActivity;
 import com.huazhuhotel.module_home.list.adapter.SearchListAdapter;
 import com.huazhuhotel.module_home.list.persenter.ListContract;
 import com.huazhuhotel.module_home.list.persenter.ListPersenter;
 import com.huazhuhotel.module_home.mvp.adapter.SimpleRecyclerAdapter;
+import com.huazhuhotel.module_home.mvp.model.MajorInfo;
 import com.huazhuhotel.module_home.mvp.model.SearchInfo;
+import com.huazhuhotel.module_home.utils.CacheConstancts;
+import com.huazhuhotel.module_home.utils.GsonUtils;
 import com.huazhuhotel.module_home.utils.IntentContancts;
+import com.huazhuhotel.module_home.utils.SPUtils;
 import com.longshihan.mvpcomponent.base.BaseMVPActivity;
 import com.longshihan.mvpcomponent.di.component.AppComponent;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ListActivity extends BaseMVPActivity<ListPersenter> implements ListContract.View, View.OnClickListener {
 
@@ -55,6 +63,7 @@ public class ListActivity extends BaseMVPActivity<ListPersenter> implements List
     private SearchListAdapter adapter;
     private SmartRefreshLayout smartRefreshLayout;
     private ClassicsFooter footer;
+    private Gson gson;
 
     @Override
     public void showLoading() {
@@ -118,6 +127,7 @@ public class ListActivity extends BaseMVPActivity<ListPersenter> implements List
         mSearchRecy.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         mSearchRecy.setAdapter(adapter);
         refreshData();
+        gson=new Gson();
 
         smartRefreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
@@ -129,9 +139,37 @@ public class ListActivity extends BaseMVPActivity<ListPersenter> implements List
         adapter.setOnItemClickListener(new SimpleRecyclerAdapter.OnItemClickListener<SearchInfo.ResultBean.ListBean>() {
             @Override
             public void onItemClick(SearchInfo.ResultBean.ListBean item, int index) {
-                int id=item.getR().getId();
+                if (item==null||item.getR()==null||TextUtils.isEmpty(item.getR().getId())){
+                    return;
+                }
+                String recentCache= (String) SPUtils.get(ListActivity.this, CacheConstancts.RECENTCACHE,"");
+                List<SearchInfo.ResultBean.ListBean> listBeans=new ArrayList<>();
+                if (!TextUtils.isEmpty(recentCache)){
+                    listBeans= GsonUtils.jsonToArrayList(recentCache,SearchInfo.ResultBean.ListBean.class);
+                    boolean isSame=false;
+                    for (int i = 0; i <listBeans.size(); i++) {
+                        if (listBeans.get(i)!=null&&
+                                listBeans.get(i).getR()!=null&&
+                                item.getR().getId().equals(listBeans.get(i).getR().getId())){
+                            isSame=true;
+                            break;
+                        }
+                    }
+                    if (!isSame){
+                        listBeans.add(item);
+                        String json= gson.toJson(listBeans);
+                        SPUtils.put(ListActivity.this,CacheConstancts.RECENTCACHE,json);
+                    }
+                }else {
+                    listBeans.add(item);
+                    String json= gson.toJson(listBeans);
+                    SPUtils.put(ListActivity.this,CacheConstancts.RECENTCACHE,json);
+                }
+
+
+                String id=item.getR().getId();
                 Intent intent=new Intent(ListActivity.this, GoodsDetailActivity.class);
-                intent.putExtra(IntentContancts.GOODSDETAIL_VALUE,id+"");
+                intent.putExtra(IntentContancts.GOODSDETAIL_VALUE,id);
                 startActivity(intent);
                 Toast.makeText(ListActivity.this,item.getR().getN(),Toast.LENGTH_SHORT).show();
             }

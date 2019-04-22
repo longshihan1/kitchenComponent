@@ -37,6 +37,16 @@
         <activity android:name=".collect.ui.CollectionActivity"/>
         <activity android:name=".login.LoginActivity">
         </activity>
+        <activity android:name=".Mine.RecentLookActivity">
+        </activity>
+        <activity android:name=".control.ControlActivity">
+        </activity>
+
+        <service
+            android:name=".control.service.ClockService"
+            android:enabled="false"
+            android:exported="false">
+        </service>
     </application>
 
 </manifest>

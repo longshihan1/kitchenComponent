@@ -12,5 +12,6 @@
     <color name="color_FF7F00">#FF7F00</color>
     <color name="color_CDC0B0">#CDC0B0</color>
     <color name="color_EDEAEA">#edeaea</color>
+    <color name="inside_color">#d1cdcd</color>
 
 </resources>

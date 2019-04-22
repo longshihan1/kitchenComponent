@@ -399,7 +399,7 @@ public class SearchInfo {
                 private int stc;
                 private int sti;
                 private String an;
-                private int id;
+                private String id;
                 private String cookstory;
                 private String n;
                 private String img;
@@ -444,11 +444,11 @@ public class SearchInfo {
                     this.an = an;
                 }
 
-                public int getId() {
+                public String getId() {
                     return id;
                 }
 
-                public void setId(int id) {
+                public void setId(String id) {
                     this.id = id;
                 }
 

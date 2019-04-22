@@ -112,7 +112,7 @@ public class HomeFragment extends BaseMVPFragment<DOUGUOMANINPersenter> implemen
 
     @Override
     public void onMsgClick(SearchInfo.ResultBean.ListBean item) {
-        int id=item.getR().getId();
+        String id=item.getR().getId();
         Intent intent=new Intent(mActivity, GoodsDetailActivity.class);
         intent.putExtra(IntentContancts.GOODSDETAIL_VALUE,id+"");
         startActivity(intent);

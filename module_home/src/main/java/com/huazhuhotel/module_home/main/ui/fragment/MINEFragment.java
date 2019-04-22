@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.huazhuhotel.module_home.Mine.RecentLookActivity;
 import com.huazhuhotel.module_home.R;
 import com.huazhuhotel.module_home.attention.persenter.AttentionDetailContract;
 import com.huazhuhotel.module_home.attention.persenter.AttentionDetailPersenter;
@@ -183,6 +184,7 @@ public class MINEFragment extends BaseMVPFragment<AttentionDetailPersenter> impl
                     startActivity(new Intent(mActivity, CollectionActivity.class));
                     break;
                 case R.id.mine_recentlook:
+                    startActivity(new Intent(mActivity, RecentLookActivity.class));
                     break;
                 case R.id.mine_buy:
                     startActivity(new Intent(mActivity, PurchaseActivity.class));
