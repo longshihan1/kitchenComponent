@@ -3,10 +3,12 @@ package com.huazhuhotel.module_home.main.ui;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.Vibrator;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.huazhuhotel.module_home.R;
 import com.huazhuhotel.module_home.control.ControlDialogFragment;
@@ -17,6 +19,7 @@ import com.huazhuhotel.module_home.main.ui.fragment.VideoListFragment;
 import com.huazhuhotel.module_home.widget.HomeNavLinearLayout;
 import com.longshihan.mvpcomponent.base.BaseActivity;
 import com.longshihan.mvpcomponent.di.component.AppComponent;
+import com.orhanobut.logger.Logger;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -141,11 +144,12 @@ public class DOUGUOActivity extends BaseActivity  implements ControlFragment.onC
     @Override
     public void onResumeTime() {
         handle.setIntercept(false);
+        handle.sendEmptyMessageDelayed(2,1000);
     }
 
     @Override
-    public void onStop() {
-
+    public void onStopTime() {
+        handle.removeMessages(2);
     }
 
     public class MyHandle extends Handler{
@@ -162,9 +166,17 @@ public class DOUGUOActivity extends BaseActivity  implements ControlFragment.onC
            super.handleMessage(msg);
            if (!intercept){
                if (douguoActivityWeakReference!=null&&douguoActivityWeakReference.get()!=null
-                       &&douguoActivityWeakReference.get().controlDialogFragment!=null
-                       &&douguoActivityWeakReference.get().controlDialogFragment.isVisible()){
+                       &&douguoActivityWeakReference.get().controlDialogFragment!=null){
                    douguoActivityWeakReference.get().controlDialogFragment.setTime(clockTime--);
+                   Logger.d(""+clockTime);
+                   if (clockTime<=0){
+                       Toast.makeText(douguoActivityWeakReference.get(),"任务完成",Toast.LENGTH_SHORT).show();
+                       removeMessages(2);
+                       Vibrator vibrator = (Vibrator)douguoActivityWeakReference.get().getSystemService(douguoActivityWeakReference.get().VIBRATOR_SERVICE);
+                       vibrator.vibrate(1000);
+                   }else {
+                       sendEmptyMessageDelayed(2, 1000);
+                   }
                }
            }
        }
