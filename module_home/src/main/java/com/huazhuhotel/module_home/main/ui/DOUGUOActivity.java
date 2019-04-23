@@ -1,6 +1,8 @@
 package com.huazhuhotel.module_home.main.ui;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -16,6 +18,7 @@ import com.huazhuhotel.module_home.widget.HomeNavLinearLayout;
 import com.longshihan.mvpcomponent.base.BaseActivity;
 import com.longshihan.mvpcomponent.di.component.AppComponent;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +33,11 @@ public class DOUGUOActivity extends BaseActivity  implements ControlFragment.onC
     private MINEFragment mineFragment;
     private List<Fragment> fragmentList;
     private int index=-1;
+    private MyHandle handle;
+    private int clockTime=0;
+    public   ControlDialogFragment controlDialogFragment;
+
+
 
     @Override
     public void setupActivityComponent(AppComponent appComponent) {
@@ -74,6 +82,7 @@ public class DOUGUOActivity extends BaseActivity  implements ControlFragment.onC
             }
         });
 
+        handle=new MyHandle(this);
     }
 
     public void addFragmentStack(int position) {
@@ -113,23 +122,55 @@ public class DOUGUOActivity extends BaseActivity  implements ControlFragment.onC
 
     @Override
     public void onClickContriol() {
-        ControlDialogFragment controlDialogFragment=new ControlDialogFragment();
+        controlDialogFragment=new ControlDialogFragment();
         controlDialogFragment.setListener(this);
         controlDialogFragment.show(getFragmentManager(),ControlDialogFragment.class.getSimpleName());
     }
 
     @Override
     public void onStartTime(int time) {
-
+        clockTime=time;
+        handle.sendEmptyMessageDelayed(2,1000);
     }
 
     @Override
     public void onPauseTime() {
-
+        handle.setIntercept(true);
     }
 
     @Override
     public void onResumeTime() {
+        handle.setIntercept(false);
+    }
+
+    @Override
+    public void onStop() {
 
     }
+
+    public class MyHandle extends Handler{
+        private boolean intercept;
+
+        private WeakReference<DOUGUOActivity> douguoActivityWeakReference;
+
+       public MyHandle(DOUGUOActivity activity) {
+           douguoActivityWeakReference=new WeakReference<DOUGUOActivity>(activity);
+       }
+
+       @Override
+       public void handleMessage(Message msg) {
+           super.handleMessage(msg);
+           if (!intercept){
+               if (douguoActivityWeakReference!=null&&douguoActivityWeakReference.get()!=null
+                       &&douguoActivityWeakReference.get().controlDialogFragment!=null
+                       &&douguoActivityWeakReference.get().controlDialogFragment.isVisible()){
+                   douguoActivityWeakReference.get().controlDialogFragment.setTime(clockTime--);
+               }
+           }
+       }
+
+       public void setIntercept(boolean intercept){
+           this.intercept=intercept;
+       }
+   }
 }

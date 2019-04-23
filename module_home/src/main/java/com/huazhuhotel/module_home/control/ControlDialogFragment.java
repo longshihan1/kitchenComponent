@@ -213,14 +213,26 @@ public class ControlDialogFragment extends DialogFragment implements View.OnClic
             case R.id.control_start:
                 if ("暂停".equals(mControlStart.getText())) {
                     mControlStart.setText("继续");
+                    if (listener!=null){
+                        listener.onPauseTime();
+                    }
                 } else if ("继续".equals(mControlStart.getText())) {
                     mControlStart.setText("暂停");
+                    if (listener!=null){
+                        listener.onResumeTime();
+                    }
                 } else if ("开始".equals(mControlStart.getText())) {
                     mControlStart.setText("暂停");
+                    if (listener!=null){
+                        listener.onStartTime(countTime);
+                    }
                 }
                 break;
             case R.id.control_stop:
                 mControlStart.setText("开始");
+                if (listener!=null){
+                    listener.onStop();
+                }
                 break;
         }
     }
@@ -235,6 +247,21 @@ public class ControlDialogFragment extends DialogFragment implements View.OnClic
         void onStartTime(int time);
         void onPauseTime();
         void onResumeTime();
+        void onStop();
     }
 
+    public void setTime(int time){
+        if (time>=3600){
+            int hourStr=time/3600;
+            int minStr=(time%3600)/60;
+            int serendStr=time-hourStr*3600-minStr*60;
+            mControlProgressTxt.setText(hourStr+"时"+minStr+"分"+serendStr);
+        }else if (time>=60){
+            int minStr=time/60;
+            int serendStr=time-minStr*60;
+            mControlProgressTxt.setText(minStr+"分"+serendStr);
+        }else {
+            mControlProgressTxt.setText(time+"秒");
+        }
+    }
 }
