@@ -10,6 +10,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -35,9 +36,6 @@ import com.longshihan.mvpcomponent.di.component.AppComponent;
 import com.longshihan.mvpcomponent.strategy.imageloader.glide.ImageConfigImpl;
 import com.longshihan.mvpcomponent.utils.ArmsUtils;
 import com.orhanobut.logger.Logger;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 
 public class AttentionDetailActivity extends BaseMVPActivity<AttentionDetailPersenter> implements AttentionDetailContract.View,
         View.OnClickListener, FollowContract.View {
@@ -224,7 +222,7 @@ public class AttentionDetailActivity extends BaseMVPActivity<AttentionDetailPers
                 nestedScrollView.scrollTo(0, contentTopView.getHeight());
                 int rvNewHeight = rootView.getHeight() - contentScendView.getHeight();
 
-                nestedScrollView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, rvNewHeight));
+                nestedScrollView.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, rvNewHeight));
             }
         });
 
