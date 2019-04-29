@@ -40,7 +40,10 @@ public class AttentionDetailNoteViewHolder extends SimpleViewHolder<UserNoteInfo
         super.refreshView(data1);
         title.setText(data1.getTitle());
         if (data1.getAuthor()!=null) {
+            nameTv.setVisibility(View.VISIBLE);
             nameTv.setText(data1.getAuthor().getN());
+        }else {
+            nameTv.setVisibility(View.GONE);
         }
         likeTv.setText(data1.getLike_count()+"");
         ArmsUtils.getImageLoader(context)

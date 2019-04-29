@@ -11,9 +11,7 @@
         android:id="@+id/smartrefresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white"
-        app:srlEnableAutdndnoLoadMore="false"
-        app:srlEnableFooterTranslationContent="true">
+        android:background="@android:color/white">
 
         <com.scwang.smartrefresh.layout.header.ClassicsHeader
             android:layout_width="match_parent"

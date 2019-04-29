@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:padding="15dp"
+    android:padding="10dp"
     android:orientation="vertical">
 
     <TextView
@@ -13,12 +13,12 @@
         android:textStyle="bold"
         tools:text="dddd"
         android:textColor="@color/black"
-        android:textSize="25dp"/>
+        android:textSize="22dp"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="5dp">
 
         <TextView
             android:id="@+id/item_userrecipes_look"
@@ -38,6 +38,6 @@
         android:id="@+id/item_userrecipes_img"
         android:layout_width="match_parent"
         android:layout_height="210dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:scaleType="centerCrop"/>
 </LinearLayout>
