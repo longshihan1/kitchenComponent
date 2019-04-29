@@ -2,6 +2,7 @@ package com.huazhuhotel.module_home.list.adapter.viewholder;
 
 import android.content.Context;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TextView;
 

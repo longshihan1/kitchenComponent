@@ -1,18 +1,23 @@
 package com.huazhuhotel.module_home.collect.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.huazhuhotel.module_home.R;
+import com.huazhuhotel.module_home.attention.ui.AttentionDetailActivity;
 import com.huazhuhotel.module_home.collect.adapter.CollectionListAdapter;
 import com.huazhuhotel.module_home.collect.persenter.CollectionContract;
 import com.huazhuhotel.module_home.collect.persenter.CollectionPersenter;
+import com.huazhuhotel.module_home.detail.ui.GoodsDetailActivity;
 import com.huazhuhotel.module_home.list.persenter.ListContract;
 import com.huazhuhotel.module_home.list.persenter.ListPersenter;
+import com.huazhuhotel.module_home.mvp.adapter.SimpleRecyclerAdapter;
 import com.huazhuhotel.module_home.mvp.model.CollectionInfo;
 import com.huazhuhotel.module_home.mvp.model.SearchInfo;
+import com.huazhuhotel.module_home.utils.IntentContancts;
 import com.huazhuhotel.module_home.utils.UserInfo;
 import com.longshihan.mvpcomponent.base.BaseMVPActivity;
 import com.longshihan.mvpcomponent.di.component.AppComponent;
@@ -61,6 +66,14 @@ public class CollectionActivity extends BaseMVPActivity<CollectionPersenter> imp
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
         recyclerView.setAdapter(adapter);
         mPresenter.getCollectionInfo(UserInfo.getUserId(),pageIndex);
+        adapter.setOnItemClickListener(new SimpleRecyclerAdapter.OnItemClickListener<CollectionInfo.ResultBean.RecipesBean>() {
+            @Override
+            public void onItemClick(CollectionInfo.ResultBean.RecipesBean item, int index) {
+                Intent intent = new Intent(CollectionActivity.this, GoodsDetailActivity.class);
+                intent.putExtra(IntentContancts.GOODSDETAIL_VALUE, item.getCook_id() + "");
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

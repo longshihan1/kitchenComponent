@@ -20,6 +20,10 @@ import com.huazhuhotel.module_home.mvp.model.VideoListInfo;
 import com.huazhuhotel.module_home.utils.UserInfo;
 import com.longshihan.mvpcomponent.base.BaseMVPFragment;
 import com.longshihan.mvpcomponent.di.component.AppComponent;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import cn.jzvd.Jzvd;
 
@@ -31,6 +35,7 @@ public class VideoListFragment extends BaseMVPFragment<VideoPersenter> implement
     private RecyclerView recyclerView;
     private VideoAdapter adapter;
     private int pageIndex=0;
+    private SmartRefreshLayout smartrefresh;
 
     public VideoListFragment() {
         // Required empty public constructor
@@ -39,8 +44,14 @@ public class VideoListFragment extends BaseMVPFragment<VideoPersenter> implement
 
     @Override
     public void getVideoInfo(VideoListInfo info) {
-        if (info!=null&&info.getResult()!=null&&info.getResult().getVideo_list()!=null){
-            adapter.setListData(info.getResult().getVideo_list());
+        smartrefresh.finishRefresh();
+        smartrefresh.finishLoadMore();
+        if (info!=null&&info.getResult()!=null&&info.getResult().getVideo_list()!=null) {
+            if (pageIndex == 0) {
+                adapter.setListData(info.getResult().getVideo_list());
+            }else {
+                adapter.appendListData(info.getResult().getVideo_list());
+            }
         }
     }
 
@@ -52,7 +63,7 @@ public class VideoListFragment extends BaseMVPFragment<VideoPersenter> implement
     @Override
     public void initData(Bundle savedInstanceState) {
         recyclerView=mRootview.findViewById(R.id.video_recy);
-
+        smartrefresh=mRootview.findViewById(R.id.smartrefresh);
         adapter=new VideoAdapter();
         recyclerView.setLayoutManager(new LinearLayoutManager(mActivity,LinearLayoutManager.VERTICAL,false));
         recyclerView.setAdapter(adapter);
@@ -73,6 +84,21 @@ public class VideoListFragment extends BaseMVPFragment<VideoPersenter> implement
                         Jzvd.resetAllVideos();
                     }
                 }
+            }
+        });
+
+        smartrefresh.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(RefreshLayout refreshLayout) {
+                pageIndex++;
+                mPresenter.getVideoInfo(UserInfo.getUserId(),pageIndex);
+            }
+        });
+        smartrefresh.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshLayout) {
+                pageIndex=0;
+                mPresenter.getVideoInfo(UserInfo.getUserId(),pageIndex);
             }
         });
     }

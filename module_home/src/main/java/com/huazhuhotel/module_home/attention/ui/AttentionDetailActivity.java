@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -15,7 +14,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.huazhuhotel.module_home.R;
 import com.huazhuhotel.module_home.attention.adapter.AttentionDetailNoteAdapter;
@@ -27,7 +25,6 @@ import com.huazhuhotel.module_home.attention.persenter.FollowPersenter;
 import com.huazhuhotel.module_home.attention.widget.MyNestedScrollView;
 import com.huazhuhotel.module_home.attention.widget.SpacesItemDecoration;
 import com.huazhuhotel.module_home.detail.ui.GoodsDetailActivity;
-import com.huazhuhotel.module_home.list.ui.ListActivity;
 import com.huazhuhotel.module_home.mvp.adapter.SimpleRecyclerAdapter;
 import com.huazhuhotel.module_home.mvp.model.FollowInfo;
 import com.huazhuhotel.module_home.mvp.model.UnRecipesListInfo;
@@ -73,6 +70,7 @@ public class AttentionDetailActivity extends BaseMVPActivity<AttentionDetailPers
     private LinearLayout contentScendView;
     private FollowPersenter followPersenter;
     private TextView followTv;
+    private int space;
 
 
     @Override
@@ -117,7 +115,7 @@ public class AttentionDetailActivity extends BaseMVPActivity<AttentionDetailPers
                             .build());
             mUserAuthorname.setText(info.getResult().getUser().getNick());
             mUserAuthorwork.setText(info.getResult().getUser().getProfession());
-            mUserAuthorlevel.setText("LV."+info.getResult().getUser().getLvl() + "");
+            mUserAuthorlevel.setText("LV." + info.getResult().getUser().getLvl() + "");
         }
     }
 
@@ -125,7 +123,11 @@ public class AttentionDetailActivity extends BaseMVPActivity<AttentionDetailPers
     public void getUnRecipesListInfo(UnRecipesListInfo info) {
         if (info != null && info.getResult() != null && info.getResult().getList() != null) {
             Logger.d(info);
-            recepAdapter.setListData(info.getResult().getList());
+            if (recipesPage==0) {
+                recepAdapter.setListData(info.getResult().getList());
+            }else {
+                recepAdapter.appendListData(info.getResult().getList());
+            }
         }
     }
 
@@ -133,7 +135,11 @@ public class AttentionDetailActivity extends BaseMVPActivity<AttentionDetailPers
     public void getUserNoteListInfo(UserNoteInfo info) {
         if (info != null && info.getResult() != null && info.getResult().getList() != null) {
             Logger.d(info);
-            noteAdapter.setListData(info.getResult().getList());
+            if (notePage==0) {
+                noteAdapter.setListData(info.getResult().getList());
+            }else {
+                noteAdapter.appendListData(info.getResult().getList());
+            }
         }
     }
 
@@ -152,7 +158,7 @@ public class AttentionDetailActivity extends BaseMVPActivity<AttentionDetailPers
     @Override
     public void initData() {
         userId = getIntent().getStringExtra(IntentContancts.USERID_VALUE);
-
+        space = ArmsUtils.dip2px(this, 5);
         mUserBgImg = (ImageView) findViewById(R.id.user_bg_img);
         mUserAuthorimg = (ImageView) findViewById(R.id.user_authorimg);
         mUserAuthorname = (TextView) findViewById(R.id.user_authorname);
@@ -174,7 +180,7 @@ public class AttentionDetailActivity extends BaseMVPActivity<AttentionDetailPers
         nestedScrollView = findViewById(R.id.user_bg_nestscroll);
         contentTopView = findViewById(R.id.user_bg_contentid);
         contentScendView = findViewById(R.id.user_author_secondlin);
-        followTv=findViewById(R.id.user_authorfollow);
+        followTv = findViewById(R.id.user_authorfollow);
         followTv.setOnClickListener(this);
 
         mPresenter.getUserInfo(userId);
@@ -183,10 +189,10 @@ public class AttentionDetailActivity extends BaseMVPActivity<AttentionDetailPers
 
         noteAdapter = new AttentionDetailNoteAdapter();
         recepAdapter = new AttentionDetailRecepAdapter();
-        mUserAuthorRecyNote.setLayoutManager(new StaggeredGridLayoutManager( 2, StaggeredGridLayoutManager.VERTICAL));
+        mUserAuthorRecyNote.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         mUserAuthorRecyCookbook.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         mUserAuthorRecyNote.setAdapter(noteAdapter);
-        mUserAuthorRecyNote.addItemDecoration(new SpacesItemDecoration(2,50,false));
+        mUserAuthorRecyNote.addItemDecoration(new SpacesItemDecoration(2, space));
         mUserAuthorRecyCookbook.setAdapter(recepAdapter);
         mUserAuthorRecyNote.setNestedScrollingEnabled(false);
         mUserAuthorRecyCookbook.setNestedScrollingEnabled(false);
@@ -202,7 +208,7 @@ public class AttentionDetailActivity extends BaseMVPActivity<AttentionDetailPers
             @Override
             public void onItemClick(UnRecipesListInfo.ResultBean.ListBean item, int index) {
                 Intent intent = new Intent(AttentionDetailActivity.this, GoodsDetailActivity.class);
-                intent.putExtra(IntentContancts.GOODSDETAIL_VALUE, item.getR().getId()+"");
+                intent.putExtra(IntentContancts.GOODSDETAIL_VALUE, item.getR().getId() + "");
                 startActivity(intent);
             }
         });
@@ -219,7 +225,6 @@ public class AttentionDetailActivity extends BaseMVPActivity<AttentionDetailPers
                 nestedScrollView.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, rvNewHeight));
             }
         });
-
 
     }
 
@@ -239,14 +244,14 @@ public class AttentionDetailActivity extends BaseMVPActivity<AttentionDetailPers
                 mUserAuthorTab2.setTextColor(getResources().getColor(R.color.black));
                 break;
             case R.id.user_authorfollow:
-                if ("已关注".equals(followTv.getText().toString())){
+                if ("已关注".equals(followTv.getText().toString())) {
                     followTv.setText("未关注");
                     followTv.setBackgroundResource(R.drawable.bg_attention_nomsg);
-                    followPersenter.getunFollowInfo(com.huazhuhotel.module_home.utils.UserInfo.getUserId(),userId);
-                }else {
+                    followPersenter.getunFollowInfo(com.huazhuhotel.module_home.utils.UserInfo.getUserId(), userId);
+                } else {
                     followTv.setText("已关注");
                     followTv.setBackgroundResource(R.drawable.bg_attention_msg);
-                    followPersenter.getFollowInfo(com.huazhuhotel.module_home.utils.UserInfo.getUserId(),userId);
+                    followPersenter.getFollowInfo(com.huazhuhotel.module_home.utils.UserInfo.getUserId(), userId);
                 }
                 break;
         }
