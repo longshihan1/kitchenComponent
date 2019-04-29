@@ -111,6 +111,13 @@ public class HomeFragment extends BaseMVPFragment<DOUGUOMANINPersenter> implemen
     }
 
     @Override
+    public void onHomeSearchListener() {
+        Intent intent=new Intent(mActivity, ListActivity.class);
+        intent.putExtra(IntentContancts.SEARCH_VALUE,"");
+        startActivity(intent);
+    }
+
+    @Override
     public void onMsgClick(SearchInfo.ResultBean.ListBean item) {
         String id=item.getR().getId();
         Intent intent=new Intent(mActivity, GoodsDetailActivity.class);

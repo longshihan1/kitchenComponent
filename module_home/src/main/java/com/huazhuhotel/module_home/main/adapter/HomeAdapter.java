@@ -73,6 +73,14 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                         }
                     }
                 });
+                parentViewHolder.searchLin.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (listener!=null){
+                            listener.onHomeSearchListener();
+                        }
+                    }
+                });
             }
         } else if (getItemViewType(position) == TYPE_LIN) {
             if (holder instanceof HomeAdvViewHolder) {
@@ -139,6 +147,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public interface OnAdapterListener{
         void onHomeSortListener();
+        void onHomeSearchListener();
         void onMsgClick(SearchInfo.ResultBean.ListBean item);
     }
 }
