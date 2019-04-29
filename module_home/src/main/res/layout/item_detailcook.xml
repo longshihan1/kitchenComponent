@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:layout_margin="20dp"
+              android:layout_margin="5dp"
               android:gravity="center_horizontal"
               android:orientation="vertical">
 
@@ -11,15 +11,15 @@
         android:id="@+id/item_detail_cookstepimg"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:scaleType="centerCrop"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="5dp"
+        android:scaleType="centerCrop"/>
 
     <TextView
         android:id="@+id/item_detail_cooksteptv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:textSize="12sp"
+        android:textSize="12dp"
         />
 
     <TextView

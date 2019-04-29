@@ -1,14 +1,10 @@
 package com.huazhuhotel.module_home.main.adapter.viewholder;
 
 import android.content.Context;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.PagerSnapHelper;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 
 import com.huazhuhotel.module_home.R;
-import com.huazhuhotel.module_home.main.adapter.HomeBannerAdapter;
-import com.huazhuhotel.module_home.mvp.model.HomeInfo;
 import com.longshihan.mvpcomponent.base.adapter.BaseHolder;
 
 /**
@@ -20,8 +16,13 @@ import com.longshihan.mvpcomponent.base.adapter.BaseHolder;
  */
 
 public class HomeAdvViewHolder extends BaseHolder<String> {
+    public TextView sortTv,watchTv,workTv,wantTv;
     public HomeAdvViewHolder(View itemView) {
         super(itemView);
+        sortTv=itemView.findViewById(R.id.item_home_sort);
+        watchTv=itemView.findViewById(R.id.item_home_watch);
+        workTv=itemView.findViewById(R.id.item_home_work);
+        wantTv=itemView.findViewById(R.id.item_home_want);
     }
 
 

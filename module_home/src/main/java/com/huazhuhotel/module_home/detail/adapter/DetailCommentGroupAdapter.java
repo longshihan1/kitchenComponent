@@ -5,11 +5,9 @@ import android.view.ViewGroup;
 
 import com.huazhuhotel.module_home.R;
 import com.huazhuhotel.module_home.detail.adapter.viewholder.DetailCommentGroupViewHolder;
-import com.huazhuhotel.module_home.detail.adapter.viewholder.DetailCookViewHolder;
 import com.huazhuhotel.module_home.mvp.adapter.SimpleRecyclerAdapter;
 import com.huazhuhotel.module_home.mvp.adapter.SimpleViewHolder;
 import com.huazhuhotel.module_home.mvp.model.CommentListInfo;
-import com.huazhuhotel.module_home.mvp.model.GoodsDetailInfo;
 
 /**
  * Created by LONGHE001.
