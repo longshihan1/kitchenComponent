@@ -9,7 +9,7 @@
     <ImageView
         android:id="@+id/item_search_img"
         android:layout_width="120dp"
-        android:layout_height="110dp"
+        android:layout_height="match_parent"
         android:scaleType="centerCrop"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="10dp"/>
