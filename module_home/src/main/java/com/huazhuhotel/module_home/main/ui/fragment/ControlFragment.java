@@ -65,7 +65,9 @@ public class ControlFragment extends Fragment implements View.OnClickListener,Ad
                 dialogFragment.show(getChildFragmentManager(),"cc");
                 break;
             case R.id.layout_control_one:
-                startActivity(new Intent(getActivity(), ControlActivity.class));
+                if (listener!=null){
+                    listener.onClickContriol();
+                }
                 break;
         }
     }

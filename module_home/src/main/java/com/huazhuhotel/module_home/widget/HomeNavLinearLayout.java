@@ -87,7 +87,7 @@ public class HomeNavLinearLayout extends LinearLayout {
         homeView.setBuilder(homeBuilder);
         orderView.setBuilder(orderBuilder);
         memberView.setBuilder(memberBuilder);
-        mineView.setBuilder(memberBuilder);
+        mineView.setBuilder(mineBuilder);
         //预点击
         homeView.clickSelected();
         homeView.setOnClickListener(new OnClickListener() {

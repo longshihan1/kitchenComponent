@@ -6,12 +6,16 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
+import android.util.DisplayMetrics;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -70,6 +74,26 @@ public class ControlDialogFragment extends DialogFragment implements View.OnClic
     private int countTime = 30 * 60;
     private boolean isWarn = false;
 
+
+    @Override
+    public void onStart() {
+        // TODO Auto-generated method stub
+        super.onStart();
+        Window win = getDialog().getWindow();
+        // 一定要设置Background，如果不设置，window属性设置无效
+        win.setBackgroundDrawable( new ColorDrawable(getResources().getColor(R.color.white)));
+
+        DisplayMetrics dm = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics( dm );
+
+        android.view.WindowManager.LayoutParams params = win.getAttributes();
+        params.gravity = Gravity.BOTTOM;
+        // 使用ViewGroup.LayoutParams，以便Dialog 宽度充满整个屏幕
+        params.width =  ViewGroup.LayoutParams.MATCH_PARENT;
+        params.height = ViewGroup.LayoutParams.MATCH_PARENT;
+        win.setAttributes(params);
+
+    }
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -130,43 +154,63 @@ public class ControlDialogFragment extends DialogFragment implements View.OnClic
                         alertDialog2.dismiss();
                         switch (i) {
                             case 0:
-                                countTime = 30;
+                                countTime = 30-1;
+                                mControlProgressTxt.setText("30秒");
                                 break;
                             case 1:
-                                countTime = 60;
+                                countTime = 60-1;
+                                mControlProgressTxt.setText("1min");
                                 break;
                             case 2:
-                                countTime = 5 * 60;
+                                countTime = 5 * 60-1;
+                                mControlProgressTxt.setText("5min");
                                 break;
                             case 3:
-                                countTime = 10 * 60;
+                                countTime = 10 * 60-1;
+                                mControlProgressTxt.setText("10min");
                                 break;
                             case 4:
-                                countTime = 20 * 60;
+                                countTime = 20 * 60-1;
+                                mControlProgressTxt.setText("20min");
                                 break;
                             case 5:
-                                countTime = 30 * 60;
+                                countTime = 30 * 60-1;
+                                mControlProgressTxt.setText("30min");
                                 break;
                             case 6:
-                                countTime = 40 * 60;
+                                countTime = 40 * 60-1;
+                                mControlProgressTxt.setText("40min");
+
                                 break;
                             case 7:
-                                countTime = 50 * 60;
+                                countTime = 50 * 60-1;
+                                mControlProgressTxt.setText("50min");
+
                                 break;
                             case 8:
-                                countTime = 60 * 60;
+                                countTime = 60 * 60-1;
+                                mControlProgressTxt.setText("1h");
+
                                 break;
                             case 9:
-                                countTime = 90 * 60;
+                                countTime = 90 * 60-1;
+                                mControlProgressTxt.setText("1h30min");
+
                                 break;
                             case 10:
-                                countTime = 120 * 60;
+                                countTime = 120 * 60-1;
+                                mControlProgressTxt.setText("2h");
+
                                 break;
                             case 11:
-                                countTime = 150 * 60;
+                                countTime = 150 * 60-1;
+                                mControlProgressTxt.setText("2h30min");
+
                                 break;
                             case 12:
-                                countTime = 180 * 60;
+                                countTime = 180 * 60-1;
+                                mControlProgressTxt.setText("3h");
+
                                 break;
                         }
 
@@ -230,8 +274,10 @@ public class ControlDialogFragment extends DialogFragment implements View.OnClic
                 break;
             case R.id.control_stop:
                 mControlStart.setText("开始");
+                mControlProgress.setProgress(0);
+                mControlProgressTxt.setText("30分钟");
                 if (listener!=null){
-                    listener.onStop();
+                    listener.onStopTime();
                 }
                 break;
         }
@@ -247,21 +293,41 @@ public class ControlDialogFragment extends DialogFragment implements View.OnClic
         void onStartTime(int time);
         void onPauseTime();
         void onResumeTime();
-        void onStop();
+        void onStopTime();
     }
 
     public void setTime(int time){
-        if (time>=3600){
-            int hourStr=time/3600;
-            int minStr=(time%3600)/60;
-            int serendStr=time-hourStr*3600-minStr*60;
-            mControlProgressTxt.setText(hourStr+"时"+minStr+"分"+serendStr);
-        }else if (time>=60){
-            int minStr=time/60;
-            int serendStr=time-minStr*60;
-            mControlProgressTxt.setText(minStr+"分"+serendStr);
+        if (time<=1){
+            if (listener!=null){
+                listener.onStopTime();
+            }
+            mControlStart.setText("开始");
+            mControlProgress.setProgress(0);
+            mControlProgressTxt.setText("30分钟");
         }else {
-            mControlProgressTxt.setText(time+"秒");
+            mControlStart.setText("暂停");
+            float rate=(time*1.0f)/countTime;
+            mControlProgress.setProgress(100-(int) (rate*100));
+            if (time >= 3600) {
+                int hourStr = time / 3600;
+                int minStr = (time % 3600) / 60;
+                int serendStr = time - hourStr * 3600 - minStr * 60;
+                if (serendStr==0){
+                    mControlProgressTxt.setText(hourStr + "时" + minStr + "分");
+                }else {
+                    mControlProgressTxt.setText(hourStr + "时" + minStr + "分" + serendStr+"秒");
+                }
+            } else if (time >= 60) {
+                int minStr = time / 60;
+                int serendStr = time - minStr * 60;
+                if (serendStr==0) {
+                    mControlProgressTxt.setText(minStr + "分" );
+                }else {
+                    mControlProgressTxt.setText(minStr + "分" + serendStr + "秒");
+                }
+            } else {
+                mControlProgressTxt.setText(time + "秒");
+            }
         }
     }
 }

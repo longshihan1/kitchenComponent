@@ -241,7 +241,9 @@ public class CustomCircleProgressBar extends View {
         if (progress > maxProgress) {
             progress = maxProgress;
         }
-        startAnim(progress);
+        CustomCircleProgressBar.this.progress=progress;
+        postInvalidate();
+//        startAnim(progress);
     }
 
     private void startAnim(float startProgress) {
