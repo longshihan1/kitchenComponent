@@ -84,7 +84,32 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             }
         } else if (getItemViewType(position) == TYPE_LIN) {
             if (holder instanceof HomeAdvViewHolder) {
-                ((HomeAdvViewHolder) holder).bindHolder("", position, context);
+                HomeAdvViewHolder advViewHolder= (HomeAdvViewHolder) holder;
+                advViewHolder.bindHolder("", position, context);
+                advViewHolder.sortTv.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (listener!=null){
+                            listener.onHomeSortListener();
+                        }
+                    }
+                });
+                advViewHolder.wantTv.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (listener!=null){
+                            listener.onCollectionListener();
+                        }
+                    }
+                });
+                advViewHolder.watchTv.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (listener!=null){
+                            listener.onRecentLookListener();
+                        }
+                    }
+                });
             }
         } else {
             if (holder instanceof HomeRecyViewHolder) {
@@ -148,6 +173,8 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public interface OnAdapterListener{
         void onHomeSortListener();
         void onHomeSearchListener();
+        void onCollectionListener();
+        void onRecentLookListener();
         void onMsgClick(SearchInfo.ResultBean.ListBean item);
     }
 }

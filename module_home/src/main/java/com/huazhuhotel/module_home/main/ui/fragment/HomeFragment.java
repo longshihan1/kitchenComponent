@@ -9,7 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.huazhuhotel.module_home.Mine.RecentLookActivity;
 import com.huazhuhotel.module_home.R;
+import com.huazhuhotel.module_home.collect.ui.CollectionActivity;
 import com.huazhuhotel.module_home.detail.ui.GoodsDetailActivity;
 import com.huazhuhotel.module_home.list.persenter.ListContract;
 import com.huazhuhotel.module_home.list.persenter.ListPersenter;
@@ -115,6 +117,16 @@ public class HomeFragment extends BaseMVPFragment<DOUGUOMANINPersenter> implemen
         Intent intent=new Intent(mActivity, ListActivity.class);
         intent.putExtra(IntentContancts.SEARCH_VALUE,"");
         startActivity(intent);
+    }
+
+    @Override
+    public void onCollectionListener() {
+        startActivity(new Intent(mActivity, CollectionActivity.class));
+    }
+
+    @Override
+    public void onRecentLookListener() {
+        startActivity(new Intent(mActivity, RecentLookActivity.class));
     }
 
     @Override
