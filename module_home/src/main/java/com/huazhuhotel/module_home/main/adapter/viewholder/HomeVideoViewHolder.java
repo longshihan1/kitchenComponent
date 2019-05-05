@@ -1,6 +1,5 @@
 package com.huazhuhotel.module_home.main.adapter.viewholder;
 
-import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
@@ -9,10 +8,8 @@ import android.widget.TextView;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.huazhuhotel.module_home.R;
 import com.huazhuhotel.module_home.main.adapter.VideoAdapter;
-import com.huazhuhotel.module_home.mvp.adapter.SimpleRecyclerAdapter;
 import com.huazhuhotel.module_home.mvp.adapter.SimpleViewHolder;
 import com.huazhuhotel.module_home.mvp.model.VideoListInfo;
-import com.longshihan.mvpcomponent.base.adapter.BaseHolder;
 import com.longshihan.mvpcomponent.strategy.imageloader.glide.ImageConfigImpl;
 import com.longshihan.mvpcomponent.utils.ArmsUtils;
 

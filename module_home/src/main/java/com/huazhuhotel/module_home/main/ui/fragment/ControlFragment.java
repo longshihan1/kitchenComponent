@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.huazhuhotel.module_home.R;
 import com.huazhuhotel.module_home.control.ControlActivity;
 import com.huazhuhotel.module_home.main.dialog.AddWifiDialogFragment;
+import com.huazhuhotel.module_home.utils.SPUtils;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,7 +30,7 @@ public class ControlFragment extends Fragment implements View.OnClickListener,Ad
     private AddWifiDialogFragment dialogFragment;
 
     public ControlFragment() {
-        // Required empty public constructor
+        // Required emFpfty public constructor
     }
 
 
@@ -52,6 +53,12 @@ public class ControlFragment extends Fragment implements View.OnClickListener,Ad
         mLayoutControlAdd=view.findViewById(R.id.layout_control_add);
         mLayoutControlOne=view.findViewById(R.id.layout_control_one);
         noticeTv=view.findViewById(R.id.layout_control_notice);
+
+
+        if ((Boolean) SPUtils.get(getContext(),ControlFragment.class.getSimpleName(),false)){
+            noticeTv.setVisibility(View.GONE);
+            mLayoutControlOne.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -79,6 +86,7 @@ public class ControlFragment extends Fragment implements View.OnClickListener,Ad
 
     @Override
     public void onSuccessClick() {
+        SPUtils.put(getContext(),ControlFragment.class.getSimpleName(),true);
         noticeTv.setVisibility(View.GONE);
         mLayoutControlOne.setVisibility(View.VISIBLE);
     }
