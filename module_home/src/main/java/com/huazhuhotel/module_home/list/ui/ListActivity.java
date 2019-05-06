@@ -89,7 +89,13 @@ public class ListActivity extends BaseMVPActivity<ListPersenter> implements List
     public void getListInfo(SearchInfo info) {
         smartRefreshLayout.finishLoadMore();
         if (info != null && info.getResult() != null && info.getResult().getList() != null) {
-            adapter.setListData(info.getResult().getList());
+            List<SearchInfo.ResultBean.ListBean> listBeans=new ArrayList<>();
+            for (int i = 0; i <info.getResult().getList().size(); i++) {
+                if (info.getResult().getList().get(i)!=null&&info.getResult().getList().get(i).getR()!=null){
+                    listBeans.add(info.getResult().getList().get(i));
+                }
+            }
+            adapter.setListData(listBeans);
             pageIndex+=20;
         }
     }
