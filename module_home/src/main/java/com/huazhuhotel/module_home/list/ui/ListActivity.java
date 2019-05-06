@@ -220,7 +220,7 @@ public class ListActivity extends BaseMVPActivity<ListPersenter> implements List
                 mSearchTypeThridline.setVisibility(View.INVISIBLE);
                 mSearchTypeSecondline.setVisibility(View.VISIBLE);
                 pageIndex = 0;
-                searchType = 1;
+                searchType = 2;
                 refreshData();
                 break;
             case R.id.search_type_thridtv:
@@ -228,7 +228,7 @@ public class ListActivity extends BaseMVPActivity<ListPersenter> implements List
                 mSearchTypeFirstline.setVisibility(View.INVISIBLE);
                 mSearchTypeThridline.setVisibility(View.VISIBLE);
                 pageIndex = 0;
-                searchType = 2;
+                searchType = 3;
                 refreshData();
                 break;
         }
