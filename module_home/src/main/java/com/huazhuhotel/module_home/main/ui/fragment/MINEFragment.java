@@ -142,6 +142,17 @@ public class MINEFragment extends BaseMVPFragment<AttentionDetailPersenter> impl
         goLogin=mRootview.findViewById(R.id.mine_nologin_gologin);
         nologin_rl = mRootview.findViewById(R.id.mine_nologinrl);
         login_ll = mRootview.findViewById(R.id.mine_loginll);
+       refreshLogin();
+
+        goLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mActivity, LoginActivity.class));
+            }
+        });
+    }
+
+    public void refreshLogin(){
         if (!TextUtils.isEmpty(com.huazhuhotel.module_home.utils.UserInfo.getUserId())) {
             login_ll.setVisibility(View.VISIBLE);
             nologin_rl.setVisibility(View.GONE);
@@ -150,13 +161,6 @@ public class MINEFragment extends BaseMVPFragment<AttentionDetailPersenter> impl
             login_ll.setVisibility(View.GONE);
             nologin_rl.setVisibility(View.VISIBLE);
         }
-
-        goLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(mActivity, LoginActivity.class));
-            }
-        });
     }
 
     @Override
