@@ -39,6 +39,7 @@ public class DOUGUOActivity extends BaseActivity  implements ControlFragment.onC
     private MyHandle handle;
     private int clockTime=0;
     public   ControlDialogFragment controlDialogFragment;
+    private int totalTime=30*60;
 
 
 
@@ -54,38 +55,40 @@ public class DOUGUOActivity extends BaseActivity  implements ControlFragment.onC
 
     @Override
     public void initData() {
-        mainFragment=findViewById(R.id.activity_mainfragment);
-        navLinearLayout=findViewById(R.id.activity_mainnavlayout);
+        if (fragmentList==null) {
+            mainFragment = findViewById(R.id.activity_mainfragment);
+            navLinearLayout = findViewById(R.id.activity_mainnavlayout);
 
-        fragmentManager = getSupportFragmentManager();
-        homeFragment = new HomeFragment();
-        noticeFragment = new VideoListFragment();
-        communityFragment = new ControlFragment();
-        mineFragment = new MINEFragment();
+            fragmentManager = getSupportFragmentManager();
+            homeFragment = new HomeFragment();
+            noticeFragment = new VideoListFragment();
+            communityFragment = new ControlFragment();
+            mineFragment = new MINEFragment();
 
-        communityFragment.setListener(this);
+            communityFragment.setListener(this);
 
-        fragmentList = new ArrayList<>();
-        fragmentList.add(homeFragment);
-        fragmentList.add(noticeFragment);
-        fragmentList.add(communityFragment);
-        fragmentList.add(mineFragment);
-        addFragmentStack(0);
+            fragmentList = new ArrayList<>();
+            fragmentList.add(homeFragment);
+            fragmentList.add(noticeFragment);
+            fragmentList.add(communityFragment);
+            fragmentList.add(mineFragment);
+            addFragmentStack(0);
 
-        navLinearLayout.setListener(new HomeNavLinearLayout.OnSelectListener() {
-            @Override
-            public void OnSelectView(final int index) {
-                //点击了第几个
-                addFragmentStack(index);
-            }
+            navLinearLayout.setListener(new HomeNavLinearLayout.OnSelectListener() {
+                @Override
+                public void OnSelectView(final int index) {
+                    //点击了第几个
+                    addFragmentStack(index);
+                }
 
-            @Override
-            public boolean OnInterceptorListener(final int index) {
-                return false;
-            }
-        });
+                @Override
+                public boolean OnInterceptorListener(final int index) {
+                    return false;
+                }
+            });
 
-        handle=new MyHandle(this);
+            handle = new MyHandle(this);
+        }
     }
 
     public void addFragmentStack(int position) {
@@ -126,12 +129,16 @@ public class DOUGUOActivity extends BaseActivity  implements ControlFragment.onC
     @Override
     public void onClickContriol() {
         controlDialogFragment=new ControlDialogFragment();
+        Bundle bundle=new Bundle();
+        bundle.putInt(ControlDialogFragment.class.getSimpleName(),totalTime);
+        controlDialogFragment.setArguments(bundle);
         controlDialogFragment.setListener(this);
         controlDialogFragment.show(getFragmentManager(),ControlDialogFragment.class.getSimpleName());
     }
 
     @Override
     public void onStartTime(int time) {
+        totalTime=time;
         clockTime=time;
         handle.sendEmptyMessageDelayed(2,1000);
     }

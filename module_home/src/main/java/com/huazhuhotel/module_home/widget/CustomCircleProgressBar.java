@@ -76,7 +76,7 @@ public class CustomCircleProgressBar extends View {
                     return enumObject;
                 }
             }
-            return TOP;
+            return LEFT;
         }
 
         public static float getDegree(int direction) {
@@ -107,7 +107,7 @@ public class CustomCircleProgressBar extends View {
         progressWidth = a.getDimension(R.styleable.CustomCircleProgressBar_progress_width, DimenUtil.dp2px(getContext(), 2f));
         progress = a.getFloat(R.styleable.CustomCircleProgressBar_progress, 50.0f);
         maxProgress = a.getInt(R.styleable.CustomCircleProgressBar_max_progress, 100);
-        direction = a.getInt(R.styleable.CustomCircleProgressBar_direction, 3);
+        direction = a.getInt(R.styleable.CustomCircleProgressBar_direction, 2);
 
         a.recycle();
 

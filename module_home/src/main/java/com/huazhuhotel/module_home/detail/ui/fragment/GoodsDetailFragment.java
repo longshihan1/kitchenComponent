@@ -1,6 +1,7 @@
 package com.huazhuhotel.module_home.detail.ui.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Html;
@@ -15,11 +16,14 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.huazhuhotel.module_home.R;
+import com.huazhuhotel.module_home.attention.ui.AttentionActivity;
+import com.huazhuhotel.module_home.attention.ui.AttentionDetailActivity;
 import com.huazhuhotel.module_home.mvp.model.GoodsDetailInfo;
 import com.huazhuhotel.module_home.mvp.model.MajorBean;
 import com.huazhuhotel.module_home.mvp.model.MajorInfo;
 import com.huazhuhotel.module_home.utils.CacheConstancts;
 import com.huazhuhotel.module_home.utils.GsonUtils;
+import com.huazhuhotel.module_home.utils.IntentContancts;
 import com.huazhuhotel.module_home.utils.SPUtils;
 import com.huazhuhotel.module_home.widget.GoodsDetailCookItemView;
 import com.huazhuhotel.module_home.widget.LineFlowLayout;
@@ -79,6 +83,17 @@ public class GoodsDetailFragment extends BaseMVPFragment {
         commentTv=mRootview.findViewById(R.id.goodsdetail_detail_commentTv);
         layoutParams=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
+        mGoodsdetailDetailAuthorimg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (data!=null) {
+                    Intent intent = new Intent(mActivity, AttentionDetailActivity.class);
+                    intent.putExtra(IntentContancts.USERID_VALUE, data.getAuthor_id());
+                    startActivity(intent);
+                }
+            }
+        });
+
         addCookTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -115,7 +130,7 @@ public class GoodsDetailFragment extends BaseMVPFragment {
                     majorInfos.add(info);
                     String json= gson.toJson(majorInfos);
                     SPUtils.put(mActivity,CacheConstancts.COOKLISTMAGJOR,json);
-
+                    Toast.makeText(mActivity,"添加成功",Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -119,6 +119,38 @@ public class ControlDialogFragment extends DialogFragment implements View.OnClic
         mControlStop.setOnClickListener(this);
         mControlModel4 = view.findViewById(R.id.control_model4);
         mControlModel4.setOnClickListener(this);
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+           countTime= bundle.getInt(ControlDialogFragment.class.getSimpleName(),30*60);
+           //{"30秒", "1min", "5min", "10min", "20min", "30min", "40min", "50min", "1h", "1h30min", "2h", "2h30min", "3h"}
+           if (countTime+1==30){
+               mControlModel2.setText("30秒");
+           }else if (countTime+1==60){
+               mControlModel2.setText("1min");
+           }else if (countTime+1==5*60){
+               mControlModel2.setText("5min");
+           }else if (countTime+1==10*60){
+               mControlModel2.setText("10min");
+           }else if (countTime+1==20*60){
+               mControlModel2.setText("20min");
+           }else if (countTime+1==30*60){
+               mControlModel2.setText("30min");
+           }else if (countTime+1==40*60){
+               mControlModel2.setText("40min");
+           }else if (countTime+1==50*60){
+               mControlModel2.setText("50min");
+           }else if (countTime+1==60*60){
+               mControlModel2.setText("1h");
+           }else if (countTime+1==90*60){
+               mControlModel2.setText("1h30min");
+           }else if (countTime+1==120*60){
+               mControlModel2.setText("2h");
+           }else if (countTime+1==150*60){
+               mControlModel2.setText("2h30min");
+           }else if (countTime+1==180*60){
+               mControlModel2.setText("3h");
+           }
+        }
     }
 
     @Override
