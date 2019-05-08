@@ -30,6 +30,9 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by LONGHE001.
  *
@@ -141,7 +144,13 @@ public class HomeFragment extends BaseMVPFragment<DOUGUOMANINPersenter> implemen
     public void getListInfo(SearchInfo info) {
         smartRefreshLayout.finishLoadMore();
         if (info != null && info.getResult() != null && info.getResult().getList() != null) {
-            adapter.setListData(info.getResult().getList());
+            List<SearchInfo.ResultBean.ListBean> listBeans=new ArrayList<>();
+            for (int i = 0; i <info.getResult().getList().size(); i++) {
+                if (info.getResult().getList().get(i)!=null&&info.getResult().getList().get(i).getR()!=null){
+                    listBeans.add(info.getResult().getList().get(i));
+                }
+            }
+            adapter.setListData(listBeans);
             pageIndex+=20;
         }
     }

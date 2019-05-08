@@ -3,26 +3,39 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              android:background="@color/white"
-              tools:context="com.huazhuhotel.module_home.main.ui.fragment.ControlFragment">
+              android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:orientation="vertical">
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_weight="1"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="设备" />
+
 
         <ImageView
             android:id="@+id/layout_control_add"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_gravity="right"
-            android:background="@drawable/chufang"/>
+            android:layout_margin="10dp"
+            android:background="@drawable/zengjia"/>
     </LinearLayout>
 
     <TextView
         android:id="@+id/layout_control_notice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:text="尚无设备绑定，请点击+添加设备"/>
 
@@ -31,13 +44,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_marginLeft="20dp"
-            android:background="@drawable/chufang"/>
+            android:background="@drawable/shebei"/>
 
         <View
             android:layout_width="0dp"
@@ -47,7 +60,7 @@
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:background="@drawable/chufang"
+            android:background="@drawable/wifi"
             />
 
         <View

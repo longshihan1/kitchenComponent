@@ -69,7 +69,7 @@ public class GoodsDetailPersenter extends BasePresenter<GoodsDetailContract.View
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        com.orhanobut.logger.Logger.e(throwable, "sss");
+                        com.orhanobut.logger.Logger.e(throwable, "");
                     }
                 });
         addDispose(disposable);

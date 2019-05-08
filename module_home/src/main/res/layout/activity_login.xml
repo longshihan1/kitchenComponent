@@ -32,7 +32,7 @@
             android:gravity="center"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="LOGIN"
+            android:text="登录"
             android:textSize="15dp"/>
 
         <TextView
@@ -43,7 +43,7 @@
             android:gravity="center"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="SIGN UP"
+            android:text="注册"
             android:textSize="15dp"/>
 
     </LinearLayout>
@@ -75,9 +75,9 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:background="@null"
-        android:hint="PHONE number"
+        android:hint="手机号"
         android:padding="10dp"
-        android:textSize="20dp"/>
+        android:textSize="15dp"/>
 
     <EditText
         android:id="@+id/layout_login_passwordtv"
@@ -86,9 +86,10 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:background="@null"
-        android:hint="PASSWORD"
+        android:hint="密码"
+        android:inputType="textPassword"
         android:padding="10dp"
-        android:textSize="20dp"/>
+        android:textSize="15dp"/>
 
     <EditText
         android:id="@+id/layout_login_nametv"
@@ -97,12 +98,12 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:background="@null"
-        android:hint="USER NAME"
+        android:hint="用户名"
         android:paddingBottom="5dp"
         android:paddingLeft="10dp"
         android:paddingTop="5dp"
         android:visibility="gone"
-        android:textSize="20dp"/>
+        android:textSize="15dp"/>
 
     <TextView
         android:id="@+id/layout_login_forgettv"
@@ -110,8 +111,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:padding="10dp"
-        android:text="Forget PASSWORD?"
-        android:textSize="20dp"
+        android:text="忘记密码？"
+        android:textSize="12dp"
         />
 
     <TextView
@@ -124,7 +125,7 @@
         android:gravity="center"
         android:paddingBottom="10dp"
         android:paddingTop="10dp"
-        android:text="LOGIN"
+        android:text="登录"
         android:textColor="@color/black"
         android:textSize="15dp"/>
 </LinearLayout>

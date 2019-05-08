@@ -2,6 +2,7 @@ package com.huazhuhotel.module_home.main.adapter.viewholder;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.huazhuhotel.module_home.R;
@@ -16,7 +17,7 @@ import com.longshihan.mvpcomponent.base.adapter.BaseHolder;
  */
 
 public class HomeAdvViewHolder extends BaseHolder<String> {
-    public TextView sortTv,watchTv,workTv,wantTv;
+    public LinearLayout sortTv,watchTv,workTv,wantTv;
     public HomeAdvViewHolder(View itemView) {
         super(itemView);
         sortTv=itemView.findViewById(R.id.item_home_sort);

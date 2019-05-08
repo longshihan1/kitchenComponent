@@ -23,8 +23,8 @@ public class SearchModel extends BaseModel implements ISearchModel {
 
     @Override
     public Observable<SearchInfo> getSeachInfo(int page,int endpage,String searchValue,int type) {
-        Observable<SearchInfo> splashEntityObservable = mRepositoryManager.obtainRetrofitService(ApiService.class)
+        Observable<SearchInfo> searchInfoObservable = mRepositoryManager.obtainRetrofitService(ApiService.class)
                 .getSearchInfo(page,endpage,searchValue,type);
-        return splashEntityObservable;
+        return searchInfoObservable;
     }
 }
