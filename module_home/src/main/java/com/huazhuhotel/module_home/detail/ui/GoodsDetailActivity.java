@@ -228,7 +228,7 @@ public class GoodsDetailActivity extends BaseMVPActivity<GoodsDetailPersenter> i
 
             @Override
             public void onGoCommentClick() {
-
+                onClick(mGoodsdetailTypeThridtv);
             }
         });
     }

@@ -50,6 +50,7 @@ public class AddWifiDialogFragment extends DialogFragment implements View.OnClic
             case R.id.dialog_wifi_ok:
                 if (!TextUtils.isEmpty(mDialogWifiPwd.getText())){
                     if (listener!=null){
+                        dismiss();
                         listener.onSuccessClick();
                     }
                 }

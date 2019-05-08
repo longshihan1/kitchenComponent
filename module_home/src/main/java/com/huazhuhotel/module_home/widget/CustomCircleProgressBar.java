@@ -76,7 +76,7 @@ public class CustomCircleProgressBar extends View {
                     return enumObject;
                 }
             }
-            return RIGHT;
+            return TOP;
         }
 
         public static float getDegree(int direction) {
