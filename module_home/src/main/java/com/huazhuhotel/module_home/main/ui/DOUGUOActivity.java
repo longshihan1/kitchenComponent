@@ -88,8 +88,6 @@ public class DOUGUOActivity extends BaseActivity  implements ControlFragment.onC
             });
 
             handle = new MyHandle(this);
-        }else {
-            mineFragment.refreshLogin();
         }
     }
 

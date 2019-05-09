@@ -152,6 +152,12 @@ public class MINEFragment extends BaseMVPFragment<AttentionDetailPersenter> impl
         });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        refreshLogin();
+    }
+
     public void refreshLogin(){
         if (!TextUtils.isEmpty(com.huazhuhotel.module_home.utils.UserInfo.getUserId())) {
             login_ll.setVisibility(View.VISIBLE);
